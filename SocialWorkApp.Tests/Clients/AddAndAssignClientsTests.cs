@@ -1,14 +1,11 @@
 ﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SocialWorkApp.Core.Users;
+
 
 namespace SocialWorkApp.Core.Clients
 {
     [TestFixture]
-    public class AddClientsTests
+    public class AddAndAssignClientsTests
     {
         [Test]
         public void ShouldAddClientsWithInfoAndProvider()
@@ -25,6 +22,8 @@ namespace SocialWorkApp.Core.Clients
                             c.LastName == "Star" &&
                             c.ISP_YearEndDate == new DateOnly(2025, 4, 2)));
         }
+
+        
 
 
     }
