@@ -8,7 +8,7 @@ namespace SocialWorkApp.Core.Clients
         [Test]
         public void ShouldModifyClient()
         {
-            var client = new Client();
+            var client = new Client("SpongeBob", "SquarePants", new DateOnly(2024, 12, 25));
             var reportInfo = new ClientReportInfo()
             {
                 ISP_MeetingDate = new DateOnly(2025, 3, 15),

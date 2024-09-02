@@ -12,14 +12,15 @@ namespace SocialWorkApp.Core.Users
 
         public List<Client> Clients { get; set; } = new List<Client>();
 
-        public void AddClient(string FirstName, string LastName, DateOnly ISP_YearEndDate)
+        public void AddClient(Client client)
         {
-            Clients.Add(new Client 
-            { 
-                FirstName = FirstName, 
-                LastName = LastName, 
-                ISP_YearEndDate = ISP_YearEndDate 
-            });
+            Clients.Add(client);
+        }
+
+        public void ReassignClient(Client client, Provider newProvider)
+        {
+            Clients.Remove(client);
+            newProvider.Clients.Add(client);
         }
     }
 }
