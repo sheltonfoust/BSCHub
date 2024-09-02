@@ -1,7 +1,7 @@
 ﻿
-namespace SocialWorkApp.Core.Tests.Reports
+namespace SocialWorkApp.Core.Clients
 {
-    internal class ClientReportInfo
+    public class ClientReportInfo
     {
         public ClientReportInfo()
         {

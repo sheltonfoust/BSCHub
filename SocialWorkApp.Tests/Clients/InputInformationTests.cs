@@ -1,11 +1,6 @@
 ﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SocialWorkApp.Core.Tests.Reports
+namespace SocialWorkApp.Core.Clients
 {
     [TestFixture]
     public class InputInformationTests
@@ -32,5 +27,8 @@ namespace SocialWorkApp.Core.Tests.Reports
             Assert.That(client.HasRMP, Is.EqualTo(false));
 
         }
+
+       
+
     }
 }
