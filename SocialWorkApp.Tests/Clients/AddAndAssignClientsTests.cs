@@ -15,7 +15,7 @@ namespace SocialWorkApp.Core.Clients
 
             Assert.That(client.FirstName, Is.EqualTo("SpongeBob"));
             Assert.That(client.LastName, Is.EqualTo("SquarePants"));
-            Assert.That(client.ISP_YearEndDate, Is.EqualTo(new DateOnly(2024, 12, 25)));
+            Assert.That(client.ISP_YearStartDate, Is.EqualTo(new DateOnly(2024, 12, 25)));
         }
        
 
