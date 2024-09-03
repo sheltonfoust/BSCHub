@@ -10,4 +10,13 @@ namespace SocialWorkApp.Core.Reports
     {
         public DateOnly DueDate { get; set; }
     }
+
+    public enum ReportType
+    {
+        PBSA,
+        PBSP,
+        BCIP,
+        PPMP,
+        RMP
+    }
 }

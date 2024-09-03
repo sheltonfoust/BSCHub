@@ -21,11 +21,12 @@ namespace SocialWorkApp.Core.Clients
         public bool HasBCIP { get; internal set; }
         public bool HasPPMP { get; internal set; }
         public bool HasRMP { get; internal set; }
-        public Report PBSA { get; set; }
-        public Report PBSP { get; set; }
-        public Report? BCIP { get; set; }
-        public Report? PPMP { get; set; }
-        public Report? RMP { get; set; }
+
+        public Report? GetReport(ReportType reportType)
+        {
+            throw new NotImplementedException();
+        }
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateOnly ISP_YearEndDate { get; set; }

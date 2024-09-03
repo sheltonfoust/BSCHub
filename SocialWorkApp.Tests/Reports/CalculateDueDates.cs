@@ -1,11 +1,6 @@
 ﻿using NUnit.Framework;
 using SocialWorkApp.Core.Clients;
-using SocialWorkApp.Core.Users;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static SocialWorkApp.Core.Reports.ReportType;
 
 namespace SocialWorkApp.Core.Reports
 {
@@ -33,12 +28,12 @@ namespace SocialWorkApp.Core.Reports
             });
 
 
-            Assert.That(client.PBSA.DueDate, Is.EqualTo(meeting.AddDays(-14)));
-            Assert.That(client.PBSP.DueDate, Is.EqualTo(yearEnd.AddDays(1)));
+            Assert.That(client.GetReport(PBSA)?.DueDate, Is.EqualTo(meeting.AddDays(-14)));
+            Assert.That(client.GetReport(PBSP)?.DueDate, Is.EqualTo(yearEnd.AddDays(1)));
 
-            Assert.That(client?.BCIP?.DueDate, Is.EqualTo(yearEnd.AddDays(1)));
-            Assert.That(client?.PPMP?.DueDate, Is.EqualTo(yearEnd.AddDays(1)));
-            Assert.That(client?.RMP?.DueDate, Is.EqualTo(yearEnd.AddDays(1)));
+            Assert.That(client?.GetReport(BCIP)?.DueDate, Is.EqualTo(yearEnd.AddDays(1)));
+            Assert.That(client?.GetReport(PPMP)?.DueDate, Is.EqualTo(yearEnd.AddDays(1)));
+            Assert.That(client?.GetReport(RMP)?.DueDate, Is.EqualTo(yearEnd.AddDays(1)));
         }
 
         [Test]
@@ -58,12 +53,12 @@ namespace SocialWorkApp.Core.Reports
             });
 
 
-            Assert.That(client.PBSA.DueDate, Is.EqualTo(meeting.AddDays(-14)));
-            Assert.That(client.PBSP.DueDate, Is.EqualTo(meeting.AddDays(14)));
+            Assert.That(client.GetReport(PBSA)?.DueDate, Is.EqualTo(meeting.AddDays(-14)));
+            Assert.That(client.GetReport(PBSP)?.DueDate, Is.EqualTo(meeting.AddDays(14)));
 
-            Assert.That(client?.BCIP?.DueDate, Is.EqualTo(yearEnd.AddDays(1)));
-            Assert.That(client?.PPMP?.DueDate, Is.EqualTo(yearEnd.AddDays(1)));
-            Assert.That(client?.RMP?.DueDate, Is.EqualTo(yearEnd.AddDays(1)));
+            Assert.That(client?.GetReport(BCIP)?.DueDate, Is.EqualTo(yearEnd.AddDays(1)));
+            Assert.That(client?.GetReport(PPMP)?.DueDate, Is.EqualTo(yearEnd.AddDays(1)));
+            Assert.That(client?.GetReport(RMP)?.DueDate, Is.EqualTo(yearEnd.AddDays(1)));
 
         }
 
