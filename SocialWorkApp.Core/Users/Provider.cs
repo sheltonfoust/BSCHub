@@ -1,8 +1,8 @@
 ﻿
 
-using SocialWorkApp.Core.Clients;
+using SocialWorkApp.Domain.Clients;
 
-namespace SocialWorkApp.Core.Users
+namespace SocialWorkApp.Domain.Users
 {
     public class Provider
     {

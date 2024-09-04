@@ -1,10 +1,22 @@
 ﻿
-namespace SocialWorkApp.Core.Clients
+namespace SocialWorkApp.Domain.Clients
 {
     public class ClientReportInfo
     {
+
+
         public ClientReportInfo()
         {
+
+        }
+
+        public ClientReportInfo(DateOnly dateOnly, bool isSevere, bool hasBCIP, bool hasPPMP, bool hasRMP)
+        {
+            this.ISP_MeetingDate = dateOnly;
+            this.isSevere = isSevere;
+            this.hasBCIP = hasBCIP;
+            this.hasPPMP = hasPPMP;
+            this.hasRMP = hasRMP;
         }
 
         public DateOnly ISP_MeetingDate { get; set; }

@@ -1,12 +1,12 @@
 ﻿using NUnit.Framework;
-using SocialWorkApp.Core.Clients;
-using static SocialWorkApp.Core.Reports.ReportType;
+using SocialWorkApp.Domain.Clients;
+using static SocialWorkApp.Domain.Reports.ReportType;
 
-namespace SocialWorkApp.Core.Reports
+namespace SocialWorkApp.Domain.Reports
 {
 
     [TestFixture]
-    public class CalculateDueDatesTests
+    public class GetReportTests
     {
         DateOnly yearStart = new DateOnly(2025, 4, 2);
         DateOnly meetingDate = new DateOnly(2025, 1, 2);
@@ -74,7 +74,7 @@ namespace SocialWorkApp.Core.Reports
             client.InputReportInfo(new ClientReportInfo()
             {
                 ISP_MeetingDate = meetingDate,
-                isSevere = true,
+                isSevere = false,
                 hasBCIP = false,
                 hasPPMP = false,
                 hasRMP = false,
@@ -83,7 +83,11 @@ namespace SocialWorkApp.Core.Reports
             Assert.That(() => client.GetReport(BCIP), Throws.TypeOf<ArgumentException>());
             Assert.That(() => client.GetReport(PPMP), Throws.TypeOf<ArgumentException>());
             Assert.That(() => client.GetReport(RMP), Throws.TypeOf<ArgumentException>());
-            
+
+            // Other two should still work
+            Assert.That(client.GetReport(PBSA).DueDate, Is.EqualTo(meetingDate.AddDays(-14)));
+            Assert.That(client.GetReport(PBSP).DueDate, Is.EqualTo(yearStart));
+
         }
 
 

@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
-using SocialWorkApp.Core.Users;
+using SocialWorkApp.Domain.Users;
 
 
-namespace SocialWorkApp.Core.Clients
+namespace SocialWorkApp.Domain.Clients
 {
     [TestFixture]
     public class AddAndAssignClientsTests
