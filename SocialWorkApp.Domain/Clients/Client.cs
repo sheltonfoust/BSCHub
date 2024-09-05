@@ -77,6 +77,7 @@ namespace SocialWorkApp.Domain.Clients
         public void InputReportInfo(ClientReportInfo reportInfo)
         {
             this.reportInfo = reportInfo;
+            HasReportInfo = true;
         }
 
         public List<Report> GetReports()
@@ -90,7 +91,7 @@ namespace SocialWorkApp.Domain.Clients
             return reports;
         }
 
-        
+        public bool HasReportInfo { get; private set; } = false;
     }
     
 

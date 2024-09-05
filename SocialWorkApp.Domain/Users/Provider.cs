@@ -1,6 +1,4 @@
-﻿
-
-using SocialWorkApp.Domain.Clients;
+﻿using SocialWorkApp.Domain.Clients;
 
 namespace SocialWorkApp.Domain.Users
 {

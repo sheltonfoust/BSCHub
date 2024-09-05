@@ -22,7 +22,7 @@ namespace SocialWorkApp.Domain.Reports
         [Test]
         public void ShouldCalculateDueDatesIfNotSevere()
         {
-            
+            Assert.That(client.HasReportInfo, Is.EqualTo(false));
             
             client.InputReportInfo(new ClientReportInfo()
             {
@@ -33,6 +33,8 @@ namespace SocialWorkApp.Domain.Reports
                 hasRMP = true,
                 
             });
+
+            Assert.That(client.HasReportInfo, Is.EqualTo(true));
 
 
             Assert.That(client.GetReport(PBSA).DueDate, Is.EqualTo(meetingDate.AddDays(-14)));
@@ -46,7 +48,9 @@ namespace SocialWorkApp.Domain.Reports
         [Test]
         public void ShouldCalculateDueDatesIfSevere()
         {
-           
+
+            Assert.That(client.HasReportInfo, Is.EqualTo(false));
+
             client.InputReportInfo(new ClientReportInfo()
             {
                 ISP_MeetingDate = meetingDate,
@@ -56,6 +60,7 @@ namespace SocialWorkApp.Domain.Reports
                 hasRMP = true,
             });
 
+            Assert.That(client.HasReportInfo, Is.EqualTo(true));
 
             Assert.That(client.GetReport(PBSA).DueDate, Is.EqualTo(meetingDate.AddDays(-14)));
             Assert.That(client.GetReport(PBSP).DueDate, Is.EqualTo(meetingDate.AddDays(14)));
