@@ -14,11 +14,31 @@ namespace SocialWorkApp.Domain.Clients
             this.ISP_YearStartDate = ISP_YearStartDate;
         }
 
-        public bool IsSevere { get; private set; }
-        public DateOnly ISP_MeetingDate { get; private set; }
-        public bool HasBCIP { get; private set; }
-        public bool HasPPMP { get; private set; }
-        public bool HasRMP { get; private set; }
+        private ClientReportInfo? reportInfo;
+
+        public bool IsSevere 
+        {
+            get
+            {
+                return reportInfo == null ? false : reportInfo.isSevere;
+            }
+
+        }
+
+        public DateOnly ISP_MeetingDate
+        {
+            get
+            {
+                return reportInfo.ISP_MeetingDate;
+            }
+        }
+
+        
+        public bool Has(ReportType report)
+        {
+            return reportInfo == null ? false : reportInfo.Has(report);
+        }
+
 
 
         private Report[]? reports;
@@ -46,27 +66,8 @@ namespace SocialWorkApp.Domain.Clients
 
         public Report GetReport(ReportType reportType)
         {
-            switch(reportType)
-            {
-                case BCIP:
-                    if (!HasBCIP)
-                    {
-                        throw new ArgumentException("Client Does Not Have BCIP.");
-                    }
-                    break;
-                case PPMP:
-                    if (!HasPPMP)
-                    {
-                        throw new ArgumentException("Client Does Not Have PPMP.");
-                    }
-                    break;
-                case RMP:
-                    if (!HasRMP)
-                    {
-                        throw new ArgumentException("Client Does Not Have RMP.");
-                    }
-                    break;
-            }
+            if (!Has(reportType))
+                throw new ArgumentException("Client Does Not Have " + nameof(reportType) + ".");
             return Reports[(int)reportType];
         }
 
@@ -75,11 +76,7 @@ namespace SocialWorkApp.Domain.Clients
         public DateOnly ISP_YearStartDate { get; set; }
         public void InputReportInfo(ClientReportInfo reportInfo)
         {
-            IsSevere = reportInfo.isSevere;
-            ISP_MeetingDate = reportInfo.ISP_MeetingDate;
-            HasBCIP = reportInfo.hasBCIP;
-            HasPPMP = reportInfo.hasPPMP;
-            HasRMP = reportInfo.hasRMP;
+            this.reportInfo = reportInfo;
         }
 
         public List<Report> GetReports()
@@ -87,11 +84,13 @@ namespace SocialWorkApp.Domain.Clients
             var reports = new List<Report>();
             foreach (var  report in Reports)
             {
-                if ((report.Type == BCIP && !HasBCIP) || (report.Type == PPMP && !HasPPMP) || (report.Type == RMP && !HasRMP)) continue;
-                reports.Add(report);
+                if (Has(report.Type))
+                    reports.Add(report);
             }
             return reports;
         }
+
+        
     }
     
 

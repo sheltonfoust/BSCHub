@@ -10,7 +10,7 @@ namespace SocialWorkApp.Domain.Users
         {
         }
 
-        public List<Client> Clients { get; set; } = new List<Client>();
+        public List<Client> Clients { get; internal set; } = new List<Client>();
 
         public void AddClient(Client client)
         {

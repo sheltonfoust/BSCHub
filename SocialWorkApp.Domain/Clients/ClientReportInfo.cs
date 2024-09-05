@@ -1,4 +1,7 @@
 ﻿
+using SocialWorkApp.Domain.Reports;
+using static SocialWorkApp.Domain.Reports.ReportType;
+
 namespace SocialWorkApp.Domain.Clients
 {
     public class ClientReportInfo
@@ -24,5 +27,22 @@ namespace SocialWorkApp.Domain.Clients
         public bool hasBCIP { get; set; }
         public bool hasPPMP { get; set; }
         public bool hasRMP { get; set; }
+        internal bool Has(ReportType report)
+        {
+            switch (report)
+            {
+                case PBSA:
+                    return true;
+                case PBSP:
+                    return true;
+                case BCIP:
+                    return this.hasBCIP;
+                case PPMP:
+                    return this.hasPPMP;
+                case RMP:
+                    return this.hasRMP;
+                default: return false;
+            }
+        }
     }
 }
