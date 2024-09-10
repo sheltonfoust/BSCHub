@@ -11,4 +11,8 @@
     <ProjectReference Include="..\SocialWorkApp.Domain\SocialWorkApp.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>
