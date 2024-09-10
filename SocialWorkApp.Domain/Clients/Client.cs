@@ -6,7 +6,7 @@ namespace SocialWorkApp.Domain.Clients
     public class Client
     {
 
-
+        public int ClientId { get; set; }
         public Client(string firstName, string lastName, DateOnly ISP_YearStartDate)
         {
             FirstName = firstName;
@@ -62,8 +62,6 @@ namespace SocialWorkApp.Domain.Clients
 
         }
         
-
-
         public Report GetReport(ReportType reportType)
         {
             if (!Has(reportType))

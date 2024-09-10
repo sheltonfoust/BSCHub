@@ -9,6 +9,7 @@ namespace SocialWorkApp.Domain.Reports
 {
     public class Report
     {
+        public int ReportId { get; set; }
         public Report(ReportType type, DateOnly dueDate)
         {
             Type = type;

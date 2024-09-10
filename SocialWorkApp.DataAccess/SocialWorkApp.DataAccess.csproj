@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SocialWorkApp.Domain\SocialWorkApp.Domain.csproj" />
+    <ProjectReference Include="..\SocialWorkApp.Application\SocialWorkApp.Application.csproj" />
   </ItemGroup>
 
 </Project>
