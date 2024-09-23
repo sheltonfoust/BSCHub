@@ -25,11 +25,11 @@ namespace SocialWorkApp.DataAccess
                     new Client("Eugene", "Krabs", new DateOnly(2024, 5, 14)) {ClientId = 4},
                     new Client("Sheldon", "Plankton", new DateOnly(2024, 10, 20)) {ClientId = 5},
                 };
-                output[0].InputReportInfo(new ClientReportInfo(new DateOnly(2024, 8, 2), false, true, false, true));
-                output[1].InputReportInfo(new ClientReportInfo(new DateOnly(2024, 12, 18), true, true, true, true));
-                output[2].InputReportInfo(new ClientReportInfo(new DateOnly(2024, 9, 1), false, false, false, false));
-                output[3].InputReportInfo(new ClientReportInfo(new DateOnly(2024, 7, 25), false, false, false, true));
-                output[4].InputReportInfo(new ClientReportInfo(new DateOnly(2024, 3, 20), false, false, true, false));
+                output[0].InputReportInfo(new ClientReportInfo(new DateOnly(2024, 8, 2), false, true, false));
+                output[1].InputReportInfo(new ClientReportInfo(new DateOnly(2024, 12, 18), true, true, true));
+                output[2].InputReportInfo(new ClientReportInfo(new DateOnly(2024, 9, 1), false, false, false));
+                output[3].InputReportInfo(new ClientReportInfo(new DateOnly(2024, 7, 25), false, false, false));
+                output[4].InputReportInfo(new ClientReportInfo(new DateOnly(2024, 3, 20), false, false, true));
 
                 return clients;
             }

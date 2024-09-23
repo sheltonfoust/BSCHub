@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SocialWorkApp.Application.Contracts.Persistence;
+using SocialWorkApp.Domain.Users;
+using SocialWorkApp.MVC.ViewModels;
 
 namespace SocialWorkApp.MVC.Controllers
 {
@@ -14,8 +16,11 @@ namespace SocialWorkApp.MVC.Controllers
 
         public IActionResult List()
         {
-            ViewBag.CurrentProvider = "Mickey Mouse";
-            return View(reportRepository.ListAllAsync());
+            var reports = reportRepository.ListByProvider(1);
+            var viewModel = new ReportListViewModel(
+                new Provider() { FirstName = "Mickey", LastName = "Mouse"}, 
+                reports);
+            return View(viewModel);
         }
     }
 }

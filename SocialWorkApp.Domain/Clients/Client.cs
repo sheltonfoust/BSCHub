@@ -49,11 +49,11 @@ namespace SocialWorkApp.Domain.Clients
                 if (reports == null)
                 {
                     reports = new Report[Enum.GetValues(typeof(ReportType)).Length];
-                    reports[(int)PBSA] = new Report(PBSA, ISP_MeetingDate.AddDays(-14));
-                    reports[(int)PBSP] = new Report(PBSP, IsSevere ? ISP_MeetingDate.AddDays(14) : ISP_YearStartDate);
-                    reports[(int)BCIP] = new Report(BCIP, ISP_YearStartDate);
-                    reports[(int)PPMP] = new Report(PPMP, ISP_YearStartDate);
-                    reports[(int)RMP] = new Report(RMP, ISP_YearStartDate);
+                    reports[(int)PBSA] = new Report(PBSA, ISP_MeetingDate.AddDays(-14), this);
+                    reports[(int)PBSP] = new Report(PBSP, IsSevere ? ISP_MeetingDate.AddDays(14) : ISP_YearStartDate, this);
+                    reports[(int)BCIP] = new Report(BCIP, ISP_YearStartDate, this);
+                    reports[(int)PPMP] = new Report(PPMP, ISP_YearStartDate, this);
+                    reports[(int)SemiAnn] = new Report(SemiAnn, ISP_YearStartDate.AddDays(189), this);
 
                 }
                 return reports;
@@ -71,7 +71,7 @@ namespace SocialWorkApp.Domain.Clients
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateOnly ISP_YearStartDate { get; set; }
+        public DateOnly ISP_YearStartDate { get; }
         public void InputReportInfo(ClientReportInfo reportInfo)
         {
             this.reportInfo = reportInfo;
@@ -81,7 +81,7 @@ namespace SocialWorkApp.Domain.Clients
         public List<Report> GetReports()
         {
             var reports = new List<Report>();
-            foreach (var  report in Reports)
+            foreach (var report in Reports)
             {
                 if (Has(report.Type))
                     reports.Add(report);

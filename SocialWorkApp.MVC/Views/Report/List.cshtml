@@ -1,12 +1,44 @@
-﻿<!DOCTYPE html>
+﻿@using SocialWorkApp.MVC.ViewModels
+@using SocialWorkApp.MVC.Views.Report
+@model ReportListViewModel
 
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>Social Work App</title>
-    </head>
-    <body>
-        <h1>@ViewBag.CurrentProvider</h1>
-        
-    </body>
-</html>
+<h1 class="mt-4">My Reports</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">My Reports</li>
+</ol>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Clients for @Model.Provider.FirstName @Model.Provider.LastName
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            
+            <thead>
+                <tr>
+                    <th>Client</th>
+                    <th>Report Type</th>
+                    <th>Due Date</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Client</th>
+                    <th>Report Type</th>
+                    <th>Due Date</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var report in Model.Reports)
+                {
+                    <tr>
+                        <td>@report.Client.FirstName @report.Client.LastName</td>
+                        <td>@ReportNames.GetName(report.Type)</td>
+                        <td>@report.DueDate</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -15,18 +15,18 @@ namespace SocialWorkApp.DataAccess
                 var output = new List<Client>()
                 {
                     new Client( "SpongeBob","Squarepants", new DateOnly(2024, 11, 1)) {ClientId = 1},
-                    new Client("Patrick", "Star", new DateOnly(2024, 18, 3)) { ClientId = 2},
+                    new Client("Patrick", "Star", new DateOnly(2024, 11, 3)) { ClientId = 2},
                     new Client("Squidward", "Tentacles", new DateOnly(2024, 12, 1)) {ClientId = 3},
                     new Client("Eugene", "Krabs", new DateOnly(2024, 5, 14)) {ClientId = 4},
                     new Client("Sheldon", "Plankton", new DateOnly(2024, 10, 20)) {ClientId = 5},
                 };
-                output[0].InputReportInfo(new ClientReportInfo(new DateOnly(2024, 8, 2), false, true, false, true));
-                output[1].InputReportInfo(new ClientReportInfo(new DateOnly(2024, 12, 18), true, true, true, true));
-                output[2].InputReportInfo(new ClientReportInfo(new DateOnly(2024, 9, 1), false, false, false, false));
-                output[3].InputReportInfo(new ClientReportInfo(new DateOnly(2024, 7, 25), false, false, false, true));
-                output[4].InputReportInfo(new ClientReportInfo(new DateOnly(2024, 3, 20), false, false, true, false));
+                output[0].InputReportInfo(new ClientReportInfo(new DateOnly(2024, 8, 2), false, true, false));
+                output[1].InputReportInfo(new ClientReportInfo(new DateOnly(2024, 12, 18), true, true, true));
+                output[2].InputReportInfo(new ClientReportInfo(new DateOnly(2024, 9, 1), false, false, false));
+                output[3].InputReportInfo(new ClientReportInfo(new DateOnly(2024, 7, 25), false, false, false));
+                output[4].InputReportInfo(new ClientReportInfo(new DateOnly(2024, 3, 20), false, false, true));
 
-                return Clients;
+                return output;
             }
         }
 
@@ -60,10 +60,11 @@ namespace SocialWorkApp.DataAccess
             return task;  
         }
 
-        public Task<IReadOnlyList<Report>> ListByProvider(int providerId)
+        public IReadOnlyList<Report> ListByProvider(int providerId)
         {
+            /*
             var task = new Task<IReadOnlyList<Report>>(() =>
-            {
+            {*/
                 List<Client> clients;
                 if (providerId == 1)
                 {
@@ -83,8 +84,8 @@ namespace SocialWorkApp.DataAccess
                     result.AddRange(client.GetReports());
                 }
                 return result.AsReadOnly();
-            });
-            return task;
+           /* });
+            return task;*/
         }
 
 

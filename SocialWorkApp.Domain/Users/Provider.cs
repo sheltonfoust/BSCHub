@@ -8,6 +8,8 @@ namespace SocialWorkApp.Domain.Users
         {
         }
 
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public List<Client> Clients { get; internal set; } = new List<Client>();
 
         public void AddClient(Client client)

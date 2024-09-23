@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SocialWorkApp.Domain.Clients;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,13 +11,15 @@ namespace SocialWorkApp.Domain.Reports
     public class Report
     {
         public int ReportId { get; set; }
-        public Report(ReportType type, DateOnly dueDate)
+        public Report(ReportType type, DateOnly dueDate, Client client)
         {
+            Client = client;
             Type = type;
             DueDate = dueDate;
         }
         public readonly ReportType Type;
 
+        public Client Client { get; set; }
         public DateOnly DueDate { get; set; }
         public Status Status { get; private set; } = Upcoming;
         public DateOnly? ReviewedDate { get; private set; }
@@ -41,10 +44,12 @@ namespace SocialWorkApp.Domain.Reports
     {
         PBSA,
         PBSP,
+        SemiAnn,
         BCIP,
         PPMP,
-        RMP
     }
+    
+    
 
     public enum Status
     {
