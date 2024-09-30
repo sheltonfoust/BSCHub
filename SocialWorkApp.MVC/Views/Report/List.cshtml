@@ -6,56 +6,20 @@
     <li class="breadcrumb-item active">My Reports</li>
 </ol>
 
-<div class="card">
-    <div class="card-header d-flex justify-content-between">
-        Late
-        <i class="fa-solid fa-chevron-down" role="button" href="#late" data-toggle="collapse" data-target="#late"></i>
-    </div>
-    <div class="card-body collapse" id="late">
-        <p>
-            Content
-        </p>
-    </div>
+<div class="accordion" id="reportsAccordion">
+    <vc:report-list-card name="Late" reports="Model.Reports"></vc:report-list-card>
+    <vc:report-list-card name="Upcoming" reports="Model.Reports"></vc:report-list-card>
+    <vc:report-list-card name="In Review" reports="Model.Reports"></vc:report-list-card>
+    <vc:report-list-card name="Reviewed" reports="Model.Reports"></vc:report-list-card>
 </div>
 
 
 
 
 
-<style>
-    .fa-chevron-down {
-       position: relative;
-       top: 3px;
-    }
-</style>
 
+@* <vc:report-list-card name="Late" reports="Model.Reports"></vc:report-list-card>
+  <vc:report-list-card name="Upcoming" reports="Model.Reports"></vc:report-list-card>
 
-@* <div class="accordion" id="reportAccordion">
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="lateHeader">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#late" aria-expanded="true" aria-controls="late">
-                Late
-            </button>
-        </h2>
-        <div id="late" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#reportAccordion">
-            <div class="accordion-body">
-                <partial name="_ReportTable" model="Model.Reports"></partial>
-            </div>
-        </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="upcomingHeader">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#upcoming" aria-expanded="true" aria-controls="upcoming">
-                Upcoming
-            </button>
-        </h2>
-        <div id="upcoming" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#reportAccordion">
-            <div class="accordion-body">
-                <partial name="_ReportTable" model="Model.Reports"></partial>
-            </div>
-        </div>
-    </div>
-</div>
 
  *@
-
