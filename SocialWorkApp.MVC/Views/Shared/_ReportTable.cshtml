@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Report>
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>Client</th>
+            <th>Report Type</th>
+            <th>Due Date</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var report in Model)
+        {
+            <tr>
+                <td>@report.Client.FirstName @report.Client.LastName</td>
+                <td>@ReportNames.GetName(report.Type)</td>
+                <td>@report.DueDate</td>
+            </tr>
+        }
+    </tbody>
+
+</table>

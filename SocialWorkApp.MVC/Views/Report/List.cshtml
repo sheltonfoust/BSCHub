@@ -1,5 +1,4 @@
 ﻿@using SocialWorkApp.MVC.ViewModels
-@using SocialWorkApp.MVC.Views.Report
 @model ReportListViewModel
 
 <h1 class="mt-4">My Reports</h1>
@@ -7,38 +6,56 @@
     <li class="breadcrumb-item active">My Reports</li>
 </ol>
 
-<div class="card mb-4">
-    <div class="card-header">
-        <i class="fas fa-table me-1"></i>
-        Clients for @Model.Provider.FirstName @Model.Provider.LastName
+<div class="card">
+    <div class="card-header d-flex justify-content-between">
+        Late
+        <i class="fa-solid fa-chevron-down" role="button" href="#late" data-toggle="collapse" data-target="#late"></i>
     </div>
-    <div class="card-body">
-        <table id="datatablesSimple">
-            
-            <thead>
-                <tr>
-                    <th>Client</th>
-                    <th>Report Type</th>
-                    <th>Due Date</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th>Client</th>
-                    <th>Report Type</th>
-                    <th>Due Date</th>
-                </tr>
-            </tfoot>
-            <tbody>
-                @foreach (var report in Model.Reports)
-                {
-                    <tr>
-                        <td>@report.Client.FirstName @report.Client.LastName</td>
-                        <td>@ReportNames.GetName(report.Type)</td>
-                        <td>@report.DueDate</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+    <div class="card-body collapse" id="late">
+        <p>
+            Content
+        </p>
     </div>
 </div>
+
+
+
+
+
+<style>
+    .fa-chevron-down {
+       position: relative;
+       top: 3px;
+    }
+</style>
+
+
+@* <div class="accordion" id="reportAccordion">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="lateHeader">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#late" aria-expanded="true" aria-controls="late">
+                Late
+            </button>
+        </h2>
+        <div id="late" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#reportAccordion">
+            <div class="accordion-body">
+                <partial name="_ReportTable" model="Model.Reports"></partial>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="upcomingHeader">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#upcoming" aria-expanded="true" aria-controls="upcoming">
+                Upcoming
+            </button>
+        </h2>
+        <div id="upcoming" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#reportAccordion">
+            <div class="accordion-body">
+                <partial name="_ReportTable" model="Model.Reports"></partial>
+            </div>
+        </div>
+    </div>
+</div>
+
+ *@
+
