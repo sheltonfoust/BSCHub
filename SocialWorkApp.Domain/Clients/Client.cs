@@ -7,6 +7,10 @@ namespace SocialWorkApp.Domain.Clients
     {
 
         public int ClientId { get; set; }
+        public Client()
+        {
+            
+        }
         public Client(string firstName, string lastName, DateOnly ISP_YearStartDate)
         {
             FirstName = firstName;

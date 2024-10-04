@@ -1,12 +1,18 @@
+using Microsoft.EntityFrameworkCore;
 using SocialWorkApp.Application.Contracts.Persistence;
 using SocialWorkApp.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("SocialWorkDbConnection") ?? throw new InvalidOperationException("Connection string not found.");
+
+builder.Services.AddDbContext<SocialWorkDbContext>(options =>
+    options.UseNpgsql(connectionString)); ;
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IClientRepository, MockClientRepository>();
-builder.Services.AddScoped<IReportRepository, MockReportRepository>();
+//builder.Services.AddScoped<IClientRepository, MockClientRepository>();
+builder.Services.AddScoped<IReportRepository, ReportRepository>();
 
 
 var app = builder.Build();

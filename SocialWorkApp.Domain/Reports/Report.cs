@@ -10,6 +10,10 @@ namespace SocialWorkApp.Domain.Reports
 {
     public class Report
     {
+        public Report()
+        {
+            
+        }
         public int ReportId { get; set; }
         public Report(ReportType type, DateOnly dueDate, Client client)
         {

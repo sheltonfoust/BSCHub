@@ -2,9 +2,8 @@
 
 namespace SocialWorkApp.Application.Contracts.Persistence
 {
-    public interface IReportRepository : IAsyncRepository<Report>
+    public interface IReportRepository
     {
-        IReadOnlyList<Report> ListByProvider(int providerId);
-        Task<IReadOnlyList<Report>> ListByClient(int clientId);
+        public IReadOnlyCollection<Report> ListByProvider(int providerId);
     }
 }
