@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Client>
+
+<h1 class="mt-4">All Clients</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item">BSC Hub</li>
+    <li class="breadcrumb-item active">All Clients</li>
+</ol>
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Provider</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var client in Model)
+        {
+            <tr>
+                <td>@client.FirstName</td>
+                <td>@client.LastName</td>
+                <td>@client.Provider.FirstName @client.Provider.LastName</td>
+                <td><button></button></td>
+            </tr>
+        }
+    </tbody>
+
+</table>

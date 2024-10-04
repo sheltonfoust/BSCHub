@@ -11,7 +11,7 @@ builder.Services.AddDbContext<SocialWorkDbContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-//builder.Services.AddScoped<IClientRepository, MockClientRepository>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IReportRepository, ReportRepository>();
 
 

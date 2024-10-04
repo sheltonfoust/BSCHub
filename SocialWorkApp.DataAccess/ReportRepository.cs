@@ -5,9 +5,14 @@ namespace SocialWorkApp.DataAccess
 {
     public class ReportRepository : IReportRepository
     {
+        private readonly SocialWorkDbContext dbContext;
+        public ReportRepository(SocialWorkDbContext socialWorkDbContext)
+        {
+            this.dbContext = socialWorkDbContext;
+        }
         public IReadOnlyCollection<Report> ListByProvider(int providerId)
         {
-            return new List<Report>();
+            return dbContext.Reports.Where(r => r.Client.Provider.ProviderId == providerId).ToList();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using SocialWorkApp.Domain.Reports;
+using SocialWorkApp.Domain.Users;
 using static SocialWorkApp.Domain.Reports.ReportType;
 
 namespace SocialWorkApp.Domain.Clients
@@ -6,6 +7,7 @@ namespace SocialWorkApp.Domain.Clients
     public class Client
     {
 
+        public Provider Provider { get; set; }
         public int ClientId { get; set; }
         public Client()
         {
