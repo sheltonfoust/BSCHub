@@ -1,32 +1,77 @@
-﻿@model IEnumerable<Client>
+﻿@model ClientListViewModel
 
+
+<div class="container-fluid px-4">
 <h1 class="mt-4">All Clients</h1>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item">BSC Hub</li>
     <li class="breadcrumb-item active">All Clients</li>
 </ol>
 
-<table class="table">
 
-    <thead>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Provider</th>
-            <th></th>
-        </tr>
-    </thead>
+    <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#clientEntry">Add Client</a>
 
-    <tbody>
-        @foreach (var client in Model)
-        {
+    <table class="table">
+
+        <thead>
             <tr>
-                <td>@client.FirstName</td>
-                <td>@client.LastName</td>
-                <td>@client.Provider.FirstName @client.Provider.LastName</td>
-                <td><button></button></td>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Provider</th>
+                <th>ISP Start Date</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
+        </thead>
 
-</table>
+        <tbody>
+            @foreach (var client in Model.Clients)
+            {
+                <tr>
+                    <td>@client.FirstName</td>
+                    <td>@client.LastName</td>
+                    <td>@client.Provider.FirstName @client.Provider.LastName</td>
+                    <td>@client.ISP_YearStartDate</td>
+                    <td><button></button></td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+    <div class="modal fade" id="clientEntry" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Add New Client
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <form asp-action="AddClient" method="post" role="form">
+                        <div>
+                            <div>
+                                <div>
+                                    <label asp-for="NewClient.FirstName" class="form-label"></label>
+                                    <input asp-for="NewClient.FirstName" class="form-control" />
+                                </div>
+                                <div>
+                                    <label asp-for="NewClient.LastName" class="form-label"></label>
+                                    <input asp-for="NewClient.LastName" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <input type="submit" class="btn btn-primary" value="Add Client"/>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+

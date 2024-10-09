@@ -31,11 +31,11 @@ namespace SocialWorkApp.Domain.Clients
 
         }
 
-        public DateOnly ISP_MeetingDate
+        public DateOnly? ISP_MeetingDate
         {
             get
             {
-                return reportInfo.ISP_MeetingDate;
+                return reportInfo?.ISP_MeetingDate;
             }
         }
 
@@ -48,15 +48,20 @@ namespace SocialWorkApp.Domain.Clients
 
 
         private Report[]? reports;
-        private Report[] Reports
+        private Report[]? Reports
         {
             get
             {
+                if (ISP_MeetingDate == null)
+                {
+                    return null;
+                }
                 if (reports == null)
                 {
+
                     reports = new Report[Enum.GetValues(typeof(ReportType)).Length];
-                    reports[(int)PBSA] = new Report(PBSA, ISP_MeetingDate.AddDays(-14), this);
-                    reports[(int)PBSP] = new Report(PBSP, IsSevere ? ISP_MeetingDate.AddDays(14) : ISP_YearStartDate, this);
+                    reports[(int)PBSA] = new Report(PBSA, ((DateOnly)ISP_MeetingDate).AddDays(-14), this);
+                    reports[(int)PBSP] = new Report(PBSP, IsSevere ? ((DateOnly)ISP_MeetingDate).AddDays(14) : ISP_YearStartDate, this);
                     reports[(int)BCIP] = new Report(BCIP, ISP_YearStartDate, this);
                     reports[(int)PPMP] = new Report(PPMP, ISP_YearStartDate, this);
                     reports[(int)SemiAnn] = new Report(SemiAnn, ISP_YearStartDate.AddDays(189), this);
