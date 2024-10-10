@@ -7,6 +7,7 @@ namespace SocialWorkApp.Domain.Clients
     public class Client
     {
         public int ClientId { get; set; }
+        public int ProviderId { get; set; }
         public Provider? Provider { get; set; }
 
         public string FirstName { get; set; } = string.Empty;

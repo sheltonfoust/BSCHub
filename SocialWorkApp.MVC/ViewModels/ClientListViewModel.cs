@@ -1,16 +1,17 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using SocialWorkApp.Domain.Clients;
+using SocialWorkApp.Domain.Users;
 
 namespace SocialWorkApp.MVC.ViewModels
 {
     public class ClientListViewModel
     {
-        public ClientListViewModel(IEnumerable<Client> clients)
+        public ClientListViewModel(List<Client> clients, List<SelectListItem> providers)
         {
             Clients = clients;
-            NewClient = new Client();
+            Providers = providers;
         }
-        public IEnumerable<Client> Clients { get; }
-        public Client NewClient { get; }
+        public List<SelectListItem> Providers { get; }
+        public List<Client> Clients { get; }
     }
 }

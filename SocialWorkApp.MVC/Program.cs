@@ -13,6 +13,7 @@ builder.Services.AddDbContext<SocialWorkDbContext>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IReportRepository, ReportRepository>();
+builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
 
 
 var app = builder.Build();

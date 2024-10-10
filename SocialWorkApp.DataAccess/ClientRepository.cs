@@ -15,6 +15,7 @@ namespace SocialWorkApp.DataAccess
         public void Add(Client client)
         {
             dbContext.Clients.Add(client);
+            dbContext.SaveChanges();
         }
 
         public IReadOnlyCollection<Client> ListClients()
