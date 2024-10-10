@@ -12,7 +12,8 @@ namespace SocialWorkApp.DataAccess
         }
         public IReadOnlyCollection<Report> ListByProvider(int providerId)
         {
-            return dbContext.Reports.Where(r => r.Client.Provider.ProviderId == providerId).ToList();
+            return dbContext.Reports.Where(r => r.Client != null && r.Client.Provider != null && r.Client.Provider.ProviderId == providerId)
+                .ToList();
         }
     }
 }

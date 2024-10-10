@@ -24,7 +24,9 @@ namespace SocialWorkApp.DataAccess
 
         public IReadOnlyCollection<Client> ListClientsByProvider(int providerId)
         {
-            return dbContext.Clients.Where(c => c.Provider.ProviderId == providerId).OrderBy(c => c.LastName).ThenBy(c => c.FirstName).ToList();
+            return dbContext.Clients.Where(c => c.Provider != null && c.Provider.ProviderId == providerId)
+                .OrderBy(c => c.LastName).ThenBy(c => c.FirstName)
+                .ToList();
         }
     }
 }
