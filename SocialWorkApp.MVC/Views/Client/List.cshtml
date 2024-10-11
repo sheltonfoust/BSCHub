@@ -67,3 +67,11 @@
 
 </div>
 
+@if (Model.ShowModal)
+{
+    <script>
+        $(document).ready(function () {
+        $('#clientEntry').modal('show');
+        });
+    </script>
+}

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Components.Web.Virtualization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SocialWorkApp.Application.Contracts.Persistence;
 using SocialWorkApp.Domain.Clients;
@@ -18,21 +17,35 @@ namespace SocialWorkApp.MVC.Controllers
         }
         public IActionResult List()
         {
-            var viewModel = new ClientListViewModel(
-                _clientRepository.ListClients().ToList(),
-                _providerRepository.ListProviders().Select(p => new SelectListItem
-                {
-                    Value = p.ProviderId.ToString(),
-                    Text = p.FirstName + " " + p.LastName
-                }).ToList());
-            return View(viewModel);
+            ViewBag.ShowModal = false;
+            return View(GetListViewModel());
+        }
+
+        private ClientListViewModel GetListViewModel(bool showModal = false)
+        {
+            return new ClientListViewModel(
+               _clientRepository.ListClients().ToList(),
+               _providerRepository.ListProviders().Select(p => new SelectListItem
+               {
+                   Value = p.ProviderId.ToString(),
+                   Text = p.FirstName + " " + p.LastName
+               }).ToList(),
+               showModal);
         }
 
         [HttpPost]
         public IActionResult AddClient(Client client)
         {
-            _clientRepository.Add(client);
-            return RedirectToAction("List");
+            if (ModelState.IsValid)
+            {
+                _clientRepository.Add(client);
+                ModelState.Clear();
+
+                return View("List", GetListViewModel());
+
+            }
+
+            return View("List", GetListViewModel(true));
         }
     }
 }
