@@ -8,7 +8,7 @@ using SocialWorkApp.MVC.ViewModels;
 
 namespace SocialWorkApp.MVC.Components
 {
-    public class ClientForm : ViewComponent
+    public class AddClientForm : ViewComponent
     {
         public IViewComponentResult Invoke(List<SelectListItem> providers)
         {

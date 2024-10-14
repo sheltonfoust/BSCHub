@@ -12,5 +12,7 @@ namespace SocialWorkApp.Application.Contracts.Persistence
         IReadOnlyCollection<Client> ListClients();
         IReadOnlyCollection<Client> ListClientsByProvider(int providerId);
         void Add(Client client);
+        void Update(Client client);
+        void Delete(int clientId);
     }
 }

@@ -47,5 +47,29 @@ namespace SocialWorkApp.MVC.Controllers
 
             return View("List", GetListViewModel(true));
         }
+
+        [HttpPost]
+        public IActionResult UpdateClient(Client client, int clientId)
+        {
+            if (ModelState.IsValid)
+            {
+                client.ClientId = clientId;
+                _clientRepository.Update(client);
+                ModelState.Clear();
+
+                return View("List", GetListViewModel());
+
+            }
+
+            return View("List", GetListViewModel(true));
+        }
+        public IActionResult DeleteClient(int clientId)
+        {
+
+            _clientRepository.Delete(clientId);
+            return View("List", GetListViewModel());
+       
+            
+        }
     }
 }

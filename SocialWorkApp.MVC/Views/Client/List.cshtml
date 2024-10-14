@@ -39,8 +39,10 @@
                     }
                     <td>@client.ISP_YearStartDate</td>
                     <td>
-                        <button class="btn btn-sm btn-primary">Edit</button>
-                        </td>
+                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit-@client.ClientId">Edit</button>
+                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#delete-@client.ClientId">Remove</button>
+
+                    </td>
                 </tr>
             }
         </tbody>
@@ -57,12 +59,56 @@
                     </h5>
                 </div>
                 <div class="modal-body">
-                    <vc:client-form providers="@Model.Providers"></vc:client-form>
+                    <vc:add-client-form providers="@Model.Providers"></vc:add-client-form>
                 </div>
                 
             </div>
         </div>
     </div>
+
+
+    @foreach (var client in Model.Clients)
+    {
+        <div class="modal fade" id="edit-@client.ClientId" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            Edit Client
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <vc:edit-client-form providers="@Model.Providers" client="client"></vc:edit-client-form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="delete-@client.ClientId" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            Delete Client
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+
+                        <p>Are you sure that you want to remove @client.FirstName @client.LastName from the system?</p>
+
+                        <form asp-action="DeleteClient" asp-route-clientId="@client.ClientId" method="post" role="form">
+                            <input type="submit" class="btn btn-primary" value="Delete Client" />
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+
 
 
 </div>

@@ -18,6 +18,8 @@ namespace SocialWorkApp.DataAccess
             dbContext.SaveChanges();
         }
 
+        
+
         public IReadOnlyCollection<Client> ListClients()
         {
             return dbContext.Clients.OrderBy(c => c.LastName).ThenBy(c => c.FirstName).ToList();
@@ -29,5 +31,23 @@ namespace SocialWorkApp.DataAccess
                 .OrderBy(c => c.LastName).ThenBy(c => c.FirstName)
                 .ToList();
         }
+
+        public void Update(Client client)
+        {
+            dbContext.Clients.Update(client);
+            dbContext.SaveChanges();
+        }
+
+        public void Delete(int clientId)
+        {
+            var client = dbContext.Clients.Find(clientId);
+            if (client != null)
+            {
+                dbContext.Clients.Remove(client);
+                dbContext.SaveChanges();
+            }
+
+        }
+
     }
 }

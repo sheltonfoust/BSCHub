@@ -9,11 +9,13 @@ namespace SocialWorkApp.MVC.ViewModels
         public List<SelectListItem> Providers { get; set; }
         public Client Client { get; set; }
 
-        public ClientFormViewModel(List<SelectListItem> providers)
+        public ClientFormViewModel(List<SelectListItem> providers, Client? client = null)
         {
             Providers = providers;
-            Client = new Client();
-            Client.ISP_YearStartDate = DateOnly.FromDateTime(DateTime.Now);
+            Client = client ?? new Client()
+            {
+                ISP_YearStartDate = DateOnly.FromDateTime(DateTime.Now)
+            };
         }
     }
 }
