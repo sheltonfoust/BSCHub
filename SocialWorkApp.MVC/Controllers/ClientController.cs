@@ -41,6 +41,8 @@ namespace SocialWorkApp.MVC.Controllers
                 _clientRepository.Add(client);
                 ModelState.Clear();
 
+                return RedirectToAction("List");
+
 
             }
             return NoContent();
@@ -54,6 +56,8 @@ namespace SocialWorkApp.MVC.Controllers
                 client.ClientId = clientId;
                 _clientRepository.Update(client);
                 ModelState.Clear();
+                return RedirectToAction("List");
+
 
 
             }
@@ -63,10 +67,15 @@ namespace SocialWorkApp.MVC.Controllers
         public IActionResult DeleteClient(int clientId)
         {
 
-            _clientRepository.Delete(clientId);
+
+            if (ModelState.IsValid)
+            {
+                _clientRepository.Delete(clientId);
+
+                return RedirectToAction("List");
+
+            }
             return NoContent();
-       
-            
         }
     }
 }
