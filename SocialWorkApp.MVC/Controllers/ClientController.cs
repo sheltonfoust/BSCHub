@@ -41,11 +41,9 @@ namespace SocialWorkApp.MVC.Controllers
                 _clientRepository.Add(client);
                 ModelState.Clear();
 
-                return View("List", GetListViewModel());
 
             }
-
-            return View("List", GetListViewModel(true));
+            return NoContent();
         }
 
         [HttpPost]
@@ -57,17 +55,16 @@ namespace SocialWorkApp.MVC.Controllers
                 _clientRepository.Update(client);
                 ModelState.Clear();
 
-                return View("List", GetListViewModel());
 
             }
 
-            return View("List", GetListViewModel(true));
+            return NoContent();
         }
         public IActionResult DeleteClient(int clientId)
         {
 
             _clientRepository.Delete(clientId);
-            return View("List", GetListViewModel());
+            return NoContent();
        
             
         }
