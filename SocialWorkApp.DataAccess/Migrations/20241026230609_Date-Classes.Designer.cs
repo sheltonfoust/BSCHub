@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SocialWorkApp.DataAccess;
@@ -11,9 +12,11 @@ using SocialWorkApp.DataAccess;
 namespace SocialWorkApp.DataAccess.Migrations
 {
     [DbContext(typeof(SocialWorkDbContext))]
-    partial class SocialWorkDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241026230609_Date-Classes")]
+    partial class DateClasses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,11 +91,8 @@ namespace SocialWorkApp.DataAccess.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateOnly?>("Date")
+                    b.Property<DateOnly>("Date")
                         .HasColumnType("date");
-
-                    b.Property<bool>("Defined")
-                        .HasColumnType("boolean");
 
                     b.Property<int>("ISP_CalendarId")
                         .HasColumnType("integer");
@@ -112,11 +112,8 @@ namespace SocialWorkApp.DataAccess.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateOnly?>("Date")
+                    b.Property<DateOnly>("Date")
                         .HasColumnType("date");
-
-                    b.Property<bool>("Defined")
-                        .HasColumnType("boolean");
 
                     b.Property<int>("ISP_CalendarId")
                         .HasColumnType("integer");

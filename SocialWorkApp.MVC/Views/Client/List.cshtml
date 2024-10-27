@@ -15,11 +15,14 @@
 
         <thead>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Provider</th>
-                <th>ISP Start Date</th>
-                <th></th>
+                <th style="width: 150px">First Name</th>
+                <th style="width: 150px">Last Name</th>
+                <th style="width: 150px">Provider</th>
+                <th style="width: 150px">ISP Start Date</th>
+                <th style="width: 150px">Severity</th>
+                <th style="width: 150px">Needs BCIP</th>
+                <th style="width: 150px">Needs PPMP</th>
+                <th style="width: 190px"></th>
             </tr>
         </thead>
 
@@ -38,10 +41,35 @@
                     <td>@client.Provider.FirstName @client.Provider.LastName</td>
                     }
                     <td>@client.ISP_YearStartDate</td>
+                    @if (client.IsSevere)
+                    {
+                        <td>Severe</td>
+                    }
+                    else
+                    {
+                        <td>Not Severe</td>
+                    }
+                    @if (client.NeedsBCIP)
+                    {
+                        <td>Yes</td>
+                    }
+                    else
+                    {
+                        <td>No</td>
+                    }
+                    @if (client.NeedsPPMP)
+                    {
+                        <td>Yes</td>
+                    }
+                    else
+                    {
+                        <td>No</td>
+                    }
+
                     <td>
                         <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit-@client.ClientId">Edit</button>
                         <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#delete-@client.ClientId">Remove</button>
-
+                        <button class="btn btn-sm btn-primary" asp-controller="date" asp-action="list">Dates</button>
                     </td>
                 </tr>
             }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SocialWorkApp.DataAccess;
@@ -11,9 +12,11 @@ using SocialWorkApp.DataAccess;
 namespace SocialWorkApp.DataAccess.Migrations
 {
     [DbContext(typeof(SocialWorkDbContext))]
-    partial class SocialWorkDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241026220015_ReportDetails")]
+    partial class ReportDetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,72 +63,6 @@ namespace SocialWorkApp.DataAccess.Migrations
                     b.HasIndex("ProviderId");
 
                     b.ToTable("Clients");
-                });
-
-            modelBuilder.Entity("SocialWorkApp.Domain.Clients.ISP_Calendar", b =>
-                {
-                    b.Property<int>("CalendarId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CalendarId"));
-
-                    b.Property<int>("ClientId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("CalendarId");
-
-                    b.HasIndex("ClientId");
-
-                    b.ToTable("Calendars");
-                });
-
-            modelBuilder.Entity("SocialWorkApp.Domain.Clients.ISP_MeetingDate", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateOnly?>("Date")
-                        .HasColumnType("date");
-
-                    b.Property<bool>("Defined")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("ISP_CalendarId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ISP_CalendarId");
-
-                    b.ToTable("ISP_MeetingDates");
-                });
-
-            modelBuilder.Entity("SocialWorkApp.Domain.Clients.ISP_YearStartDate", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateOnly?>("Date")
-                        .HasColumnType("date");
-
-                    b.Property<bool>("Defined")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("ISP_CalendarId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ISP_CalendarId");
-
-                    b.ToTable("ISP_YearStartDates");
                 });
 
             modelBuilder.Entity("SocialWorkApp.Domain.Reports.Report", b =>
@@ -185,39 +122,6 @@ namespace SocialWorkApp.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Provider");
-                });
-
-            modelBuilder.Entity("SocialWorkApp.Domain.Clients.ISP_Calendar", b =>
-                {
-                    b.HasOne("SocialWorkApp.Domain.Clients.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Client");
-                });
-
-            modelBuilder.Entity("SocialWorkApp.Domain.Clients.ISP_MeetingDate", b =>
-                {
-                    b.HasOne("SocialWorkApp.Domain.Clients.ISP_Calendar", "ISP_Calendar")
-                        .WithMany()
-                        .HasForeignKey("ISP_CalendarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ISP_Calendar");
-                });
-
-            modelBuilder.Entity("SocialWorkApp.Domain.Clients.ISP_YearStartDate", b =>
-                {
-                    b.HasOne("SocialWorkApp.Domain.Clients.ISP_Calendar", "ISP_Calendar")
-                        .WithMany()
-                        .HasForeignKey("ISP_CalendarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ISP_Calendar");
                 });
 
             modelBuilder.Entity("SocialWorkApp.Domain.Reports.Report", b =>

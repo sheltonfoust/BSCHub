@@ -25,5 +25,17 @@ namespace SocialWorkApp.Domain.Clients
         [DataType(DataType.Date)]
         [Display(Name = "ISP Start Date")]
         public DateOnly ISP_YearStartDate { get; set; }
+
+        [Required]
+        [Display(Name = "Severity")]
+        public bool IsSevere { get; set; }
+
+        [Required]
+        [Display(Name = "Needs BCIP")]
+        public bool NeedsBCIP { get; set; }
+
+        [Required]
+        [Display(Name = "Needs PPMP")]
+        public bool NeedsPPMP { get; set; }
     }
 }
