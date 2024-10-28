@@ -36,9 +36,54 @@ namespace SocialWorkApp.MVC.Controllers
         [HttpPost]
         public IActionResult AddYear(int clientId, DateOnly newYearStart)
         {
+            var client = _clientRepository.GetClient(clientId);
+            if (client == null)
+                return StatusCode(500);
             _dateRepository.AddYear(clientId, newYearStart);
             return RedirectToAction("List", new {clientId = clientId});
         }
 
+        [HttpPost]
+        public IActionResult DeleteYear(int ISP_YearId, int clientId)
+        {
+
+            if (ModelState.IsValid)
+            {
+                _dateRepository.DeleteYear(ISP_YearId);
+
+                return RedirectToAction("List", new { clientId = clientId });
+
+            }
+            return NoContent();
+        }
+
+
+        [HttpPost]
+        public IActionResult UpdateYear(DateOnly newYearStart, int ISP_YearId, int clientId)
+        {
+            if (ModelState.IsValid)
+            {
+                _dateRepository.UpdateYear(newYearStart, ISP_YearId);
+                ModelState.Clear();
+                return RedirectToAction("List", new { clientId = clientId });
+
+            }
+
+            return NoContent();
+        }
+
+        [HttpPost]
+        public IActionResult SetMeetingDate(DateOnly meetingDate, int ISP_YearId, int clientId)
+        {
+            if (ModelState.IsValid)
+            {
+                _dateRepository.UpdateMeetingDate(meetingDate, ISP_YearId);
+                ModelState.Clear();
+                return RedirectToAction("List", new { clientId = clientId });
+
+            }
+
+            return NoContent();
+        }
     }
 }

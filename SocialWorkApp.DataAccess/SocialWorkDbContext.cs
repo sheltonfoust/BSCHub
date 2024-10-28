@@ -15,7 +15,5 @@ namespace SocialWorkApp.DataAccess
         public DbSet<Report> Reports => Set<Report>();
         public DbSet<Provider> Providers => Set<Provider>();
         public DbSet<ISP_Year> ISP_Years => Set<ISP_Year>();
-        public DbSet<ISP_YearStartDate> ISP_YearStartDates => Set<ISP_YearStartDate>();
-        public DbSet<ISP_MeetingDate> ISP_MeetingDates => Set<ISP_MeetingDate>();
     }
 }

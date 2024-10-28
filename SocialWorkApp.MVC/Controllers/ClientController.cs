@@ -21,18 +21,6 @@ namespace SocialWorkApp.MVC.Controllers
             return View(GetListViewModel());
         }
 
-        private ClientListViewModel GetListViewModel(bool showModal = false)
-        {
-            return new ClientListViewModel(
-               _clientRepository.ListClients().ToList(),
-               _providerRepository.ListProviders().Select(p => new SelectListItem
-               {
-                   Value = p.ProviderId.ToString(),
-                   Text = p.FirstName + " " + p.LastName
-               }).ToList(),
-               showModal);
-        }
-
         [HttpPost]
         public IActionResult AddClient(Client client)
         {
@@ -76,6 +64,18 @@ namespace SocialWorkApp.MVC.Controllers
 
             }
             return NoContent();
+        }
+
+        private ClientListViewModel GetListViewModel(bool showModal = false)
+        {
+            return new ClientListViewModel(
+               _clientRepository.ListClients().ToList(),
+               _providerRepository.ListProviders().Select(p => new SelectListItem
+               {
+                   Value = p.ProviderId.ToString(),
+                   Text = p.FirstName + " " + p.LastName
+               }).ToList(),
+               showModal);
         }
     }
 }

@@ -14,8 +14,11 @@ namespace SocialWorkApp.Domain.Clients
         public int ClientId { get; set; }
         [Required]
         public Client? Client { get; set; }
-        public ISP_YearStartDate StartDate = new ISP_YearStartDate();
-        public ISP_MeetingDate MeetingDate = new ISP_MeetingDate();
+        [DataType(DataType.Date)]
+        public DateOnly StartDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateOnly? MeetingDate { get; set; } = null;
+
 
     }
 }

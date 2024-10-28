@@ -28,16 +28,43 @@ namespace SocialWorkApp.DataAccess
             var ISP_Year = new ISP_Year();
             ISP_Year.ClientId = clientId;
             ISP_Year.Client = client;
-            ISP_Year.StartDate.Date = startDate;
-            ISP_Year.StartDate.Defined = true;
+            ISP_Year.StartDate = startDate;
             dbContext.ISP_Years.Add(ISP_Year);
             dbContext.SaveChanges();
         }
 
 
+        public void DeleteYear(int yearId)
+        {
+            var year = dbContext.ISP_Years.Find(yearId);
+            if (year != null)
+            {
+                dbContext.ISP_Years.Remove(year);
+                dbContext.SaveChanges();
+            }
+        }
 
+        public void UpdateYear(DateOnly newYearStart, int ISP_YearId)
+        {
+            var year = dbContext.ISP_Years.Find(ISP_YearId);
+            if (year != null)
+            {
+                year.StartDate = newYearStart;
+                dbContext.ISP_Years.Update(year);
+                dbContext.SaveChanges();
+            }
+            
+        }
 
-
-
+        public void UpdateMeetingDate(DateOnly meetingDate, int ISP_YearId)
+        {
+            var year = dbContext.ISP_Years.Find(ISP_YearId);
+            if (year != null)
+            {
+                year.MeetingDate = meetingDate;
+                dbContext.ISP_Years.Update(year);
+                dbContext.SaveChanges();
+            }
+        }
     }
 }
