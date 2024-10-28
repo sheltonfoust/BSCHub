@@ -11,6 +11,11 @@ namespace SocialWorkApp.DataAccess
         {
             dbContext = socialWorkDbContext;
         }
+        public Client? GetClient(int clientId)
+        {
+            return dbContext.Clients.Find(clientId);
+        }
+
 
         public void Add(Client client)
         {

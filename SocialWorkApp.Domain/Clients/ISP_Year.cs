@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 
 namespace SocialWorkApp.Domain.Clients
 {
-    public class ISP_Calendar
+    public class ISP_Year
     {
         [Key]
-        public int CalendarId { get; set; }
+        public int ISP_YearId { get; set; }
         public int ClientId { get; set; }
         [Required]
         public Client? Client { get; set; }
-        public List<ISP_YearStartDate> ISP_YearStartDates = new List<ISP_YearStartDate>();
-        public List<ISP_MeetingDate> ISP_MeetingDates = new List<ISP_MeetingDate>();
+        public ISP_YearStartDate StartDate = new ISP_YearStartDate();
+        public ISP_MeetingDate MeetingDate = new ISP_MeetingDate();
+
     }
 }

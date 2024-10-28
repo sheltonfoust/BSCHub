@@ -69,7 +69,7 @@
                     <td>
                         <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit-@client.ClientId">Edit</button>
                         <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#delete-@client.ClientId">Remove</button>
-                        <button class="btn btn-sm btn-primary" asp-controller="date" asp-action="list">Dates</button>
+                        <a class="btn btn-sm btn-primary" asp-controller="dates" asp-action="list" asp-route-clientId="@client.ClientId">Dates</a>
                     </td>
                 </tr>
             }

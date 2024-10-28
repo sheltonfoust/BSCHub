@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SocialWorkApp.DataAccess;
@@ -11,9 +12,11 @@ using SocialWorkApp.DataAccess;
 namespace SocialWorkApp.DataAccess.Migrations
 {
     [DbContext(typeof(SocialWorkDbContext))]
-    partial class SocialWorkDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241028163410_ISP_Years")]
+    partial class ISP_Years
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,28 +79,28 @@ namespace SocialWorkApp.DataAccess.Migrations
                     b.Property<bool>("Defined")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("ISP_YearId")
+                    b.Property<int>("ISP_CalendarId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ISP_YearId");
+                    b.HasIndex("ISP_CalendarId");
 
                     b.ToTable("ISP_MeetingDates");
                 });
 
             modelBuilder.Entity("SocialWorkApp.Domain.Clients.ISP_Year", b =>
                 {
-                    b.Property<int>("ISP_YearId")
+                    b.Property<int>("CalendarId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ISP_YearId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CalendarId"));
 
                     b.Property<int>("ClientId")
                         .HasColumnType("integer");
 
-                    b.HasKey("ISP_YearId");
+                    b.HasKey("CalendarId");
 
                     b.HasIndex("ClientId");
 
@@ -118,12 +121,12 @@ namespace SocialWorkApp.DataAccess.Migrations
                     b.Property<bool>("Defined")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("ISP_YearId")
+                    b.Property<int>("ISP_CalendarId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ISP_YearId");
+                    b.HasIndex("ISP_CalendarId");
 
                     b.ToTable("ISP_YearStartDates");
                 });
@@ -189,13 +192,13 @@ namespace SocialWorkApp.DataAccess.Migrations
 
             modelBuilder.Entity("SocialWorkApp.Domain.Clients.ISP_MeetingDate", b =>
                 {
-                    b.HasOne("SocialWorkApp.Domain.Clients.ISP_Year", "ISP_Year")
+                    b.HasOne("SocialWorkApp.Domain.Clients.ISP_Year", "ISP_Calendar")
                         .WithMany()
-                        .HasForeignKey("ISP_YearId")
+                        .HasForeignKey("ISP_CalendarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ISP_Year");
+                    b.Navigation("ISP_Calendar");
                 });
 
             modelBuilder.Entity("SocialWorkApp.Domain.Clients.ISP_Year", b =>
@@ -211,13 +214,13 @@ namespace SocialWorkApp.DataAccess.Migrations
 
             modelBuilder.Entity("SocialWorkApp.Domain.Clients.ISP_YearStartDate", b =>
                 {
-                    b.HasOne("SocialWorkApp.Domain.Clients.ISP_Year", "ISP_Year")
+                    b.HasOne("SocialWorkApp.Domain.Clients.ISP_Year", "ISP_Calendar")
                         .WithMany()
-                        .HasForeignKey("ISP_YearId")
+                        .HasForeignKey("ISP_CalendarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ISP_Year");
+                    b.Navigation("ISP_Calendar");
                 });
 
             modelBuilder.Entity("SocialWorkApp.Domain.Reports.Report", b =>

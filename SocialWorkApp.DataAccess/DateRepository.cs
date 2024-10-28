@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SocialWorkApp.Application.Contracts.Persistence;
 using SocialWorkApp.Domain.Clients;
 
 namespace SocialWorkApp.DataAccess
 {
-    public class DateRepository
+    public class DateRepository : IDateRepository
     {
         private readonly SocialWorkDbContext dbContext;
         public DateRepository(SocialWorkDbContext socialWorkDbContext)
@@ -11,27 +12,30 @@ namespace SocialWorkApp.DataAccess
             dbContext = socialWorkDbContext;
         }
 
-        public ISP_Calendar? GetCalendarByClient(int clientId)
+        public List<ISP_Year>? GetISPYears(int clientId)
         {
+
             if (!dbContext.Clients.Any(c => c.ClientId == clientId))
                 return null;
-            EnsureCalendarExists(clientId);
-
-            return dbContext.Calendars.Where(c => c.ClientId == clientId).FirstOrDefault();
+            return dbContext.ISP_Years.Where(y => y.ClientId == clientId).ToList();
         }
 
-        private void EnsureCalendarExists(int clientId)
+        public void AddYear(int clientId, DateOnly startDate)
         {
-            var exists = dbContext.Calendars.Any(c=> c.ClientId == clientId);
-            if (!exists)
-            {
-                dbContext.Calendars.Add(new ISP_Calendar { ClientId = clientId });
-                dbContext.SaveChanges();
-            }
+            var client = dbContext.Clients.Find(clientId);
+            if (client == null)
+                return;
+            var ISP_Year = new ISP_Year();
+            ISP_Year.ClientId = clientId;
+            ISP_Year.Client = client;
+            ISP_Year.StartDate.Date = startDate;
+            ISP_Year.StartDate.Defined = true;
+            dbContext.ISP_Years.Add(ISP_Year);
+            dbContext.SaveChanges();
         }
 
 
-        
+
 
 
 

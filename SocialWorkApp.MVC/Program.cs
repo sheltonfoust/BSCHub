@@ -14,7 +14,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IReportRepository, ReportRepository>();
 builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
-
+builder.Services.AddScoped<IDateRepository, DateRepository>();
 
 var app = builder.Build();
 
@@ -31,9 +31,11 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Client}/{action=List}/{id?}");
+
+app.UseStatusCodePagesWithReExecute("/Error/{0}");
+
 
 app.Run();

@@ -37,5 +37,7 @@ namespace SocialWorkApp.Domain.Clients
         [Required]
         [Display(Name = "Needs PPMP")]
         public bool NeedsPPMP { get; set; }
+
+        public List<ISP_Year> ISP_Years { get; set; } = new List<ISP_Year>();
     }
 }

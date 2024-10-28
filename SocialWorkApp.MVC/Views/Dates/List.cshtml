@@ -1,0 +1,72 @@
+﻿@model DatesListViewModel
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Dates for @Model.Client.FirstName @Model.Client.LastName</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item">BSC Hub</li>
+        <li class="breadcrumb-item">Clients</li>
+        <li class="breadcrumb-item">@Model.Client.FirstName @Model.Client.LastName</li>
+        <li class="breadcrumb-item active">Dates</li>
+    </ol>
+
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addYear">Add ISP Year</button>
+
+
+    @foreach (var year in Model.ISP_Years)
+    {
+        <table class="table table-bordered data-table mt-3">
+            <thead>
+                <tr>
+                    <th>ISP Year Start Date</th>
+                    <th>@year.StartDate.Date</th>
+                    <td>
+                        <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#edit-start-@year.ISP_YearId">Edit</button>
+
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>ISP Meeting Date</th>
+                    <td>@year.MeetingDate.Date</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit-meeting-@year.ISP_YearId">Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    }
+
+
+    <div class="modal fade" id="addYear" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Add Year
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <p> Enter the Start Date of the New ISP Year</p>
+                    <form asp-action="AddYear" asp-route-clientId="@Model.Client.ClientId" method="post" role="form">
+
+                        <div class="mb-3">
+                            <label asp-for="NewYearStart" class="form-label">New Start Year</label>
+                            <input asp-for="NewYearStart" class="form-control" />
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <input type="submit" class="btn btn-primary" value="Add Year" />
+                        </div>
+                    </form>
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+

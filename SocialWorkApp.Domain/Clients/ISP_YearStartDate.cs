@@ -12,8 +12,8 @@ namespace SocialWorkApp.Domain.Clients
         public int Id { get; set; }
         public bool Defined { get; set; }
         public DateOnly? Date { get; set; }
-        public int ISP_CalendarId { get; set; }
+        public int ISP_YearId { get; set; }
         [Required]
-        public ISP_Calendar? ISP_Calendar { get; set; }
+        public ISP_Year? ISP_Year { get; set; }
     }
 }
