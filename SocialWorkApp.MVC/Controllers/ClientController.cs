@@ -42,16 +42,31 @@ namespace SocialWorkApp.MVC.Controllers
                 _clientRepository.Update(client);
                 ModelState.Clear();
                 return RedirectToAction("List");
-
-
-
             }
-
             return NoContent();
         }
 
+
+        public IActionResult Add()
+        {
+            ViewBag.Providers = _providerRepository.ListProviders().Select(p => new SelectListItem
+            {
+                Value = p.ProviderId.ToString(),
+                Text = p.FirstName + " " + p.LastName
+            }).ToList();
+
+            var newClient = new Client() 
+            { 
+                ISP_YearStartDate = DateOnly.FromDateTime(DateTime.Now) 
+            };
+
+            return View(newClient);
+        }
+
+
+
         [HttpPost]
-        public IActionResult AddClient(Client client)
+        public IActionResult Add(Client client)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +95,7 @@ namespace SocialWorkApp.MVC.Controllers
             return NoContent();
         }
 
-        private ClientListViewModel GetListViewModel(bool showModal = false)
+        private ClientListViewModel GetListViewModel()
         {
             return new ClientListViewModel(
                _clientRepository.ListClients().ToList(),
@@ -88,8 +103,7 @@ namespace SocialWorkApp.MVC.Controllers
                {
                    Value = p.ProviderId.ToString(),
                    Text = p.FirstName + " " + p.LastName
-               }).ToList(),
-               showModal);
+               }).ToList());
         }
     }
 }

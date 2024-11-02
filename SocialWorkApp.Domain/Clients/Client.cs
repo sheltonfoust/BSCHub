@@ -8,6 +8,10 @@ namespace SocialWorkApp.Domain.Clients
 {
     public class Client
     {
+        public Client()
+        {
+            
+        }
         [BindNever]
         public int ClientId { get; set; }
         public int ProviderId { get; set; }

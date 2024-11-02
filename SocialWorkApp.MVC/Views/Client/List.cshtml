@@ -2,27 +2,27 @@
 
 
 <div class="container-fluid px-4">
-<h1 class="mt-4">All Clients</h1>
+<h1 class="mt-4">Clients</h1>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item">BSC Hub</li>
     <li class="breadcrumb-item active">Clients</li>
 </ol>
 
 
-    <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#clientEntry">Add Client</a>
+    <a class="btn btn-primary" asp-controller="client" asp-action="add">Add Client</a>
 
     <table class="table">
 
         <thead>
             <tr>
-                <th style="width: 150px">First Name</th>
-                <th style="width: 150px">Last Name</th>
-                <th style="width: 150px">Provider</th>
-                <th style="width: 150px">ISP Start Date</th>
-                <th style="width: 150px">Severity</th>
-                <th style="width: 150px">Needs BCIP</th>
-                <th style="width: 150px">Needs PPMP</th>
-                <th style="width: 190px"></th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Provider</th>
+                <th>ISP Start Date</th>
+                <th>Severity</th>
+                <th>Needs BCIP</th>
+                <th>Needs PPMP</th>
+                <th></th>
             </tr>
         </thead>
 
@@ -77,22 +77,6 @@
 
     </table>
 
-    <div class="modal fade" id="clientEntry" tabindex="-1" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h5 class="modal-title">
-                        Add New Client
-                    </h5>
-                </div>
-                <div class="modal-body">
-                    <vc:add-client-form providers="@Model.Providers"></vc:add-client-form>
-                </div>
-                
-            </div>
-        </div>
-    </div>
 
 
     @foreach (var client in Model.Clients)

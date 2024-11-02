@@ -2,19 +2,18 @@
 
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Edit Client</h1>
+    <h1 class="mt-4">Add Client</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item">BSC Hub</li>
         <li class="breadcrumb-item">Clients</li>
-        <li class="breadcrumb-item">Edit Client</li>
-        <li class="breadcrumb-item active">@Model.FirstName @Model.LastName</li>
+        <li class="breadcrumb-item active">Add Client</li>
 
     </ol>
 
 
 
 
-    <form asp-action="Update" asp-route-clientId="@Model.ClientId" method="post" role="form">
+    <form asp-action="Add" method="post" role="form">
         <div>
             <div>
                 <div class="mb-3">
@@ -56,7 +55,7 @@
         </div>
         <div>
             <div class="mb-3">
-                <input type="submit" class="btn btn-primary" value="Update Client" />
+                <input type="submit" class="btn btn-primary" value="Add Client" />
             </div>
         </div>
 
