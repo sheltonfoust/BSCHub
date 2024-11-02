@@ -17,7 +17,13 @@ namespace SocialWorkApp.MVC.Controllers
         }
         public IActionResult List()
         {
-            return View(GetListViewModel());
+            return View(new ClientListViewModel(
+               _clientRepository.ListClients().ToList(),
+               _providerRepository.ListProviders().Select(p => new SelectListItem
+               {
+                   Value = p.ProviderId.ToString(),
+                   Text = p.FirstName + " " + p.LastName
+               }).ToList()));
         }
 
         public IActionResult Edit(int clientId)
@@ -95,15 +101,5 @@ namespace SocialWorkApp.MVC.Controllers
             return NoContent();
         }
 
-        private ClientListViewModel GetListViewModel()
-        {
-            return new ClientListViewModel(
-               _clientRepository.ListClients().ToList(),
-               _providerRepository.ListProviders().Select(p => new SelectListItem
-               {
-                   Value = p.ProviderId.ToString(),
-                   Text = p.FirstName + " " + p.LastName
-               }).ToList());
-        }
     }
 }
