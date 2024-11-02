@@ -5,7 +5,7 @@
 <h1 class="mt-4">All Clients</h1>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item">BSC Hub</li>
-    <li class="breadcrumb-item active">All Clients</li>
+    <li class="breadcrumb-item active">Clients</li>
 </ol>
 
 
@@ -67,7 +67,7 @@
                     }
 
                     <td>
-                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit-@client.ClientId">Edit</button>
+                        <a class="btn btn-sm btn-primary" asp-controller="client" asp-action="edit" asp-route-clientId="@client.ClientId">Edit</a>
                         <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#delete-@client.ClientId">Remove</button>
                         <a class="btn btn-sm btn-primary" asp-controller="dates" asp-action="list" asp-route-clientId="@client.ClientId">Dates</a>
                     </td>
@@ -97,22 +97,7 @@
 
     @foreach (var client in Model.Clients)
     {
-        <div class="modal fade" id="edit-@client.ClientId" tabindex="-1" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h5 class="modal-title">
-                            Edit Client
-                        </h5>
-                    </div>
-                    <div class="modal-body">
-                        <vc:edit-client-form providers="@Model.Providers" client="client"></vc:edit-client-form>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+        
 
         <div class="modal fade" id="delete-@client.ClientId" tabindex="-1" role="dialog">
             <div class="modal-dialog">

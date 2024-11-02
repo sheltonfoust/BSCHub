@@ -17,8 +17,37 @@ namespace SocialWorkApp.MVC.Controllers
         }
         public IActionResult List()
         {
-            ViewBag.ShowModal = false;
             return View(GetListViewModel());
+        }
+
+        public IActionResult Edit(int clientId)
+        {
+            ViewBag.Providers = _providerRepository.ListProviders().Select(p => new SelectListItem
+            {
+                Value = p.ProviderId.ToString(),
+                Text = p.FirstName + " " + p.LastName
+            }).ToList();
+            var client = _clientRepository.GetClient(clientId);
+            if (client == null)
+                return NotFound();
+            return View(client);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Client client, int clientId)
+        {
+            if (ModelState.IsValid)
+            {
+                client.ClientId = clientId;
+                _clientRepository.Update(client);
+                ModelState.Clear();
+                return RedirectToAction("List");
+
+
+
+            }
+
+            return NoContent();
         }
 
         [HttpPost]
@@ -36,22 +65,7 @@ namespace SocialWorkApp.MVC.Controllers
             return NoContent();
         }
 
-        [HttpPost]
-        public IActionResult UpdateClient(Client client, int clientId)
-        {
-            if (ModelState.IsValid)
-            {
-                client.ClientId = clientId;
-                _clientRepository.Update(client);
-                ModelState.Clear();
-                return RedirectToAction("List");
-
-
-
-            }
-
-            return NoContent();
-        }
+       
         public IActionResult DeleteClient(int clientId)
         {
 

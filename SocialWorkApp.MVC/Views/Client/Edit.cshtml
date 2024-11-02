@@ -1,0 +1,64 @@
+﻿@model Client
+
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">All Clients</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item">BSC Hub</li>
+        <li class="breadcrumb-item">Edit</li>
+        <li class="breadcrumb-item active">@Model.FirstName @Model.LastName</li>
+
+    </ol>
+
+
+
+
+    <form asp-action="Update" asp-route-clientId="@Model.ClientId" method="post" role="form">
+        <div>
+            <div>
+                <div class="mb-3">
+                    <label asp-for="FirstName" class="form-label">First Name</label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="LastName" class="form-label">Last Name</label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Provider" class="form-label"></label>
+                    <select asp-for="ProviderId" asp-items="ViewBag.Providers" class="form-control"></select>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ISP_YearStartDate" class="form-label">ISP Start Date</label>
+                    <input asp-for="ISP_YearStartDate" class="form-control" />
+                    <span asp-validation-for="ISP_YearStartDate" class="text-danger"></span>
+                </div>
+
+
+                <div>
+                    <label asp-for="IsSevere" class="form-label">Is Severe</label>
+                    <input asp-for="IsSevere" type="checkbox" />
+                </div>
+                <div>
+                    <label asp-for="NeedsBCIP" class="form-label">Needs BCIP</label>
+                    <input asp-for="NeedsBCIP" type="checkbox" />
+                </div>
+                <div>
+                    <label asp-for="NeedsPPMP" class="form-label">Needs PPMP</label>
+                    <input asp-for="NeedsPPMP" type="checkbox" />
+                </div>
+
+            </div>
+        </div>
+        <div>
+            <div class="mb-3">
+                <input type="submit" class="btn btn-primary" value="Update Client" />
+            </div>
+        </div>
+
+    </form>
+
+</div>
