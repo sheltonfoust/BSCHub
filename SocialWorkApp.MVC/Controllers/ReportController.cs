@@ -16,23 +16,5 @@ namespace SocialWorkApp.MVC.Controllers
             this.reportRepository = reportRepository;
         }
 
-        public IActionResult List()
-        {
-            var reports = reportRepository.ListByProvider(1);
-            reports = new List<Report> {new Report()
-            {
-                Client = new Client() { FirstName = "Sandy", LastName = "Cheeks" },
-                ClientId = 1,
-                Deadline = new DateOnly(2024, 11, 3),
-                ReviewedDate = null,
-                ReportId = 1,
-                Status = Status.Pending,
-                Type = ReportType.PBSA
-            } };
-            var viewModel = new ReportListViewModel(
-                new Provider() { FirstName = "Mickey", LastName = "Mouse"}, 
-                reports);
-            return View(viewModel);
-        }
     }
 }

@@ -6,8 +6,8 @@ namespace SocialWorkApp.MVC.ViewModels
     public class ReportListViewModel
     {
         public Provider Provider { get; }
-        public IEnumerable<Report> NotAcceptedReports { get; }
-        public ReportListViewModel(Provider provider, IEnumerable<Report> uncompletedReports)
+        public IEnumerable<ReportEntity> NotAcceptedReports { get; }
+        public ReportListViewModel(Provider provider, IEnumerable<ReportEntity> uncompletedReports)
         {
             Provider = provider;
             NotAcceptedReports = uncompletedReports;

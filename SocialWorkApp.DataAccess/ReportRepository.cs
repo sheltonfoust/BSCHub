@@ -10,10 +10,10 @@ namespace SocialWorkApp.DataAccess
         {
             this.dbContext = socialWorkDbContext;
         }
-        public List<Report> ListByProvider(int providerId)
+
+        public List<ReportEntity> ListByProvider(int providerId)
         {
-            return dbContext.Reports.Where(r => r.Client != null && r.Client.Provider != null && r.Client.Provider.ProviderId == providerId)
-                .ToList();
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SocialWorkApp.Domain.Reports;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,6 +19,8 @@ namespace SocialWorkApp.Domain.Clients
         public DateOnly StartDate { get; set; }
         [DataType(DataType.Date)]
         public DateOnly? MeetingDate { get; set; } = null;
+
+        public List<ReportEntity> Reports { get; set; }
 
 
     }

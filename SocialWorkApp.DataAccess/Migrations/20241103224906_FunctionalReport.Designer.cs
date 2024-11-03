@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SocialWorkApp.DataAccess;
@@ -11,9 +12,11 @@ using SocialWorkApp.DataAccess;
 namespace SocialWorkApp.DataAccess.Migrations
 {
     [DbContext(typeof(SocialWorkDbContext))]
-    partial class SocialWorkDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241103224906_FunctionalReport")]
+    partial class FunctionalReport
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,13 +89,13 @@ namespace SocialWorkApp.DataAccess.Migrations
                     b.ToTable("ISP_Years");
                 });
 
-            modelBuilder.Entity("SocialWorkApp.Domain.Reports.ReportEntity", b =>
+            modelBuilder.Entity("SocialWorkApp.Domain.Reports.Report", b =>
                 {
-                    b.Property<int>("ReportEntityId")
+                    b.Property<int>("ReportId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ReportEntityId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ReportId"));
 
                     b.Property<DateOnly?>("CompletedDate")
                         .HasColumnType("date");
@@ -106,11 +109,11 @@ namespace SocialWorkApp.DataAccess.Migrations
                     b.Property<int>("Type")
                         .HasColumnType("integer");
 
-                    b.HasKey("ReportEntityId");
+                    b.HasKey("ReportId");
 
                     b.HasIndex("ISP_YearId");
 
-                    b.ToTable("ReportEntities");
+                    b.ToTable("Reports");
                 });
 
             modelBuilder.Entity("SocialWorkApp.Domain.Users.Provider", b =>
@@ -159,7 +162,7 @@ namespace SocialWorkApp.DataAccess.Migrations
                     b.Navigation("Client");
                 });
 
-            modelBuilder.Entity("SocialWorkApp.Domain.Reports.ReportEntity", b =>
+            modelBuilder.Entity("SocialWorkApp.Domain.Reports.Report", b =>
                 {
                     b.HasOne("SocialWorkApp.Domain.Clients.ISP_Year", "ISP_Year")
                         .WithMany("Reports")

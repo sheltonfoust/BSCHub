@@ -29,7 +29,7 @@ else
         </thead>
 
         <tbody>
-            @foreach (var report in Model.NotAcceptedReports)
+            @* @foreach (var report in Model.NotAcceptedReports)
             {
                 <tr>
                     <td>@Report.GetName(report.Type)</td>
@@ -48,7 +48,7 @@ else
                     }
                     <td>@report.Deadline</td>
                 </tr>
-            }
+            } *@
         </tbody>
 
 
