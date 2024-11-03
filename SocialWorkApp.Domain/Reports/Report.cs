@@ -15,13 +15,23 @@ namespace SocialWorkApp.Domain.Reports
         {
         }
         public int ReportId { get; set; }
-        public readonly ReportType Type;
+        public ReportType Type;
         public Client Client { get; set; }
         public int ClientId { get; set; }
         public Status Status { get; set; } = Upcoming;
         public DateOnly DueDate { get; set; }
         public DateOnly? ReviewedDate { get; set; }
+        private static readonly Dictionary<ReportType, string> names = new Dictionary<ReportType, string>
+        {
 
+            { ReportType.SemiAnn, "Semi-Annual" },
+        };
+        public static string GetName(ReportType type)
+        {
+            if (names.ContainsKey(type))
+                return names[type];
+            return type.ToString();
+        }
     }
 
     public enum ReportType

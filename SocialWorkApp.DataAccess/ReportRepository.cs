@@ -10,7 +10,7 @@ namespace SocialWorkApp.DataAccess
         {
             this.dbContext = socialWorkDbContext;
         }
-        public IReadOnlyCollection<Report> ListByProvider(int providerId)
+        public List<Report> ListByProvider(int providerId)
         {
             return dbContext.Reports.Where(r => r.Client != null && r.Client.Provider != null && r.Client.Provider.ProviderId == providerId)
                 .ToList();

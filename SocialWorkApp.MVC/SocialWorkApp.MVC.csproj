@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Folder Include="Views\Provider\" />
+    <Folder Include="Views\Shared\Components\" />
   </ItemGroup>
 
 </Project>

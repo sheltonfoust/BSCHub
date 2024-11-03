@@ -43,5 +43,10 @@ namespace SocialWorkApp.Domain.Clients
         public bool NeedsPPMP { get; set; }
 
         public List<ISP_Year> ISP_Years { get; set; } = new List<ISP_Year>();
+    
+        public string GetName()
+        {
+            return FirstName + " " + LastName;
+        }
     }
 }

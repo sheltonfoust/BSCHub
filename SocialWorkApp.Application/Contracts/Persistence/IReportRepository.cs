@@ -4,6 +4,6 @@ namespace SocialWorkApp.Application.Contracts.Persistence
 {
     public interface IReportRepository
     {
-        public IReadOnlyCollection<Report> ListByProvider(int providerId);
+        public List<Report> ListByProvider(int providerId);
     }
 }

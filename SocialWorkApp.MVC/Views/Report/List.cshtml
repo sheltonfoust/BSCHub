@@ -1,14 +1,56 @@
 ﻿@model ReportListViewModel
-
 <h1 class="mt-4">My Reports</h1>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item">BSC Hub</li>
     <li class="breadcrumb-item active">Reports</li>
 </ol>
 
-<div class="accordion" id="reportsAccordion">
-    <vc:report-list-card name="Late" reports="Model.Reports"></vc:report-list-card>
-    <vc:report-list-card name="Upcoming" reports="Model.Reports"></vc:report-list-card>
-    <vc:report-list-card name="Pending" reports="Model.Reports"></vc:report-list-card>
-    <vc:report-list-card name="Accepted" reports="Model.Reports"></vc:report-list-card>
-</div>
+<strong>Reports To Do</strong>
+<div class="mt-3"></div>
+@if (!Model.UncompletedReports.Any())
+{
+    <p>All reports are completed</p>
+}
+else
+{
+    <table class="table table-bordered" style="table-layout: fixed; width: 100%;">
+        <thead>
+            <tr>
+                <th>Report Type</th>
+                <th>Client</th>
+                <th>Status</th>
+                @if (!Model.Provider.IsIndependent)
+                {
+                    <th>Due to Supervisor By</th>
+                }
+                <th>Due By</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var report in Model.UncompletedReports)
+            {
+                <tr>
+                    <td>@Report.GetName(report.Type)</td>
+                    <td>@report.Client.GetName()</td>
+                    @if (report.Status == Status.Late)
+                    {
+                        <td class="table-danger">@report.Status</td>
+                    }
+                    else
+                    {
+                        <td>@report.Status</td>
+                    }
+                    @if (!Model.Provider.IsIndependent)
+                    {
+                        <td>@report.DueDate.AddDays(-7)</td>
+                    }
+                    <td>@report.DueDate</td>
+                </tr>
+            }
+        </tbody>
+
+
+    </table>
+
+}
