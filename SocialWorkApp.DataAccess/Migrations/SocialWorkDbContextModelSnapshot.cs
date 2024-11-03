@@ -59,7 +59,7 @@ namespace SocialWorkApp.DataAccess.Migrations
 
                     b.HasIndex("ProviderId");
 
-                    b.ToTable("Clients");
+                    b.ToTable("Clients", (string)null);
                 });
 
             modelBuilder.Entity("SocialWorkApp.Domain.Clients.ISP_Year", b =>
@@ -83,7 +83,7 @@ namespace SocialWorkApp.DataAccess.Migrations
 
                     b.HasIndex("ClientId");
 
-                    b.ToTable("ISP_Years");
+                    b.ToTable("ISP_Years", (string)null);
                 });
 
             modelBuilder.Entity("SocialWorkApp.Domain.Reports.Report", b =>
@@ -110,7 +110,7 @@ namespace SocialWorkApp.DataAccess.Migrations
 
                     b.HasIndex("ClientId");
 
-                    b.ToTable("Reports");
+                    b.ToTable("Reports", (string)null);
                 });
 
             modelBuilder.Entity("SocialWorkApp.Domain.Users.Provider", b =>
@@ -131,7 +131,7 @@ namespace SocialWorkApp.DataAccess.Migrations
 
                     b.HasKey("ProviderId");
 
-                    b.ToTable("Providers");
+                    b.ToTable("Providers", (string)null);
                 });
 
             modelBuilder.Entity("SocialWorkApp.Domain.Clients.Client", b =>

@@ -5,13 +5,43 @@
         <button class="accordion-button"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#@Model.NameNoSpaces">
+                data-bs-target="#@Model.Name">
             @Model.Name
         </button>
     </h2>
-    <div id="@Model.NameNoSpaces" class="accordion-collapse collapse show">
+    <div id="@Model.Name" class="accordion-collapse collapse show">
         <div class="accordion-body">
-            <partial name="_ReportTable" model="Model.Reports"></partial>
+            @if (Model.Reports.Any())
+            {
+                <table class="table table-bordered mt-3" style="table-layout: fixed; width: 100%;">
+
+
+                    <thead>
+                        <tr>
+                            <th>Client</th>
+                            <th>Report Type</th>
+                            <th>Due Date</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var report in Model.Reports)
+                        {
+                            <tr>
+                                <td>@report.Client.FirstName @report.Client.LastName</td>
+                                <td>@ReportNames.GetName(report.Type)</td>
+                                <td>@report.DueDate</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+            }
+            else
+            {
+                <p>There are no @Model.Name.ToLower() reports</p>
+            }
         </div>
     </div>
 

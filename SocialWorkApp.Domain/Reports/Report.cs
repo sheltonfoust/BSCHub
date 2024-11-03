@@ -1,6 +1,7 @@
 ﻿using SocialWorkApp.Domain.Clients;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,36 +13,15 @@ namespace SocialWorkApp.Domain.Reports
     {
         public Report()
         {
-            
         }
         public int ReportId { get; set; }
-        public Report(ReportType type, DateOnly dueDate, Client client)
-        {
-            Client = client;
-            Type = type;
-            DueDate = dueDate;
-        }
         public readonly ReportType Type;
-
         public Client Client { get; set; }
+        public int ClientId { get; set; }
+        public Status Status { get; set; } = Upcoming;
         public DateOnly DueDate { get; set; }
-        public Status Status { get; private set; } = Upcoming;
-        public DateOnly? ReviewedDate { get; private set; }
+        public DateOnly? ReviewedDate { get; set; }
 
-        public void MarkAsComplete()
-        {
-            if (Status == Upcoming)
-            {
-                Status = InReview;
-            }
-
-        }
-
-        public void Review(DateOnly reviewedDate)
-        {
-            Status = Reviewed;
-            ReviewedDate = reviewedDate;
-        }
     }
 
     public enum ReportType
@@ -57,8 +37,9 @@ namespace SocialWorkApp.Domain.Reports
 
     public enum Status
     {
+        Late,
         Upcoming,
-        InReview,
-        Reviewed
+        Pending,
+        Accepted
     }
 }
