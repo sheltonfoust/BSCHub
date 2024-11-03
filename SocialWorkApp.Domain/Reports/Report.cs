@@ -1,8 +1,10 @@
 ﻿using SocialWorkApp.Domain.Clients;
+using SocialWorkApp.Domain.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using static SocialWorkApp.Domain.Reports.Status;
@@ -14,16 +16,27 @@ namespace SocialWorkApp.Domain.Reports
         public Report()
         {
         }
+
+        public Report(Client client)
+        {
+            
+        }
         public int ReportId { get; set; }
         public ReportType Type;
         public Client Client { get; set; }
         public int ClientId { get; set; }
-        public Status Status { get; set; } = Upcoming;
-        public DateOnly DueDate { get; set; }
+        public Status Status { get; set; } = Incomplete;
+        public DateOnly Deadline { get; set; }
         public DateOnly? ReviewedDate { get; set; }
+
+        public DateOnly GetToSupervisorDueDate()
+        {
+            return Deadline.AddDays(-7);
+        }
+        
+
         private static readonly Dictionary<ReportType, string> names = new Dictionary<ReportType, string>
         {
-
             { ReportType.SemiAnn, "Semi-Annual" },
         };
         public static string GetName(ReportType type)
@@ -31,6 +44,15 @@ namespace SocialWorkApp.Domain.Reports
             if (names.ContainsKey(type))
                 return names[type];
             return type.ToString();
+        }
+
+        public bool isLate(bool isIndependent, DateOnly date)
+        {
+            if (Status == Status.Accepted)
+                return false;
+            if (isIndependent)
+                return date > Deadline;
+            return date> GetToSupervisorDueDate();
         }
     }
 
@@ -47,8 +69,7 @@ namespace SocialWorkApp.Domain.Reports
 
     public enum Status
     {
-        Late,
-        Upcoming,
+        Incomplete,
         Pending,
         Accepted
     }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using SocialWorkApp.Application;
 using SocialWorkApp.Application.Contracts.Persistence;
 using SocialWorkApp.Domain.Clients;
 using SocialWorkApp.MVC.ViewModels;
@@ -95,7 +96,7 @@ namespace SocialWorkApp.MVC.Controllers
 
            return new Client()
             {
-                ISP_YearStartDate = DateOnly.FromDateTime(DateTime.Now)
+                ISP_YearStartDate = DateHelper.GetToday()
             };
         }
         [HttpPost]

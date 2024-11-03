@@ -23,7 +23,7 @@ namespace SocialWorkApp.MVC.Controllers
             {
                 Client = new Client() { FirstName = "Sandy", LastName = "Cheeks" },
                 ClientId = 1,
-                DueDate = new DateOnly(2024, 11, 3),
+                Deadline = new DateOnly(2024, 11, 3),
                 ReviewedDate = null,
                 ReportId = 1,
                 Status = Status.Pending,
