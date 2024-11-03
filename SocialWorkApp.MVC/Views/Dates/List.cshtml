@@ -14,12 +14,12 @@
 
     @foreach (var year in Model.ISP_Years)
     {
-        <table class="table table-bordered data-table mt-3">
+        <table class="table table-bordered data-table mt-3" style="table-layout: fixed; width: 100%;">
             <thead>
                 <tr>
                     <th>ISP Year Start Date</th>
                     <th>@year.StartDate</th>
-                    <td>
+                    <td style="min-width:200px;">
                         <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit-start-@year.ISP_YearId">Edit</button>
                         <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete-start-@year.ISP_YearId">Delete</button>
                     </td>
@@ -33,7 +33,7 @@
                 <tr class="table-warning">
                         <th>ISP Meeting Date</th>
                         <td>Not Set</td>
-                        <td class="table-warning">
+                        <td style="min-width:200px;" class="table-warning">
                             <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#set-meeting-@year.ISP_YearId">Set</button>
                         </td>
                 </tr>
@@ -41,9 +41,9 @@
                 else
                 {
                 <tr>
-                    <th>ISP Meeting Date</th>
-                    <td>@year.MeetingDate</td>
-                    <td>
+                        <td>ISP Meeting Date</td>
+                        <td>@year.MeetingDate</td>
+                        <td style="min-width:200px;">
                         <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit-meeting-@year.ISP_YearId">Edit</button>
                     </td>
                 </tr>
@@ -181,7 +181,7 @@
                     <form asp-action="AddYear" asp-route-clientId="@Model.Client.ClientId" method="post" role="form">
 
                         <div class="mb-3">
-                            <label asp-for="NewYearStart" class="form-label">New Start Year</label>
+                            <label asp-for="NewYearStart" class="form-label">New Year Start</label>
                             <input asp-for="NewYearStart" class="form-control" />
                         </div>
                         <div class="mb-3 mt-3">
