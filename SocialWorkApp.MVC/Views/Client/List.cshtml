@@ -11,7 +11,7 @@
 
     <a class="btn btn-primary" asp-controller="client" asp-action="add">Add Client</a>
 
-    <table class="table">
+    <table class="table table-bordered mt-3" style="table-layout: fixed; width: 100%;">
 
         <thead>
             <tr>
@@ -66,10 +66,14 @@
                         <td>No</td>
                     }
 
-                    <td style="min-width:186px;">
-                        <a class="btn btn-sm btn-primary" asp-controller="client" asp-action="edit" asp-route-clientId="@client.ClientId">Edit</a>
+                    <td style="min-width:200px;">
+                        <a class="btn btn-sm btn-primary" asp-controller="client" asp-action="edit" asp-route-clientId="@client.ClientId">
+                            Edit <i class="fas fa-external-link"></i>
+                        </a>
                         <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#delete-@client.ClientId">Remove</button>
-                        <a class="btn btn-sm btn-primary" asp-controller="dates" asp-action="list" asp-route-clientId="@client.ClientId">Dates</a>
+                        <a class="btn btn-sm btn-primary" asp-controller="dates" asp-action="list" asp-route-clientId="@client.ClientId">
+                            Dates <i class="fas fa-external-link"></i>
+                        </a>
                     </td>
                 </tr>
             }
