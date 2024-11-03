@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SocialWorkApp.Application.Contracts.Persistence;
 using SocialWorkApp.Domain.Clients;
+using SocialWorkApp.Domain.Reports;
 
 namespace SocialWorkApp.DataAccess
 {
@@ -30,7 +31,8 @@ namespace SocialWorkApp.DataAccess
             ISP_Year.Client = client;
             ISP_Year.StartDate = startDate;
             dbContext.ISP_Years.Add(ISP_Year);
-
+            
+            var reportTypes = new List<ReportType>( { ReportType.PBSA, ReportType.PBSP, S});
 
             dbContext.SaveChanges();
         }

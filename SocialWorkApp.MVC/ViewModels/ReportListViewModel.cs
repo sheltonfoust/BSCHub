@@ -6,11 +6,11 @@ namespace SocialWorkApp.MVC.ViewModels
     public class ReportListViewModel
     {
         public Provider Provider { get; }
-        public IEnumerable<Report> UncompletedReports { get; }
+        public IEnumerable<Report> NotAcceptedReports { get; }
         public ReportListViewModel(Provider provider, IEnumerable<Report> uncompletedReports)
         {
             Provider = provider;
-            UncompletedReports = uncompletedReports;
+            NotAcceptedReports = uncompletedReports;
         }
     }
 }

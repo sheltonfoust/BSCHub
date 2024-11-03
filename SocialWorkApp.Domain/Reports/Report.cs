@@ -17,18 +17,15 @@ namespace SocialWorkApp.Domain.Reports
         {
         }
 
-        public Report(Client client)
-        {
-            
-        }
+        
         public int ReportId { get; set; }
         public ReportType Type;
         public Client Client { get; set; }
         public int ClientId { get; set; }
         public Status Status { get; set; } = Incomplete;
         public DateOnly Deadline { get; set; }
+        public DateOnly? CompletedDate { get; set; }
         public DateOnly? ReviewedDate { get; set; }
-
         public DateOnly GetToSupervisorDueDate()
         {
             return Deadline.AddDays(-7);
@@ -46,14 +43,7 @@ namespace SocialWorkApp.Domain.Reports
             return type.ToString();
         }
 
-        public bool isLate(bool isIndependent, DateOnly date)
-        {
-            if (Status == Status.Accepted)
-                return false;
-            if (isIndependent)
-                return date > Deadline;
-            return date> GetToSupervisorDueDate();
-        }
+        
     }
 
     public enum ReportType

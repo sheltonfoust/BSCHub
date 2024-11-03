@@ -23,8 +23,8 @@ namespace SocialWorkApp.Application
             if (report.Status == Status.Accepted)
                 return false;
             if (isIndependent)
-                return GetToday() > report.Deadline;
-            return GetToday() > report.GetToSupervisorDueDate();
+                return DateHelper.GetToday() > report.Deadline;
+            return DateHelper.GetToday() > report.GetToSupervisorDueDate();
         }
 
     }
