@@ -12,9 +12,16 @@ namespace SocialWorkApp.DataAccess
         {
             this.dbContext = socialWorkDbContext;
         }
-        public IReadOnlyCollection<Provider> ListProviders()
+
+        public Provider? GetProvider(int id)
+        {
+            return dbContext.Providers.Find(id);
+        }
+
+        public List<Provider> ListProviders()
         {
             return dbContext.Providers.OrderBy(p => p.LastName).ThenBy(p => p.FirstName).ToList();
         }
+
     }
 }

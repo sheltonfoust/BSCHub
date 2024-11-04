@@ -9,11 +9,12 @@ builder.Services.AddDbContext<SocialWorkDbContext>(options =>
     options.UseNpgsql(connectionString)); ;
 
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
 builder.Services.AddScoped<IDateRepository, DateRepository>();
+builder.Services.AddScoped<IReportRepository, ReportRepository>();
+
 
 var app = builder.Build();
 

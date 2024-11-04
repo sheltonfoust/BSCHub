@@ -1,0 +1,122 @@
+﻿@model ReportListViewModel
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Reports</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item">BSC Hub</li>
+        <li class="breadcrumb-item active">Reports</li>
+    </ol>
+
+    
+    @if (!Model.NotCompletedReports.Any())
+    {
+        <div class="mt-3"><strong>There are no upcoming reports to display</strong></div>
+    }
+    else
+    {
+        <table class="table table-bordered mt-3" style="table-layout: fixed; width: 100%;">
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Client</th>
+                    <th>Type</th>
+                    <th>Deadline</th>
+                    @if (!Model.Provider.IsIndependent)
+                    {
+                    <th>Due to Supervisor By</th>
+                    }
+                    <th></th>
+                </tr>
+                
+            </thead>
+            <tbody>
+                @foreach (var report in Model.NotCompletedReports)
+                {
+                    @if (report.Deadline != null && DateHelper.GetToday() > report.Deadline)
+                    {
+                        <tr class="table-danger">
+                            <td>Late</td>
+                            <td>@report.ClientName</td>
+                            <td>@ReportHelper.GetName(report.Type)</td>
+                            
+                            <td>@report.Deadline</td>
+                            
+                            @if (!Model.Provider.IsIndependent)
+                            {
+                                @if (report.DueToSupervisorBy != null)
+                                {
+                                    <td>@report.DueToSupervisorBy</td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                            }
+                            <td>
+                                <button class="btn btn-primary" asp-controller="report" asp-action="markascomplete" 
+                                asp-route-yearId="@report.ISP_YearId" asp-route-type="@report.Type">
+                                    Mark As Complete
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                    else if (report.Deadline == null)
+                    {
+                        <tr class="table-warning">
+                            <td>Unknown</td>
+                            <td>@report.ClientName</td>
+                            <td>@ReportHelper.GetName(report.Type)</td>
+                            <td>Information Missing</td>
+                            @if (!Model.Provider.IsIndependent)
+                            {
+                                @if (report.DueToSupervisorBy != null)
+                                {
+                                    <td>@report.DueToSupervisorBy</td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                            }
+                            <td>
+                                <button class="btn btn-primary" asp-controller="report" asp-action="markascomplete"
+                                        asp-route-yearId="@report.ISP_YearId" asp-route-type="@report.Type">
+                                    Mark As Complete
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>Upcoming</td>
+                            <td>@report.ClientName</td>
+                            <td>@ReportHelper.GetName(report.Type)</td>
+                            <td>@report.Deadline</td>
+                            @if (!Model.Provider.IsIndependent)
+                            {
+                                @if (report.DueToSupervisorBy != null)
+                                {
+                                    <td>@report.DueToSupervisorBy</td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                            }
+                            <td>
+                                <button class="btn btn-primary" asp-controller="report" asp-action="markascomplete"
+                                        asp-route-yearId="@report.ISP_YearId" asp-route-type="@report.Type">
+                                    Mark As Complete
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                
+                }
+            </tbody>
+        </table>
+
+    }
+    
+</div>

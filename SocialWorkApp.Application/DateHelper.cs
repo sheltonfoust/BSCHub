@@ -9,14 +9,5 @@
             return DateOnly.FromDateTime(localTime);
         }
 
-        //public static bool IsLate(this Report report, bool isIndependent)
-        //{
-        //    if (report.Status == Status.Accepted)
-        //        return false;
-        //    if (isIndependent)
-        //        return DateHelper.GetToday() > report.Deadline;
-        //    return DateHelper.GetToday() > report.GetToSupervisorDueDate();
-        //}
-
     }
 }

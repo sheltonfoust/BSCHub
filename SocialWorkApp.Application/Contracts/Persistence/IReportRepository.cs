@@ -1,4 +1,4 @@
-﻿using SocialWorkApp.Domain.Users;
+﻿using SocialWorkApp.Domain.Report;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace SocialWorkApp.Application.Contracts.Persistence
 {
-    public interface IProviderRepository
+    public interface IReportRepository
     {
-        List<Provider> ListProviders();
-        Provider? GetProvider(int id);
+        List<Report> ListReportsByProvider(int providerId);
+
     }
 }
