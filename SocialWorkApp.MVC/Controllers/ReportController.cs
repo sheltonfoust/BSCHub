@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SocialWorkApp.Application;
 using SocialWorkApp.Application.Contracts.Persistence;
 using SocialWorkApp.Domain.Clients;
 using SocialWorkApp.MVC.ViewModels;
@@ -29,7 +30,17 @@ namespace SocialWorkApp.MVC.Controllers
         [HttpPost]
         public IActionResult MarkAsComplete(int yearId, ReportType type)
         {
-            return NoContent();
+            _reportRepository.SetCompleted(yearId, type, DateHelper.GetToday());
+            return RedirectToAction("List");
+        }
+
+        [HttpPost]
+        public IActionResult MarkAsNotComplete(int yearId, ReportType type)
+        {
+            _reportRepository.SetNotCompleted(yearId, type);
+            _reportRepository.SetNotReviewed(yearId, type);
+            return RedirectToAction("List");
+
         }
     }
 }

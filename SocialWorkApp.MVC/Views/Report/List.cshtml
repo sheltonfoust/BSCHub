@@ -14,6 +14,7 @@
     }
     else
     {
+        <p class="mt-3">Upcoming Reports</p>
         <table class="table table-bordered mt-3" style="table-layout: fixed; width: 100%;">
             <thead>
                 <tr>
@@ -53,10 +54,9 @@
                                 }
                             }
                             <td>
-                                <button class="btn btn-primary" asp-controller="report" asp-action="markascomplete" 
-                                asp-route-yearId="@report.ISP_YearId" asp-route-type="@report.Type">
-                                    Mark As Complete
-                                </button>
+                                <form asp-action="MarkAsComplete" asp-route-yearId="@report.ISP_YearId" asp-route-type="@report.Type" method="post" role="form">
+                                    <input type="submit" class="btn btn-primary" value="Mark As Complete" />
+                                </form>
                             </td>
                         </tr>
                     }
@@ -79,10 +79,9 @@
                                 }
                             }
                             <td>
-                                <button class="btn btn-primary" asp-controller="report" asp-action="markascomplete"
-                                        asp-route-yearId="@report.ISP_YearId" asp-route-type="@report.Type">
-                                    Mark As Complete
-                                </button>
+                                <form asp-action="MarkAsComplete" asp-route-yearId="@report.ISP_YearId" asp-route-type="@report.Type" method="post" role="form">
+                                    <input type="submit" class="btn btn-primary" value="Mark As Complete" />
+                                </form>
                             </td>
                         </tr>
                     }
@@ -105,10 +104,9 @@
                                 }
                             }
                             <td>
-                                <button class="btn btn-primary" asp-controller="report" asp-action="markascomplete"
-                                        asp-route-yearId="@report.ISP_YearId" asp-route-type="@report.Type">
-                                    Mark As Complete
-                                </button>
+                                <form asp-action="MarkAsComplete" asp-route-yearId="@report.ISP_YearId" asp-route-type="@report.Type" method="post" role="form">
+                                    <input type="submit" class="btn btn-primary" value="Mark As Complete" />
+                                </form>
                             </td>
                         </tr>
                     }
@@ -116,7 +114,74 @@
                 }
             </tbody>
         </table>
-
     }
-    
+
+    @if (!Model.CompletedReports.Any())
+    {
+        <div class="mt-3"><strong>There are no completed reports to display</strong></div>
+    }
+    else
+    {
+            <p class="mt-3">Completed Reports</p>
+            <table class="table table-bordered mt-3" style="table-layout: fixed; width: 100%;">
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Client</th>
+                        <th>Type</th>
+                        <th>Deadline</th>
+                        @if (!Model.Provider.IsIndependent)
+                        {
+                            <th>Due to Supervisor By</th>
+                        }
+                        <th></th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var report in Model.CompletedReports)
+                    {
+                    <tr>
+                        @if (report.IsReviewed)
+                        {
+                            <td>Accepted</td>
+                        }
+                        else
+                        {
+                            <td>Pending</td>
+                        }
+                        <td>@report.ClientName</td>
+                        <td>@ReportHelper.GetName(report.Type)</td>
+                        @if (report.Deadline == null)
+                        {
+                            <td>Information Missing</td>
+                        }
+                        else
+                        {
+                            <td>@report.Deadline</td>
+                        }
+                        @if (!Model.Provider.IsIndependent)
+                        {
+                            @if (report.DueToSupervisorBy != null)
+                            {
+                                <td>@report.DueToSupervisorBy</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                        }
+                        <td>
+                            <form asp-action="MarkAsNotComplete" asp-route-yearId="@report.ISP_YearId" asp-route-type="@report.Type" method="post" role="form">
+                                <input type="submit" class="btn btn-primary" value="Mark As Not Complete" />
+                            </form>
+                        </td>
+                    </tr>
+                        
+
+                    }
+                </tbody>
+            </table>
+        
+    }
 </div>

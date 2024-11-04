@@ -10,8 +10,12 @@ namespace SocialWorkApp.MVC.ViewModels
             Reports = reports;
         }
         public List<Report> Reports { get; set; }
-        public List<Report> CompletedReports => Reports.Where(r => r.IsCompleted).ToList();
-        public List<Report> NotCompletedReports => Reports.Where(r => !r.IsCompleted).ToList();
+        public List<Report> CompletedReports => Reports.Where(r => r.IsCompleted).ToList()
+                                                       .OrderByDescending(r => r.Deadline == null)
+                                                       .ThenBy(r => r.Deadline).ToList();
+        public List<Report> NotCompletedReports => Reports.Where(r => !r.IsCompleted).ToList()
+                                                       .OrderByDescending(r => r.Deadline == null)
+                                                       .ThenBy(r => r.Deadline).ToList();
 
         public Provider Provider { get; set; }
 
