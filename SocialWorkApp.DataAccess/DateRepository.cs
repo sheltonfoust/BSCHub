@@ -1,5 +1,6 @@
 ﻿using SocialWorkApp.Application.Contracts.Persistence;
 using SocialWorkApp.Domain.Clients;
+using System.Linq;
 
 namespace SocialWorkApp.DataAccess
 {
@@ -28,6 +29,9 @@ namespace SocialWorkApp.DataAccess
             ISP_Year.ClientId = clientId;
             ISP_Year.Client = client;
             ISP_Year.StartDate = startDate;
+            ISP_Year.HasBCIP = client.NeedsBCIP;
+            ISP_Year.HasPPMP = client.NeedsPPMP;
+
             dbContext.ISP_Years.Add(ISP_Year);
 
             dbContext.SaveChanges();
@@ -49,7 +53,13 @@ namespace SocialWorkApp.DataAccess
             var year = dbContext.ISP_Years.Find(ISP_YearId);
             if (year != null)
             {
+                var client = dbContext.Clients.Find(year.ClientId);
                 year.StartDate = newYearStart;
+                if (client != null)
+                {
+                    year.HasBCIP = client.NeedsBCIP;
+                    year.HasPPMP = client.NeedsPPMP;
+                }
                 dbContext.ISP_Years.Update(year);
                 dbContext.SaveChanges();
             }
