@@ -16,9 +16,9 @@ namespace SocialWorkApp.MVC.Controllers
             _providerRepository = providerRepository;
         }
 
-        public IActionResult List()
+        public IActionResult List(int providerId)
         {
-            var provider = _providerRepository.GetProvider(1);
+            var provider = _providerRepository.GetProvider(providerId);
             if (provider == null)
                 return NotFound();
             var viewModel = new ReportListViewModel(provider, _reportRepository
@@ -28,18 +28,18 @@ namespace SocialWorkApp.MVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult MarkAsComplete(int yearId, ReportType type)
+        public IActionResult MarkAsComplete(int yearId, ReportType type, int providerId)
         {
             _reportRepository.SetCompleted(yearId, type, DateHelper.GetToday());
-            return RedirectToAction("List");
+            return RedirectToAction("List", new {providerId = providerId});
         }
 
         [HttpPost]
-        public IActionResult MarkAsNotComplete(int yearId, ReportType type)
+        public IActionResult MarkAsNotComplete(int yearId, ReportType type, int providerId)
         {
             _reportRepository.SetNotCompleted(yearId, type);
             _reportRepository.SetNotReviewed(yearId, type);
-            return RedirectToAction("List");
+            return RedirectToAction("List", new { providerId = providerId });
 
         }
     }
