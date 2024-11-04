@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SocialWorkApp.Application;
-using SocialWorkApp.Application.Contracts.Persistence;
+﻿using SocialWorkApp.Application.Contracts.Persistence;
 using SocialWorkApp.Domain.Clients;
-using SocialWorkApp.Domain.Reports;
 
 namespace SocialWorkApp.DataAccess
 {

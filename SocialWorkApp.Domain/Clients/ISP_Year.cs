@@ -1,5 +1,4 @@
-﻿using SocialWorkApp.Domain.Reports;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -20,8 +19,43 @@ namespace SocialWorkApp.Domain.Clients
         [DataType(DataType.Date)]
         public DateOnly? MeetingDate { get; set; } = null;
 
-        public List<ReportEntity> Reports { get; set; }
+        public bool HasBCIP { get; set; }
+        public bool HasPPMP { get; set; }
+
+        public DateOnly? PBSA_CompletedDate { get; set; }
+        public DateOnly? PBSA_ReviewedDate  { get; set; }
+
+        public DateOnly? PBSP_CompletedDate { get; set; }
+        public DateOnly? PBSP_ReviewedDate { get; set; }
+
+        public DateOnly? SemiAnnCompletedDate { get; set; }
+        public DateOnly? SemiAnnReviewedDate { get; set; }
+
+        public DateOnly? BCIP_CompletedDate { get; set; }
+        public DateOnly? BCIP_ReviewedDate { get; set; }
+
+        public DateOnly? PPMP_CompletedDate { get; set; }
+        public DateOnly? PPMP_ReviewedDate { get; set; }
+
+    }
 
 
+
+    public enum ReportType
+    {
+        PBSA,
+        PBSP,
+        SemiAnn,
+        BCIP,
+        PPMP,
+    }
+
+
+
+    public enum Status
+    {
+        Incomplete,
+        Pending,
+        Accepted
     }
 }

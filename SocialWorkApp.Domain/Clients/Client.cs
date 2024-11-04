@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using SocialWorkApp.Domain.Reports;
 using SocialWorkApp.Domain.Users;
 using System.ComponentModel.DataAnnotations;
-using static SocialWorkApp.Domain.Reports.ReportType;
 
 namespace SocialWorkApp.Domain.Clients
 {
