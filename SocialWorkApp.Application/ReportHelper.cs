@@ -23,7 +23,6 @@ namespace SocialWorkApp.Application
                     return year.StartDate;
             }
         }
-
         public static DateOnly? GetDueBySupervisor(ReportType type, ISP_Year year, bool isSevere)
         {
             return GetDeadline(type, year, isSevere)?.AddDays(-7);

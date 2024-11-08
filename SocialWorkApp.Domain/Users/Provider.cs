@@ -14,6 +14,7 @@ namespace SocialWorkApp.Domain.Users
 
         public bool IsIndependent { get; set; }
         public List<Client> Clients { get; internal set; } = new List<Client>();
+        public User? User { get; set; }
 
         public void AddClient(Client client)
         {

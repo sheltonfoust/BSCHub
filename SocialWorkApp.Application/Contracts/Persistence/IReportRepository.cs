@@ -15,7 +15,5 @@ namespace SocialWorkApp.Application.Contracts.Persistence
         public void SetReviewed(int yearId, ReportType type, DateOnly date);
         public void SetNotCompleted(int yearId, ReportType type);
         public void SetNotReviewed(int yearId, ReportType type);
-
-
     }
 }
