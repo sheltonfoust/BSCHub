@@ -10,6 +10,7 @@ namespace SocialWorkApp.Domain.Users
         public string LastName { get; set; }
         public bool IsIndependent { get; set; }
         public User? User { get; set; }
+        public int UserId { get; set; }
         List<Client> Clients { get; set; }
     }
 }

@@ -14,8 +14,11 @@ namespace SocialWorkApp.MVC.ViewModels
         [Display(Name = "Last Name")]
         [StringLength(50)]
         public string LastName { get; set; } = String.Empty;
+        [Display(Name = "Is Provider")]
         public bool IsProvider { get; set; }
+        [Display(Name = "Is Admin")]
         public bool IsAdmin { get; set; }
+        [Display(Name = "Is Independent")]
         public bool IsIndependent { get; set; }
     }
 }

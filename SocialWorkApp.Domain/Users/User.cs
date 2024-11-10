@@ -11,7 +11,6 @@ namespace SocialWorkApp.Domain.Users
         
         public bool IsProvider { get; set; }
         public bool IsAdmin { get; set; }
-        public int? ProviderId { get; set; }
         public Provider? Provider { get; set; }
 
     }

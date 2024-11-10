@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SocialWorkApp.Application.Contracts.Persistence;
 using SocialWorkApp.Domain.Users;
+using System.Runtime.CompilerServices;
 
 namespace SocialWorkApp.DataAccess
 {
@@ -13,9 +14,9 @@ namespace SocialWorkApp.DataAccess
         }
         public void AddUserWithProvider(User user)
         {
-            if (user.IsProvider && user.Provider != null)
+            if (!user.IsProvider)
             {
-                _dbContext.Providers.Add(user.Provider);
+                user.Provider = null;
             }
             _dbContext.Users.Add(user);
             _dbContext.SaveChanges();
@@ -49,10 +50,55 @@ namespace SocialWorkApp.DataAccess
 
         public void UpdateUserWithProvider(User user)
         {
-            _dbContext.Users.Update(user);
+            if (user.IsProvider && user.Provider != null)
+            {
+                _dbContext.Providers.RemoveRange(
+                    _dbContext.Providers.Where(p => p.ProviderId != user.Provider.ProviderId
+                                               && p.UserId == user.UserId));
+                if (_dbContext.Providers.Any(p => p.ProviderId == user.Provider.ProviderId))
+                {
+                    _dbContext.Providers.Update(Copy(user.Provider));
+                }
+                else
+                {
+                    _dbContext.Providers.Add(Copy(user.Provider));
+                }
+                _dbContext.SaveChanges();
+
+            }
+            if (!user.IsProvider)
+            {
+                _dbContext.Providers.RemoveRange(
+                    _dbContext.Providers.Where(p => p.UserId == user.UserId));
+                _dbContext.SaveChanges();
+
+            }
+
+            var userCopy = new User()
+            {
+                UserId = user.UserId,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                IsAdmin = user.IsAdmin,
+                IsProvider = user.IsProvider
+            };
+
+            _dbContext.Users.Update(userCopy);
             _dbContext.SaveChanges();
             return;
             
+        }
+
+        private Provider Copy(Provider provider)
+        {
+            return new Provider()
+            {
+                ProviderId = provider.ProviderId,
+                UserId = provider.UserId,
+                FirstName = provider.FirstName,
+                LastName = provider.LastName,
+                IsIndependent = provider.IsIndependent,
+            };
         }
     }
 }
