@@ -19,12 +19,7 @@ namespace SocialWorkApp.MVC.Controllers
         public IActionResult List()
         {
             return View(new ClientListViewModel(
-               _clientRepository.ListClients().ToList(),
-               _providerRepository.ListProviders().Select(p => new SelectListItem
-               {
-                   Value = p.UserId.ToString(),
-                   Text = p.FirstName + " " + p.LastName
-               }).ToList()));
+               _clientRepository.ListClientsWithProviders().ToList()));
         }
 
         public IActionResult Edit(int clientId)
@@ -88,7 +83,7 @@ namespace SocialWorkApp.MVC.Controllers
 
         private Client GetAddData()
         {
-            ViewBag.Providers = _providerRepository.ListProviders().Select(p => new SelectListItem
+            ViewBag.Users = _providerRepository.ListProviders().Select(p => new SelectListItem
             {
                 Value = p.UserId.ToString(),
                 Text = p.FirstName + " " + p.LastName

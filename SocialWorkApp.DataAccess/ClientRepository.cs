@@ -25,9 +25,13 @@ namespace SocialWorkApp.DataAccess
 
         
 
-        public IReadOnlyCollection<Client> ListClients()
+        public IReadOnlyCollection<Client> ListClientsWithProviders()
         {
-            return dbContext.Clients.OrderBy(c => c.LastName).ThenBy(c => c.FirstName).ToList();
+            return dbContext.Clients
+                .Include(c => c.User)
+                .OrderBy(c => c.LastName)
+                .ThenBy(c => c.FirstName)
+                .ToList();
         }
 
         public IReadOnlyCollection<Client> ListClientsByProvider(int userId)
