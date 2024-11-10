@@ -1,0 +1,45 @@
+﻿@model User
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Add Client</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item">BSC Hub</li>
+        <li class="breadcrumb-item">Users</li>
+        <li class="breadcrumb-item active">Add User</li>
+    </ol>
+    
+    <form asp-action="Add" method="post" role="form">
+
+        <div>
+            <div class="mb-3">
+                <label asp-for="FirstName" class="form-label">First Name</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="LastName" class="form-label">Last Name</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="IsAdmin" class="form-label">Is Admin</label>
+                <input asp-for="IsAdmin" type="checkbox" />
+            </div>
+            <div>
+                <label asp-for="IsProvider" class="form-label">IsProvider</label>
+                <input asp-for="IsProvider" type="checkbox" />
+            </div>
+            <div>
+                <label asp-for="Provider.IsIndependent" class="form-label">IsIndependent</label>
+                <input asp-for="Provider.IsIndependent" type="checkbox" />
+            </div>
+        </div>
+        <div>
+            <div class="mb-3">
+                <input type="submit" class="btn btn-primary" value="Add User" />
+            </div>
+        </div>
+    </form>
+
+
+</div>

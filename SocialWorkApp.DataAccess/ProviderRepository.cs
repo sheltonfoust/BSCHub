@@ -20,7 +20,10 @@ namespace SocialWorkApp.DataAccess
 
         public List<Provider> ListProviders()
         {
-            return dbContext.Providers.OrderBy(p => p.LastName).ThenBy(p => p.FirstName).ToList();
+            return dbContext.Providers.Include(p => p.User)
+                .OrderBy(p => p.LastName)
+                .ThenBy(p => p.FirstName)
+                .ToList();
         }
 
     }

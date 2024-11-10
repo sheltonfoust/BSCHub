@@ -1,30 +1,46 @@
 ﻿using SocialWorkApp.Domain.Clients;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SocialWorkApp.Domain.Users
 {
     public class Provider
     {
-        public Provider()
-        {
-        }
+
 
         public int ProviderId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        [NotMapped]
+        public string FirstName
+        { 
+            get
+            {
+                return User?.FirstName ?? "";
+            }
+            set
+            {
+                if (User != null)
+                {
+                    User.FirstName = value;
+                }
+            }
+        }
+        [NotMapped]
+        public string LastName
+        {
+            get
+            {
+                return User?.LastName ?? "";
+            }
+            set
+            {
+                if (User != null)
+                {
+                    User.LastName = value;
+                }
+            }
+        }
+
 
         public bool IsIndependent { get; set; }
-        public List<Client> Clients { get; internal set; } = new List<Client>();
         public User? User { get; set; }
-
-        public void AddClient(Client client)
-        {
-            Clients.Add(client);
-        }
-
-        public void ReassignClient(Client client, Provider newProvider)
-        {
-            Clients.Remove(client);
-            newProvider.Clients.Add(client);
-        }
     }
 }
