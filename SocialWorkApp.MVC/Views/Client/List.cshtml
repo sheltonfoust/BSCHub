@@ -2,14 +2,35 @@
 
 
 <div class="container-fluid px-4">
-<h1 class="mt-4">Clients</h1>
-<ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item">BSC Hub</li>
-    <li class="breadcrumb-item active">Clients</li>
-</ol>
 
 
-    <a class="btn btn-primary" asp-controller="client" asp-action="add">Add Client</a>
+    @if (Model.IsAllProviders)
+    {
+        <h1 class="mt-4">Clients</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item">BSC Hub</li>
+            <li class="breadcrumb-item active">Clients</li>
+        </ol>
+    }
+    else
+    {
+        <h1 class="mt-4">Clients Assigned to @Model.Provider.FirstName @Model.Provider.LastName</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item">BSC Hub</li>
+            <li class="breadcrumb-item">Clients</li>
+            <li class="breadcrumb-item active">@Model.Provider.FirstName @Model.Provider.LastName</li>
+        </ol>
+    }
+
+
+    @if (Model.IsAllProviders)
+    {
+        <a class="btn btn-primary" asp-controller="client" asp-action="add" asp-route-providerId="@null">Add Client</a>
+    }
+    else
+    {
+        <a class="btn btn-primary" asp-controller="client" asp-action="add" asp-route-providerId="@Model.Provider.UserId">Add Client</a>
+    }
 
     <table class="table table-bordered mt-3" style="table-layout: fixed; width: 100%;">
 
@@ -17,7 +38,10 @@
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Provider</th>
+                @if (Model.IsAllProviders)
+                {
+                    <th>Provider</th>
+                }
                 <th>ISP Start Date</th>
                 <th>Severity</th>
                 <th>Needs BCIP</th>
@@ -32,14 +56,18 @@
                 <tr>
                     <td>@client.FirstName</td>
                     <td>@client.LastName</td>
-                    @if (client.User == null)
+                    @if (!Model.IsAllProviders)
                     {
-                        <td></td>
+                        @if (client.User == null)
+                        {
+                            <td></td>
+                        }
+                        else
+                        {
+                            <td>@client.User.FirstName @client.User.LastName</td>
+                        }
                     }
-                    else
-                    {
-                    <td>@client.User.FirstName @client.User.LastName</td>
-                    }
+                    
                     <td>@client.ISP_YearStartDate</td>
                     @if (client.IsSevere)
                     {

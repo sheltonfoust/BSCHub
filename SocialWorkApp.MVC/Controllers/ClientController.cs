@@ -16,11 +16,23 @@ namespace SocialWorkApp.MVC.Controllers
             this._clientRepository = clientRepository;
             this._providerRepository = providerRepository;
         }
+        [HttpGet("client/list")]
         public IActionResult List()
         {
             return View(new ClientListViewModel(
                _clientRepository.ListClientsWithProviders().ToList()));
         }
+        [HttpGet("client/list/{providerId}")]
+        public IActionResult ListByProvider(int providerId)
+        {
+            var provider = _providerRepository.GetProvider(providerId);
+            if (provider == null)
+                return NotFound();
+            return View("List", new ClientListViewModel(
+                _clientRepository.ListClientsByProvider(providerId).ToList(),
+                provider));
+        }
+
 
         public IActionResult Edit(int clientId)
         {
@@ -56,10 +68,10 @@ namespace SocialWorkApp.MVC.Controllers
 
 
 
-        public IActionResult Add()
+        public IActionResult Add(int? providerId = null)
         {
 
-            return View(GetAddData());
+            return View(GetAddData(providerId));
         }
 
 
@@ -81,15 +93,27 @@ namespace SocialWorkApp.MVC.Controllers
             return View("Add", GetAddData());
         }
 
-        private Client GetAddData()
+        private Client GetAddData(int? providerId = null)
         {
-            ViewBag.Users = _providerRepository.ListProviders().Select(p => new SelectListItem
+            if (providerId == null)
             {
-                Value = p.UserId.ToString(),
-                Text = p.FirstName + " " + p.LastName
-            }).ToList();
+                ViewBag.Providers = _providerRepository.ListProviders().Select(p => new SelectListItem
+                {
+                    Value = p.UserId.ToString(),
+                    Text = p.FirstName + " " + p.LastName
+                }).ToList();
+            }
+            else
+            {
+                ViewBag.Providers = _providerRepository.ListProviders().Select(p => new SelectListItem
+                {
+                    Value = p.UserId.ToString(),
+                    Text = p.FirstName + " " + p.LastName
+                }).OrderByDescending(p => p.Value == providerId.ToString()).ToList();
+            }
 
-           return new Client()
+
+            return new Client()
             {
                 ISP_YearStartDate = DateHelper.GetToday()
             };

@@ -78,7 +78,21 @@ namespace SocialWorkApp.MVC.Controllers
             return View(userInDb);
         }
 
-        
-        
+        [HttpPost]
+        public IActionResult DeleteUser(int userId)
+        {
+
+
+            if (ModelState.IsValid)
+            {
+                _userRepository.DeleteUser(userId);
+
+                return RedirectToAction("List");
+
+            }
+            return NoContent();
+        }
+
+
     }
 }

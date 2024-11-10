@@ -60,13 +60,19 @@
                         <a asp-action="edit" asp-route-userId="@user.UserId" class="btn btn-sm btn-primary">
                             Edit <i class="fas fa-external-link"></i>
                         </a>
-                        <button class="btn btn-sm btn-primary">Remove</button>
-                        <a class="btn btn-sm btn-primary">
+                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#delete-@user.UserId">Remove</button>
+                        
+                        @if (user.IsProvider)
+                        {
+                        <a asp-controller="client" asp-action="listbyprovider" asp-route-providerId="@user.UserId" class="btn btn-sm btn-primary">
                             Clients <i class="fas fa-external-link"></i>
                         </a>
-                        <a class="btn btn-sm btn-primary">
+
+                            <a asp-controller="report" asp-action="list" asp-route-providerId="@user.UserId" class="btn btn-sm btn-primary">
                             Reports <i class="fas fa-external-link"></i>
-                        </a>
+                            </a>
+                        }
+                        
                     </td>
 
 
@@ -79,5 +85,35 @@
 
 
     </table>
+
+
+
+    @foreach (var user in Model.Users)
+    {
+
+
+        <div class="modal fade" id="delete-@user.UserId" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            Delete User
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+
+                        <p>Are you sure that you want to remove @user.FirstName @user.LastName from the system?</p>
+
+                        <form asp-action="DeleteUser" asp-route-userId="@user.UserId" method="post" role="form">
+                            <input type="submit" class="btn btn-primary" value="Delete User" />
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+
 
 </div>
