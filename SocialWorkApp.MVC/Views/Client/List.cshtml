@@ -32,13 +32,13 @@
                 <tr>
                     <td>@client.FirstName</td>
                     <td>@client.LastName</td>
-                    @if (client.Provider == null)
+                    @if (client.User == null)
                     {
                         <td></td>
                     }
                     else
                     {
-                    <td>@client.Provider.FirstName @client.Provider.LastName</td>
+                    <td>@client.User.FirstName @client.User.LastName</td>
                     }
                     <td>@client.ISP_YearStartDate</td>
                     @if (client.IsSevere)

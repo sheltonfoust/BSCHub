@@ -11,6 +11,5 @@ namespace SocialWorkApp.Application.Contracts.Persistence
     {
         List<Provider> ListProviders();
         Provider? GetProvider(int id);
-        void Add(Provider provider);
     }
 }

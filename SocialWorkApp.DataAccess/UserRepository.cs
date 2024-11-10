@@ -12,15 +12,7 @@ namespace SocialWorkApp.DataAccess
         {
             _dbContext = dbContext;
         }
-        public void AddUserWithProvider(User user)
-        {
-            if (!user.IsProvider)
-            {
-                user.Provider = null;
-            }
-            _dbContext.Users.Add(user);
-            _dbContext.SaveChanges();
-        }
+ 
 
         public void DeleteUser(int userId)
         {
@@ -33,9 +25,9 @@ namespace SocialWorkApp.DataAccess
             _dbContext.SaveChanges();
         }
 
-        public User? GetUserWithProvider(int userId)
+        public User? GetUser(int userId)
         {
-            return _dbContext.Users.Where(u => u.UserId == userId).Include(u => u.Provider).FirstOrDefault();
+            return _dbContext.Users.Find(userId);
         }
 
         public List<User> ListUsers()
@@ -43,62 +35,22 @@ namespace SocialWorkApp.DataAccess
             return _dbContext.Users.ToList();
         }
 
-        public List<User> ListUsersWithProviders()
+        public void AddUser(User user)
         {
-            return _dbContext.Users.Include(u => u.Provider).ToList();
-        }
-
-        public void UpdateUserWithProvider(User user)
-        {
-            if (user.IsProvider && user.Provider != null)
-            {
-                _dbContext.Providers.RemoveRange(
-                    _dbContext.Providers.Where(p => p.ProviderId != user.Provider.ProviderId
-                                               && p.UserId == user.UserId));
-                if (_dbContext.Providers.Any(p => p.ProviderId == user.Provider.ProviderId))
-                {
-                    _dbContext.Providers.Update(Copy(user.Provider));
-                }
-                else
-                {
-                    _dbContext.Providers.Add(Copy(user.Provider));
-                }
-                _dbContext.SaveChanges();
-
-            }
-            if (!user.IsProvider)
-            {
-                _dbContext.Providers.RemoveRange(
-                    _dbContext.Providers.Where(p => p.UserId == user.UserId));
-                _dbContext.SaveChanges();
-
-            }
-
-            var userCopy = new User()
-            {
-                UserId = user.UserId,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                IsAdmin = user.IsAdmin,
-                IsProvider = user.IsProvider
-            };
-
-            _dbContext.Users.Update(userCopy);
+            _dbContext.Users.Add(user);
             _dbContext.SaveChanges();
             return;
-            
         }
 
-        private Provider Copy(Provider provider)
+        public void UpdateUser(User user)
         {
-            return new Provider()
-            {
-                ProviderId = provider.ProviderId,
-                UserId = provider.UserId,
-                FirstName = provider.FirstName,
-                LastName = provider.LastName,
-                IsIndependent = provider.IsIndependent,
-            };
+            _dbContext.Users.Update(user);
+            _dbContext.SaveChanges();
+            return;
         }
+
+
+
+
     }
 }

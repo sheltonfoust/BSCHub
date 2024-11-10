@@ -9,11 +9,11 @@ namespace SocialWorkApp.Application.Contracts.Persistence
 {
     public interface IUserRepository
     {
-        User? GetUserWithProvider(int userId);
-        List<User> ListUsers();
-        List<User> ListUsersWithProviders();
-        void AddUserWithProvider(User user);
-        void UpdateUserWithProvider(User user);
-        void DeleteUser(int userId);
+        public void AddUser(User user);
+        public void DeleteUser(int userId);
+        public User? GetUser(int userId);
+        public List<User> ListUsers();
+        public void UpdateUser(User user);
+
     }
 }

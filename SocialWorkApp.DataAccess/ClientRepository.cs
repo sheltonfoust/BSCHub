@@ -30,9 +30,11 @@ namespace SocialWorkApp.DataAccess
             return dbContext.Clients.OrderBy(c => c.LastName).ThenBy(c => c.FirstName).ToList();
         }
 
-        public IReadOnlyCollection<Client> ListClientsByProvider(int providerId)
+        public IReadOnlyCollection<Client> ListClientsByProvider(int userId)
         {
-            return dbContext.Clients.Where(c => c.Provider != null && c.Provider.ProviderId == providerId)
+            return dbContext.Clients
+                .Where(c => c.User != null && c.User.UserId == userId
+                && c.User.IsProvider)
                 .OrderBy(c => c.LastName).ThenBy(c => c.FirstName)
                 .ToList();
         }

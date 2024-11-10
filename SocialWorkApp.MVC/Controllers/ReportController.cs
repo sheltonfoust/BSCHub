@@ -22,7 +22,7 @@ namespace SocialWorkApp.MVC.Controllers
             if (provider == null)
                 return NotFound();
             var viewModel = new ReportListViewModel(provider, _reportRepository
-                .ListReportsByProvider(provider.ProviderId));
+                .ListReportsByProvider(provider.UserId));
 
             return View(viewModel);
         }

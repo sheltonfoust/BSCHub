@@ -6,14 +6,10 @@ namespace SocialWorkApp.Domain.Clients
 {
     public class Client
     {
-        public Client()
-        {
-            
-        }
-        [BindNever]
+
         public int ClientId { get; set; }
-        public int ProviderId { get; set; }
-        public Provider? Provider { get; set; }
+        public int UserId { get; set; }
+        public User? User { get; set; }
 
         [Required(ErrorMessage = "First name must be entered")]
         [Display(Name = "First Name")]

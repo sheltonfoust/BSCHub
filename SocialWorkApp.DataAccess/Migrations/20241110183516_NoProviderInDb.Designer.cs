@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SocialWorkApp.DataAccess;
@@ -11,9 +12,11 @@ using SocialWorkApp.DataAccess;
 namespace SocialWorkApp.DataAccess.Migrations
 {
     [DbContext(typeof(SocialWorkDbContext))]
-    partial class SocialWorkDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241110183516_NoProviderInDb")]
+    partial class NoProviderInDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,7 +62,7 @@ namespace SocialWorkApp.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Clients", (string)null);
+                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("SocialWorkApp.Domain.Clients.ISP_Year", b =>
@@ -119,7 +122,7 @@ namespace SocialWorkApp.DataAccess.Migrations
 
                     b.HasIndex("ClientId");
 
-                    b.ToTable("ISP_Years", (string)null);
+                    b.ToTable("ISP_Years");
                 });
 
             modelBuilder.Entity("SocialWorkApp.Domain.Users.User", b =>
@@ -151,7 +154,7 @@ namespace SocialWorkApp.DataAccess.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("SocialWorkApp.Domain.Clients.Client", b =>

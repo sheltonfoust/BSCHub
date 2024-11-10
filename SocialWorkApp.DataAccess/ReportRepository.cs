@@ -15,12 +15,15 @@ namespace SocialWorkApp.DataAccess
             dbContext = socialWorkDbContext;
         }
 
-        public List<Report> ListReportsByProvider(int providerId)
+        public List<Report> ListReportsByProvider(int userId)
         {
 
             var years = dbContext.ISP_Years
                           .Where(y => y.Client != null
-                          && y.Client.ProviderId == providerId && y.Client.Provider != null).Include(y => y.Client).ToList();
+                          && y.Client.UserId == userId && y.Client.User != null
+                          && y.Client.User.IsProvider)
+                          .Include(y => y.Client)
+                          .ToList();
 
             var reports = new List<Report>();
             foreach (var year in years)
@@ -32,7 +35,7 @@ namespace SocialWorkApp.DataAccess
                     ClientName = year.Client.GetName(),
                     Type = ReportType.PBSA,
                     Deadline = ReportHelper.GetDeadline(ReportType.PBSA, year, year.Client.IsSevere),
-                    DueToSupervisorBy = year.Client.Provider.IsIndependent ? null : ReportHelper.GetDueBySupervisor(ReportType.PBSA, year, year.Client.IsSevere),
+                    DueToSupervisorBy = year.Client.User.IsIndependent ? null : ReportHelper.GetDueBySupervisor(ReportType.PBSA, year, year.Client.IsSevere),
                     ISP_YearId = year.ISP_YearId,
                     IsCompleted = year.PBSA_CompletedDate != null,
                     IsReviewed = year.PBSA_ReviewedDate != null,
@@ -43,7 +46,7 @@ namespace SocialWorkApp.DataAccess
                     ClientName = year.Client.GetName(),
                     Type = ReportType.PBSP,
                     Deadline = ReportHelper.GetDeadline(ReportType.PBSP, year, year.Client.IsSevere),
-                    DueToSupervisorBy = year.Client.Provider.IsIndependent ? null : ReportHelper.GetDueBySupervisor(ReportType.PBSP, year, year.Client.IsSevere),
+                    DueToSupervisorBy = year.Client.User.IsIndependent ? null : ReportHelper.GetDueBySupervisor(ReportType.PBSP, year, year.Client.IsSevere),
                     ISP_YearId = year.ISP_YearId,
                     IsCompleted = year.PBSP_CompletedDate != null,
                     IsReviewed = year.PBSP_ReviewedDate != null
@@ -54,7 +57,7 @@ namespace SocialWorkApp.DataAccess
                     ClientName = year.Client.GetName(),
                     Type = ReportType.SemiAnn,
                     Deadline = ReportHelper.GetDeadline(ReportType.SemiAnn, year, year.Client.IsSevere),
-                    DueToSupervisorBy = year.Client.Provider.IsIndependent ? null : ReportHelper.GetDueBySupervisor(ReportType.SemiAnn, year, year.Client.IsSevere),
+                    DueToSupervisorBy = year.Client.User.IsIndependent ? null : ReportHelper.GetDueBySupervisor(ReportType.SemiAnn, year, year.Client.IsSevere),
                     ISP_YearId = year.ISP_YearId,
                     IsCompleted = year.SemiAnnCompletedDate != null,
                     IsReviewed = year.SemiAnnReviewedDate != null
@@ -67,7 +70,7 @@ namespace SocialWorkApp.DataAccess
                         ClientName = year.Client.GetName(),
                         Type = ReportType.BCIP,
                         Deadline = ReportHelper.GetDeadline(ReportType.BCIP, year, year.Client.IsSevere),
-                        DueToSupervisorBy = year.Client.Provider.IsIndependent ? null : ReportHelper.GetDueBySupervisor(ReportType.BCIP, year, year.Client.IsSevere),
+                        DueToSupervisorBy = year.Client.User.IsIndependent ? null : ReportHelper.GetDueBySupervisor(ReportType.BCIP, year, year.Client.IsSevere),
                         ISP_YearId = year.ISP_YearId,
                         IsCompleted = year.BCIP_CompletedDate != null,
                         IsReviewed = year.BCIP_ReviewedDate != null
@@ -80,7 +83,7 @@ namespace SocialWorkApp.DataAccess
                         ClientName = year.Client.GetName(),
                         Type = ReportType.PPMP,
                         Deadline = ReportHelper.GetDeadline(ReportType.PPMP, year, year.Client.IsSevere),
-                        DueToSupervisorBy = year.Client.Provider.IsIndependent ? null : ReportHelper.GetDueBySupervisor(ReportType.PPMP, year, year.Client.IsSevere),
+                        DueToSupervisorBy = year.Client.User.IsIndependent ? null : ReportHelper.GetDueBySupervisor(ReportType.PPMP, year, year.Client.IsSevere),
                         ISP_YearId = year.ISP_YearId,
                         IsCompleted = year.PPMP_CompletedDate != null,
                         IsReviewed = year.PPMP_ReviewedDate != null

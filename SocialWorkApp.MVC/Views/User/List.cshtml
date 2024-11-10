@@ -41,9 +41,9 @@
                     {
                         <td>No</td>
                     }
-                    @if (user.IsProvider && user.Provider != null)
+                    @if (user.IsProvider)
                     {
-                        if (user.Provider.IsIndependent)
+                        if (user.IsIndependent)
                         {
                             <td>Yes</td>
                         }

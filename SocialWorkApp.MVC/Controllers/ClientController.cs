@@ -22,7 +22,7 @@ namespace SocialWorkApp.MVC.Controllers
                _clientRepository.ListClients().ToList(),
                _providerRepository.ListProviders().Select(p => new SelectListItem
                {
-                   Value = p.ProviderId.ToString(),
+                   Value = p.UserId.ToString(),
                    Text = p.FirstName + " " + p.LastName
                }).ToList()));
         }
@@ -31,7 +31,7 @@ namespace SocialWorkApp.MVC.Controllers
         {
             ViewBag.Providers = _providerRepository.ListProviders().Select(p => new SelectListItem
             {
-                Value = p.ProviderId.ToString(),
+                Value = p.UserId.ToString(),
                 Text = p.FirstName + " " + p.LastName
             }).ToList();
             var client = _clientRepository.GetClient(clientId);
@@ -53,7 +53,7 @@ namespace SocialWorkApp.MVC.Controllers
 
             ViewBag.Providers = _providerRepository.ListProviders().Select(p => new SelectListItem
             {
-                Value = p.ProviderId.ToString(),
+                Value = p.UserId.ToString(),
                 Text = p.FirstName + " " + p.LastName
             }).ToList();
             return View("Edit", client);
@@ -90,7 +90,7 @@ namespace SocialWorkApp.MVC.Controllers
         {
             ViewBag.Providers = _providerRepository.ListProviders().Select(p => new SelectListItem
             {
-                Value = p.ProviderId.ToString(),
+                Value = p.UserId.ToString(),
                 Text = p.FirstName + " " + p.LastName
             }).ToList();
 
