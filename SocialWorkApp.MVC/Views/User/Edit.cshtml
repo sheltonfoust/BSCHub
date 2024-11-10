@@ -1,14 +1,15 @@
 ﻿@model UserViewModel
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Add User</h1>
+    <h1 class="mt-4">Edit User</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item">BSC Hub</li>
         <li class="breadcrumb-item">Users</li>
-        <li class="breadcrumb-item active">Add User</li>
+        <li class="breadcrumb-item">Edit User</li>
+        <li class="breadcrumb-item active">@Model.FirstName @Model.LastName</li>
     </ol>
-    
-    <form asp-action="Add" method="post" role="form">
+
+    <form asp-action="Edit" asp-route-userId="@Model.UserId" method="post" role="form">
 
         <div>
             <div class="mb-3">
@@ -36,7 +37,7 @@
         </div>
         <div>
             <div class="mb-3">
-                <input type="submit" class="btn btn-primary" value="Add User" />
+                <input type="submit" class="btn btn-primary" value="Update User" />
             </div>
         </div>
     </form>

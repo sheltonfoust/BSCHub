@@ -32,6 +32,11 @@ namespace SocialWorkApp.DataAccess
             _dbContext.SaveChanges();
         }
 
+        public User? GetUserWithProvider(int userId)
+        {
+            return _dbContext.Users.Where(u => u.UserId == userId).Include(u => u.Provider).FirstOrDefault();
+        }
+
         public List<User> ListUsers()
         {
             return _dbContext.Users.ToList();
@@ -40,6 +45,14 @@ namespace SocialWorkApp.DataAccess
         public List<User> ListUsersWithProviders()
         {
             return _dbContext.Users.Include(u => u.Provider).ToList();
+        }
+
+        public void UpdateUserWithProvider(User user)
+        {
+            _dbContext.Users.Update(user);
+            _dbContext.SaveChanges();
+            return;
+            
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using SocialWorkApp.Application;
 using SocialWorkApp.Application.Contracts.Persistence;
 using SocialWorkApp.DataAccess;
@@ -49,6 +50,48 @@ namespace SocialWorkApp.MVC.Controllers
             return View("Add", new UserViewModel());
         }
 
+        public IActionResult Edit(int userId)
+        {
+            var user = _userRepository.GetUserWithProvider(userId);
+            if (user == null) 
+            {
+                return NotFound();
+            }
+            return View(GetViewModel(user));
+            
+        }
+
+        [HttpPost]
+        public IActionResult Edit(UserViewModel userViewModel, int userId)
+        {
+            if (ModelState.IsValid)
+            {
+                userViewModel.UserId = userId;
+                _userRepository.UpdateUserWithProvider(
+                    GetUserWithProvider(userViewModel));
+                ModelState.Clear();
+                return RedirectToAction("List");
+            }
+            var user = _userRepository.GetUserWithProvider(userViewModel.UserId);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(GetViewModel(user));
+        }
+
+        private UserViewModel GetViewModel(User user)
+        {
+            var viewModel = new UserViewModel();
+            viewModel.IsProvider = user.IsProvider;
+            viewModel.UserId = user.UserId;
+            viewModel.IsProvider = user.IsProvider;
+            viewModel.FirstName = user.FirstName;
+            viewModel.LastName = user.LastName;
+            viewModel.IsIndependent = user.Provider?.IsIndependent ?? false;
+            return viewModel;
+        }
 
         private User GetUserWithProvider(UserViewModel userViewModel)
         {
@@ -70,6 +113,7 @@ namespace SocialWorkApp.MVC.Controllers
         private User GetUser(UserViewModel userViewModel)
         {
             var user = new User();
+            user.UserId = userViewModel.UserId;
             user.FirstName = userViewModel.FirstName;
             user.LastName = userViewModel.LastName;
             user.IsProvider = userViewModel.IsProvider;
