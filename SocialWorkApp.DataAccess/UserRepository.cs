@@ -32,5 +32,10 @@ namespace SocialWorkApp.DataAccess
         {
             return _dbContext.Users.ToList();
         }
+
+        public List<User> ListUsersWithProviders()
+        {
+            return _dbContext.Users.Include(u => u.Provider).ToList();
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model User
+﻿@model UserViewModel
 
 <div class="container-fluid px-4">
     <h1 class="mt-4">Add Client</h1>
@@ -30,8 +30,8 @@
                 <input asp-for="IsProvider" type="checkbox" />
             </div>
             <div>
-                <label asp-for="Provider.IsIndependent" class="form-label">IsIndependent</label>
-                <input asp-for="Provider.IsIndependent" type="checkbox" />
+                <label asp-for="IsIndependent" class="form-label">IsIndependent</label>
+                <input asp-for="IsIndependent" type="checkbox" />
             </div>
         </div>
         <div>

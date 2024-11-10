@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SocialWorkApp.DataAccess;
@@ -11,9 +12,11 @@ using SocialWorkApp.DataAccess;
 namespace SocialWorkApp.DataAccess.Migrations
 {
     [DbContext(typeof(SocialWorkDbContext))]
-    partial class SocialWorkDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241110013409_FixUser")]
+    partial class FixUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -156,9 +159,13 @@ namespace SocialWorkApp.DataAccess.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<bool>("IsAdmin")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsIndependent")
                         .HasColumnType("boolean");
 
                     b.Property<bool>("IsProvider")
@@ -166,7 +173,8 @@ namespace SocialWorkApp.DataAccess.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<int?>("ProviderId")
                         .HasColumnType("integer");

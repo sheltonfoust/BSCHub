@@ -21,39 +21,58 @@ namespace SocialWorkApp.MVC.Controllers
 
         public ActionResult List()
         {
-            var users = _userRepository.ListUsers();
+            var users = _userRepository.ListUsersWithProviders();
             return View(new UserListViewModel(users));
         }
 
 
         public IActionResult Add()
         {
-            return View(GetAddData());
+            return View(new UserViewModel());
         }
 
         [HttpPost]
-        public IActionResult Add(User user)
+        public IActionResult Add(UserViewModel userViewModel)
         {
             if (ModelState.IsValid)
             {
+
+                var user = GetUser(userViewModel);
+                var provider = GetProvider(userViewModel);
+
+                if (userViewModel.IsProvider)
+                {
+                    provider.User = user;
+                    user.Provider = provider;
+                    _providerRepository.Add(provider);
+                }                
                 _userRepository.AddUser(user);
+
                 ModelState.Clear();
 
                 return RedirectToAction("List");
             }
-            return View("Add", GetAddData());
+            return View("Add", new UserViewModel());
         }
 
-        private User GetAddData()
+
+
+        private Provider GetProvider(UserViewModel userViewModel)
+        {
+            var provider = new Provider();
+            provider.FirstName = userViewModel.FirstName;
+            provider.LastName = userViewModel.LastName;
+            provider.IsIndependent = userViewModel.IsIndependent;
+            return provider;
+        }
+        private User GetUser(UserViewModel userViewModel)
         {
             var user = new User();
-            user.Provider = new Provider();
+            user.FirstName = userViewModel.FirstName;
+            user.LastName = userViewModel.LastName;
+            user.IsProvider = userViewModel.IsProvider;
+            user.IsAdmin = userViewModel.IsAdmin;
             return user;
-        }
-
-        private Provider GetProvider(User user)
-        {
-            return new Provider();
         }
         
     }

@@ -5,42 +5,11 @@ namespace SocialWorkApp.Domain.Users
 {
     public class Provider
     {
-
-
         public int ProviderId { get; set; }
-        [NotMapped]
-        public string FirstName
-        { 
-            get
-            {
-                return User?.FirstName ?? "";
-            }
-            set
-            {
-                if (User != null)
-                {
-                    User.FirstName = value;
-                }
-            }
-        }
-        [NotMapped]
-        public string LastName
-        {
-            get
-            {
-                return User?.LastName ?? "";
-            }
-            set
-            {
-                if (User != null)
-                {
-                    User.LastName = value;
-                }
-            }
-        }
-
-
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public bool IsIndependent { get; set; }
         public User? User { get; set; }
+        List<Client> Clients { get; set; }
     }
 }
