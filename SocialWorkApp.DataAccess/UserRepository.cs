@@ -11,8 +11,12 @@ namespace SocialWorkApp.DataAccess
         {
             _dbContext = dbContext;
         }
-        public void AddUser(User user)
+        public void AddUserWithProvider(User user)
         {
+            if (user.IsProvider && user.Provider != null)
+            {
+                _dbContext.Providers.Add(user.Provider);
+            }
             _dbContext.Users.Add(user);
             _dbContext.SaveChanges();
         }

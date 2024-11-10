@@ -37,16 +37,10 @@ namespace SocialWorkApp.MVC.Controllers
             if (ModelState.IsValid)
             {
 
-                var user = GetUser(userViewModel);
-                var provider = GetProvider(userViewModel);
+                var user = GetUserWithProvider(userViewModel);
 
-                if (userViewModel.IsProvider)
-                {
-                    provider.User = user;
-                    user.Provider = provider;
-                    _providerRepository.Add(provider);
-                }                
-                _userRepository.AddUser(user);
+  
+                _userRepository.AddUserWithProvider(user);
 
                 ModelState.Clear();
 
@@ -56,6 +50,14 @@ namespace SocialWorkApp.MVC.Controllers
         }
 
 
+        private User GetUserWithProvider(UserViewModel userViewModel)
+        {
+            var provider = GetProvider(userViewModel);
+            var user = GetUser(userViewModel);
+            provider.User = user;
+            user.Provider = provider;
+            return user;
+        }
 
         private Provider GetProvider(UserViewModel userViewModel)
         {

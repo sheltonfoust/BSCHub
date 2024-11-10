@@ -11,7 +11,7 @@ namespace SocialWorkApp.Application.Contracts.Persistence
     {
         List<User> ListUsers();
         List<User> ListUsersWithProviders();
-        void AddUser(User user);
+        void AddUserWithProvider(User user);
         void DeleteUser(int userId);
     }
 }
