@@ -14,7 +14,7 @@ namespace SocialWorkApp.Domain.Users
         [StringLength(50)]
         public string LastName { get; set; } = string.Empty;
         [Display(Name = "Is Provider")]
-        public bool IsProvider { get; set; }
+        public bool IsConsultant { get; set; }
         [Display(Name = "Is Admin")]
         public bool IsAdmin { get; set; }
         [Display(Name = "Is Independent")]

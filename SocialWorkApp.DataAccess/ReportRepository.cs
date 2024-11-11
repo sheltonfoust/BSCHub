@@ -15,13 +15,13 @@ namespace SocialWorkApp.DataAccess
             dbContext = socialWorkDbContext;
         }
 
-        public List<Report> ListReportsByProvider(int userId)
+        public List<Report> ListReportsByConusltant(int userId)
         {
 
             var years = dbContext.ISP_Years
                           .Where(y => y.Client != null
                           && y.Client.UserId == userId && y.Client.User != null
-                          && y.Client.User.IsProvider)
+                          && y.Client.User.IsConsultant)
                           .Include(y => y.Client)
                           .ToList();
 

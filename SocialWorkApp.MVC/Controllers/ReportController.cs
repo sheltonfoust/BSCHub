@@ -9,20 +9,20 @@ namespace SocialWorkApp.MVC.Controllers
     public class ReportController : Controller
     {
         private IReportRepository _reportRepository;
-        private IProviderRepository _providerRepository;
-        public ReportController(IReportRepository reportRepository, IProviderRepository providerRepository)
+        private IConsultantRepository _providerRepository;
+        public ReportController(IReportRepository reportRepository, IConsultantRepository providerRepository)
         {
             _reportRepository = reportRepository;
             _providerRepository = providerRepository;
         }
 
-        public IActionResult List(int providerId)
+        public IActionResult List(int consultantId)
         {
-            var provider = _providerRepository.GetProvider(providerId);
-            if (provider == null)
+            var consultant = _providerRepository.GetConsultant(consultantId);
+            if (consultant == null)
                 return NotFound();
-            var viewModel = new ReportListViewModel(provider, _reportRepository
-                .ListReportsByProvider(provider.UserId));
+            var viewModel = new ReportListViewModel(consultant, _reportRepository
+                .ListReportsByConusltant(consultant.UserId));
 
             return View(viewModel);
         }

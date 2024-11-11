@@ -9,17 +9,17 @@ namespace SocialWorkApp.MVC.ViewModels
         public ClientListViewModel(List<Client> clients)
         {
             Clients = clients;
-            IsAllProviders = true;
-            Provider = null;
+            isAllConsultants = true;
+            Consultant = null;
         }
-        public ClientListViewModel(List<Client> clients, Provider provider)
+        public ClientListViewModel(List<Client> clients, Consultant consultant)
         {
             Clients = clients;
-            IsAllProviders = false;
-            Provider = provider;
+            isAllConsultants = false;
+            Consultant = consultant;
         }
         public List<Client> Clients { get; }
-        public bool IsAllProviders { get; set; }
-        public Provider? Provider { get; set; }
+        public bool isAllConsultants { get; set; }
+        public Consultant? Consultant { get; set; }
     }
 }

@@ -5,7 +5,7 @@
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item">BSC Hub</li>
         <li class="breadcrumb-item">Reports</li>
-        <li class="breadcrumb-item active">@Model.Provider.FirstName @Model.Provider.LastName</li>
+        <li class="breadcrumb-item active">@Model.Consultant.FirstName @Model.Consultant.LastName</li>
     </ol>
 
     
@@ -23,7 +23,7 @@
                     <th>Client</th>
                     <th>Type</th>
                     <th>Deadline</th>
-                    @if (!Model.Provider.IsIndependent)
+                    @if (!Model.Consultant.IsIndependent)
                     {
                     <th>Due to Supervisor By</th>
                     }
@@ -43,7 +43,7 @@
                             
                             <td>@report.Deadline</td>
                             
-                            @if (!Model.Provider.IsIndependent)
+                            @if (!Model.Consultant.IsIndependent)
                             {
                                 @if (report.DueToSupervisorBy != null)
                                 {
@@ -56,7 +56,7 @@
                             }
                             <td>
                                 <form asp-action="MarkAsComplete" asp-route-yearId="@report.ISP_YearId" asp-route-type="@report.Type" 
-                                asp-route-providerId="@Model.Provider.UserId" method="post" role="form">
+                                asp-route-providerId="@Model.Consultant.UserId" method="post" role="form">
                                     <input type="submit" class="btn btn-primary" value="Mark As Complete" />
                                 </form>
                             </td>
@@ -69,7 +69,7 @@
                             <td>@report.ClientName</td>
                             <td>@ReportHelper.GetName(report.Type)</td>
                             <td>Information Missing</td>
-                            @if (!Model.Provider.IsIndependent)
+                            @if (!Model.Consultant.IsIndependent)
                             {
                                 @if (report.DueToSupervisorBy != null)
                                 {
@@ -82,7 +82,7 @@
                             }
                             <td>
                                 <form asp-action="MarkAsComplete" asp-route-yearId="@report.ISP_YearId" asp-route-type="@report.Type"
-                                      asp-route-providerId="@Model.Provider.UserId" method="post" role="form">
+                                      asp-route-providerId="@Model.Consultant.UserId" method="post" role="form">
                                     <input type="submit" class="btn btn-primary" value="Mark As Complete" />
                                 </form>
                             </td>
@@ -95,7 +95,7 @@
                             <td>@report.ClientName</td>
                             <td>@ReportHelper.GetName(report.Type)</td>
                             <td>@report.Deadline</td>
-                            @if (!Model.Provider.IsIndependent)
+                            @if (!Model.Consultant.IsIndependent)
                             {
                                 @if (report.DueToSupervisorBy != null)
                                 {
@@ -108,7 +108,7 @@
                             }
                             <td>
                                 <form asp-action="MarkAsComplete" asp-route-yearId="@report.ISP_YearId" asp-route-type="@report.Type"
-                                      asp-route-providerId="@Model.Provider.UserId" method="post" role="form">
+                                      asp-route-providerId="@Model.Consultant.UserId" method="post" role="form">
                                     <input type="submit" class="btn btn-primary" value="Mark As Complete" />
                                 </form>
                             </td>
@@ -134,7 +134,7 @@
                         <th>Client</th>
                         <th>Type</th>
                         <th>Deadline</th>
-                        @if (!Model.Provider.IsIndependent)
+                        @if (!Model.Consultant.IsIndependent)
                         {
                             <th>Due to Supervisor By</th>
                         }
@@ -164,7 +164,7 @@
                         {
                             <td>@report.Deadline</td>
                         }
-                        @if (!Model.Provider.IsIndependent)
+                        @if (!Model.Consultant.IsIndependent)
                         {
                             @if (report.DueToSupervisorBy != null)
                             {
@@ -177,7 +177,7 @@
                         }
                         <td>
                             <form asp-action="MarkAsNotComplete" asp-route-yearId="@report.ISP_YearId" asp-route-type="@report.Type"
-                                  asp-route-providerId="@Model.Provider.UserId" method="post" role="form">
+                                  asp-route-providerId="@Model.Consultant.UserId" method="post" role="form">
                                 <input type="submit" class="btn btn-primary" value="Mark As Not Complete" />
                             </form>
                         </td>

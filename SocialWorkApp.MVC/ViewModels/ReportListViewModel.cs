@@ -4,9 +4,9 @@ namespace SocialWorkApp.MVC.ViewModels
 {
     public class ReportListViewModel
     {
-        public ReportListViewModel(Provider provider, List<Report> reports)
+        public ReportListViewModel(Consultant consultant, List<Report> reports)
         {
-            Provider = provider;
+            Consultant = consultant;
             Reports = reports;
         }
         public List<Report> Reports { get; set; }
@@ -17,7 +17,7 @@ namespace SocialWorkApp.MVC.ViewModels
                                                        .OrderByDescending(r => r.Deadline == null)
                                                        .ThenBy(r => r.Deadline).ToList();
 
-        public Provider Provider { get; set; }
+        public Consultant Consultant { get; set; }
 
     }
 }

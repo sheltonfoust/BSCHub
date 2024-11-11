@@ -13,8 +13,8 @@ namespace SocialWorkApp.MVC.Controllers
     public class UserController : Controller
     {
         IUserRepository _userRepository;
-        IProviderRepository _providerRepository;
-        public UserController(IUserRepository userRepository, IProviderRepository providerRepository)
+        IConsultantRepository _providerRepository;
+        public UserController(IUserRepository userRepository, IConsultantRepository providerRepository)
         {
             _userRepository = userRepository;
             _providerRepository = providerRepository;

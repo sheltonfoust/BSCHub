@@ -10,7 +10,7 @@ namespace SocialWorkApp.Application.Contracts.Persistence
 {
     public interface IReportRepository
     {
-        List<Report> ListReportsByProvider(int providerId);
+        List<Report> ListReportsByConusltant(int userId);
         public void SetCompleted(int yearId, ReportType type, DateOnly date);
         public void SetReviewed(int yearId, ReportType type, DateOnly date);
         public void SetNotCompleted(int yearId, ReportType type);

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SocialWorkApp.Domain.Users
 {
-    public class Provider
+    public class Consultant
     {
         public int UserId { get; set; }
         public string FirstName { get; set; }

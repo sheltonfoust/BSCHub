@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace SocialWorkApp.Application.Contracts.Persistence
 {
-    public interface IProviderRepository
+    public interface IConsultantRepository
     {
-        List<Provider> ListProviders();
-        Provider? GetProvider(int id);
+        List<Consultant> GetConsultants();
+        Consultant? GetConsultant(int id);
     }
 }

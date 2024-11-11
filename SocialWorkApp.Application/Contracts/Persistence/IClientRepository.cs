@@ -10,8 +10,8 @@ namespace SocialWorkApp.Application.Contracts.Persistence
     public interface IClientRepository
     {
         Client? GetClient(int clientId);
-        IReadOnlyCollection<Client> ListClientsWithProviders();
-        IReadOnlyCollection<Client> ListClientsByProvider(int providerId);
+        IReadOnlyCollection<Client> ListClientsWithConsultants();
+        IReadOnlyCollection<Client> ListClientsByConsultant(int consultantId);
         void Add(Client client);
         void Update(Client client);
         void Delete(int clientId);

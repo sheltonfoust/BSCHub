@@ -4,25 +4,25 @@ using SocialWorkApp.Domain.Users;
 
 namespace SocialWorkApp.DataAccess
 {
-    public class ProviderRepository : IProviderRepository
+    public class ConsultantRepository : IConsultantRepository
     {
 
         private readonly SocialWorkDbContext dbContext;
-        public ProviderRepository(SocialWorkDbContext socialWorkDbContext)
+        public ConsultantRepository(SocialWorkDbContext socialWorkDbContext)
         {
             this.dbContext = socialWorkDbContext;
         }
 
 
-        public Provider? GetProvider(int id)
+        public Consultant? GetConsultant(int id)
         {
 
             var user = dbContext.Users.Find(id);
             if (user == null)
                 return null;
-            if (!user.IsProvider)
+            if (!user.IsConsultant)
                 return null;
-            return new Provider()
+            return new Consultant()
             {
                 UserId = user.UserId,
                 FirstName = user.FirstName,
@@ -31,19 +31,19 @@ namespace SocialWorkApp.DataAccess
             };
         }
 
-        public List<Provider> ListProviders()
+        public List<Consultant> GetConsultants()
         {
             return dbContext.Users
-                .Where(u => u.IsProvider)
-                .Select(u => new Provider()
+                .Where(u => u.IsConsultant)
+                .Select(u => new Consultant()
                 {
                     UserId = u.UserId,
                     FirstName = u.FirstName,
                     LastName = u.LastName,
                     IsIndependent = u.IsIndependent
                 })
-                .OrderBy(p => p.LastName)
-                .ThenBy(p => p.FirstName)
+                .OrderBy(u => u.LastName)
+                .ThenBy(u => u.FirstName)
                 .ToList();
         }
 

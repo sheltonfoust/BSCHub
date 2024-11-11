@@ -10,33 +10,33 @@ namespace SocialWorkApp.MVC.Controllers
     public class ClientController : Controller
     {
         private readonly IClientRepository _clientRepository;
-        private readonly IProviderRepository _providerRepository;
-        public ClientController(IClientRepository clientRepository, IProviderRepository providerRepository) 
+        private readonly IConsultantRepository _consultantRepository;
+        public ClientController(IClientRepository clientRepository, IConsultantRepository consultantRepository) 
         {
             this._clientRepository = clientRepository;
-            this._providerRepository = providerRepository;
+            this._consultantRepository = consultantRepository;
         }
         [HttpGet("client/list")]
         public IActionResult List()
         {
             return View(new ClientListViewModel(
-               _clientRepository.ListClientsWithProviders().ToList()));
+               _clientRepository.ListClientsWithConsultants().ToList()));
         }
-        [HttpGet("client/list/{providerId}")]
-        public IActionResult ListByProvider(int providerId)
+        [HttpGet("client/list/{consultantId}")]
+        public IActionResult ListByConsultant(int consultantId)
         {
-            var provider = _providerRepository.GetProvider(providerId);
-            if (provider == null)
+            var consultant = _consultantRepository.GetConsultant(consultantId);
+            if (consultant == null)
                 return NotFound();
             return View("List", new ClientListViewModel(
-                _clientRepository.ListClientsByProvider(providerId).ToList(),
-                provider));
+                _clientRepository.ListClientsByConsultant(consultantId).ToList(),
+                consultant));
         }
 
 
         public IActionResult Edit(int clientId)
         {
-            ViewBag.Providers = _providerRepository.ListProviders().Select(p => new SelectListItem
+            ViewBag.Consultants = _consultantRepository.GetConsultants().Select(p => new SelectListItem
             {
                 Value = p.UserId.ToString(),
                 Text = p.FirstName + " " + p.LastName
@@ -58,7 +58,7 @@ namespace SocialWorkApp.MVC.Controllers
                 return RedirectToAction("List");
             }
 
-            ViewBag.Providers = _providerRepository.ListProviders().Select(p => new SelectListItem
+            ViewBag.Consultants = _consultantRepository.GetConsultants().Select(p => new SelectListItem
             {
                 Value = p.UserId.ToString(),
                 Text = p.FirstName + " " + p.LastName
@@ -97,7 +97,7 @@ namespace SocialWorkApp.MVC.Controllers
         {
             if (providerId == null)
             {
-                ViewBag.Providers = _providerRepository.ListProviders().Select(p => new SelectListItem
+                ViewBag.Consultants = _consultantRepository.GetConsultants().Select(p => new SelectListItem
                 {
                     Value = p.UserId.ToString(),
                     Text = p.FirstName + " " + p.LastName
@@ -105,7 +105,7 @@ namespace SocialWorkApp.MVC.Controllers
             }
             else
             {
-                ViewBag.Providers = _providerRepository.ListProviders().Select(p => new SelectListItem
+                ViewBag.Consultants = _consultantRepository.GetConsultants().Select(p => new SelectListItem
                 {
                     Value = p.UserId.ToString(),
                     Text = p.FirstName + " " + p.LastName

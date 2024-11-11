@@ -4,7 +4,7 @@
 <div class="container-fluid px-4">
 
 
-    @if (Model.IsAllProviders)
+    @if (Model.isAllConsultants)
     {
         <h1 class="mt-4">Clients</h1>
         <ol class="breadcrumb mb-4">
@@ -14,22 +14,22 @@
     }
     else
     {
-        <h1 class="mt-4">Clients Assigned to @Model.Provider.FirstName @Model.Provider.LastName</h1>
+        <h1 class="mt-4">Clients Assigned to @Model.Consultant.FirstName @Model.Consultant.LastName</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item">BSC Hub</li>
             <li class="breadcrumb-item">Clients</li>
-            <li class="breadcrumb-item active">@Model.Provider.FirstName @Model.Provider.LastName</li>
+            <li class="breadcrumb-item active">@Model.Consultant.FirstName @Model.Consultant.LastName</li>
         </ol>
     }
 
 
-    @if (Model.IsAllProviders)
+    @if (Model.isAllConsultants)
     {
         <a class="btn btn-primary" asp-controller="client" asp-action="add" asp-route-providerId="@null">Add Client</a>
     }
     else
     {
-        <a class="btn btn-primary" asp-controller="client" asp-action="add" asp-route-providerId="@Model.Provider.UserId">Add Client</a>
+        <a class="btn btn-primary" asp-controller="client" asp-action="add" asp-route-providerId="@Model.Consultant.UserId">Add Client</a>
     }
 
     <table class="table table-bordered mt-3" style="table-layout: fixed; width: 100%;">
@@ -38,7 +38,7 @@
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
-                @if (Model.IsAllProviders)
+                @if (Model.isAllConsultants)
                 {
                     <th>Provider</th>
                 }
@@ -55,7 +55,7 @@
                 <tr>
                     <td>@client.FirstName</td>
                     <td>@client.LastName</td>
-                    @if (Model.IsAllProviders)
+                    @if (Model.isAllConsultants)
                     {
                         @if (client.User == null)
                         {

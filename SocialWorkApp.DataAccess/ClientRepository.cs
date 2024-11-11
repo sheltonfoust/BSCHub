@@ -25,7 +25,7 @@ namespace SocialWorkApp.DataAccess
 
         
 
-        public IReadOnlyCollection<Client> ListClientsWithProviders()
+        public IReadOnlyCollection<Client> ListClientsWithConsultants()
         {
             return dbContext.Clients
                 .Include(c => c.User)
@@ -34,11 +34,11 @@ namespace SocialWorkApp.DataAccess
                 .ToList();
         }
 
-        public IReadOnlyCollection<Client> ListClientsByProvider(int userId)
+        public IReadOnlyCollection<Client> ListClientsByConsultant(int userId)
         {
             return dbContext.Clients
                 .Where(c => c.User != null && c.User.UserId == userId
-                && c.User.IsProvider)
+                && c.User.IsConsultant)
                 .OrderBy(c => c.LastName).ThenBy(c => c.FirstName)
                 .ToList();
         }

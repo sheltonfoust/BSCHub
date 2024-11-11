@@ -33,7 +33,7 @@
                     {
                         <td>No</td>
                     }
-                    @if (user.IsProvider)
+                    @if (user.IsConsultant)
                     {
                         <td>Yes</td>
                     }
@@ -41,7 +41,7 @@
                     {
                         <td>No</td>
                     }
-                    @if (user.IsProvider)
+                    @if (user.IsConsultant)
                     {
                         if (user.IsIndependent)
                         {
@@ -62,13 +62,13 @@
                         </a>
                         <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#delete-@user.UserId">Remove</button>
                         
-                        @if (user.IsProvider)
+                        @if (user.IsConsultant)
                         {
-                        <a asp-controller="client" asp-action="listbyprovider" asp-route-providerId="@user.UserId" class="btn btn-sm btn-primary">
+                        <a asp-controller="client" asp-action="listbyconsultant" asp-route-consultantId="@user.UserId" class="btn btn-sm btn-primary">
                             Clients <i class="fas fa-external-link"></i>
                         </a>
 
-                            <a asp-controller="report" asp-action="list" asp-route-providerId="@user.UserId" class="btn btn-sm btn-primary">
+                            <a asp-controller="report" asp-action="list" asp-route-consultantId="@user.UserId" class="btn btn-sm btn-primary">
                             Reports <i class="fas fa-external-link"></i>
                             </a>
                         }
