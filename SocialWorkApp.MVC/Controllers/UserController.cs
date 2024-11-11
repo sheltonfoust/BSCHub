@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
-using SocialWorkApp.Application;
-using SocialWorkApp.Application.Contracts.Persistence;
-using SocialWorkApp.DataAccess;
-using SocialWorkApp.Domain.Clients;
-using SocialWorkApp.Domain.Users;
-using SocialWorkApp.MVC.ViewModels;
+using BSCHub.Application;
+using BSCHub.Application.Contracts.Persistence;
+using BSCHub.DataAccess;
+using BSCHub.Domain.Clients;
+using BSCHub.Domain.Users;
+using BSCHub.MVC.ViewModels;
 
-namespace SocialWorkApp.MVC.Controllers
+namespace BSCHub.MVC.Controllers
 {
     public class UserController : Controller
     {

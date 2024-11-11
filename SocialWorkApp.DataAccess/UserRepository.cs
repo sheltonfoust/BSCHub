@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SocialWorkApp.Application.Contracts.Persistence;
-using SocialWorkApp.Domain.Users;
+using BSCHub.Application.Contracts.Persistence;
+using BSCHub.Domain.Users;
 using System.Runtime.CompilerServices;
 
-namespace SocialWorkApp.DataAccess
+namespace BSCHub.DataAccess
 {
     public class UserRepository : IUserRepository
     {

@@ -1,7 +1,7 @@
-﻿using SocialWorkApp.Domain.Clients;
+﻿using BSCHub.Domain.Clients;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SocialWorkApp.Domain.Users
+namespace BSCHub.Domain.Users
 {
     public class Consultant
     {

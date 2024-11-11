@@ -1,12 +1,12 @@
-﻿using SocialWorkApp.Domain.Clients;
-using SocialWorkApp.Domain.Report;
+﻿using BSCHub.Domain.Clients;
+using BSCHub.Domain.Report;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SocialWorkApp.Application.Contracts.Persistence
+namespace BSCHub.Application.Contracts.Persistence
 {
     public interface IReportRepository
     {

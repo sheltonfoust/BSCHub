@@ -1,8 +1,8 @@
-﻿using SocialWorkApp.Application.Contracts.Persistence;
-using SocialWorkApp.Domain.Clients;
+﻿using BSCHub.Application.Contracts.Persistence;
+using BSCHub.Domain.Clients;
 using System.Linq;
 
-namespace SocialWorkApp.DataAccess
+namespace BSCHub.DataAccess
 {
     public class DateRepository : IDateRepository
     {

@@ -1,8 +1,8 @@
-﻿using SocialWorkApp.Application;
-using SocialWorkApp.Domain.Clients;
+﻿using BSCHub.Application;
+using BSCHub.Domain.Clients;
 using System.ComponentModel.DataAnnotations;
 
-namespace SocialWorkApp.MVC.ViewModels
+namespace BSCHub.MVC.ViewModels
 {
     public class DatesListViewModel
     {

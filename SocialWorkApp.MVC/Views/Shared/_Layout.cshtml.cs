@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace SocialWorkApp.MVC.Views.Shared
+namespace BSCHub.MVC.Views.Shared
 {
     public class _LayoutModel : PageModel
     {

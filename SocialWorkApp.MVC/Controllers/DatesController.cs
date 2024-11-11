@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SocialWorkApp.Application.Contracts.Persistence;
-using SocialWorkApp.DataAccess;
-using SocialWorkApp.Domain.Clients;
-using SocialWorkApp.MVC.ViewModels;
-namespace SocialWorkApp.MVC.Controllers
+using BSCHub.Application.Contracts.Persistence;
+using BSCHub.DataAccess;
+using BSCHub.Domain.Clients;
+using BSCHub.MVC.ViewModels;
+namespace BSCHub.MVC.Controllers
 {
     public class DatesController : Controller
     {

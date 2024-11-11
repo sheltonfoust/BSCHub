@@ -1,6 +1,6 @@
-﻿using SocialWorkApp.Domain.Clients;
+﻿using BSCHub.Domain.Clients;
 
-namespace SocialWorkApp.Domain.Report
+namespace BSCHub.Domain.Report
 {
     public class Report
     {

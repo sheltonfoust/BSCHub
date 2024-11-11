@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace SocialWorkApp.MVC.Controllers
+namespace BSCHub.MVC.Controllers
 {
     public class NoticeController : Controller
     {

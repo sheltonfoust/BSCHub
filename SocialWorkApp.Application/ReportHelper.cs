@@ -1,11 +1,11 @@
-﻿using SocialWorkApp.Domain.Clients;
+﻿using BSCHub.Domain.Clients;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SocialWorkApp.Application
+namespace BSCHub.Application
 {
     public static class ReportHelper
     {

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace SocialWorkApp.DataAccess.Migrations
+namespace BSCHub.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class ReportDetails : Migration

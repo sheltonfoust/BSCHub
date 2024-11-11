@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace SocialWorkApp.DataAccess.Migrations
+namespace BSCHub.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class NoReport : Migration

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using SocialWorkApp.Domain.Users;
+using BSCHub.Domain.Users;
 using System.ComponentModel.DataAnnotations;
 
-namespace SocialWorkApp.Domain.Clients
+namespace BSCHub.Domain.Clients
 {
     public class Client
     {

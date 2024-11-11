@@ -1,4 +1,4 @@
-﻿namespace SocialWorkApp.Application
+﻿namespace BSCHub.Application
 {
     public static class DateHelper
     {

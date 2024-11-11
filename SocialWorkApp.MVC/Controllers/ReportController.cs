@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SocialWorkApp.Application;
-using SocialWorkApp.Application.Contracts.Persistence;
-using SocialWorkApp.Domain.Clients;
-using SocialWorkApp.MVC.ViewModels;
+using BSCHub.Application;
+using BSCHub.Application.Contracts.Persistence;
+using BSCHub.Domain.Clients;
+using BSCHub.MVC.ViewModels;
 
-namespace SocialWorkApp.MVC.Controllers
+namespace BSCHub.MVC.Controllers
 {
     public class ReportController : Controller
     {

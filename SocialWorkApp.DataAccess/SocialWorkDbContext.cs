@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SocialWorkApp.Domain.Clients;
-using SocialWorkApp.Domain.Users;
+using BSCHub.Domain.Clients;
+using BSCHub.Domain.Users;
 
 
-namespace SocialWorkApp.DataAccess
+namespace BSCHub.DataAccess
 {
     public class SocialWorkDbContext : DbContext
     {

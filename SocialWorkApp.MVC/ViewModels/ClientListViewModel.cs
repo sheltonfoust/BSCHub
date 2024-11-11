@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using SocialWorkApp.Domain.Clients;
-using SocialWorkApp.Domain.Users;
+using BSCHub.Domain.Clients;
+using BSCHub.Domain.Users;
 
-namespace SocialWorkApp.MVC.ViewModels
+namespace BSCHub.MVC.ViewModels
 {
     public class ClientListViewModel
     {

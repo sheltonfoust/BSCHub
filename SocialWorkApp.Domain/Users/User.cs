@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SocialWorkApp.Domain.Users
+namespace BSCHub.Domain.Users
 {
     public class User
     {

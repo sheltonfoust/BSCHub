@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SocialWorkApp.Application;
-using SocialWorkApp.Application.Contracts.Persistence;
-using SocialWorkApp.Domain.Clients;
-using SocialWorkApp.Domain.Report;
+using BSCHub.Application;
+using BSCHub.Application.Contracts.Persistence;
+using BSCHub.Domain.Clients;
+using BSCHub.Domain.Report;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace SocialWorkApp.DataAccess
+namespace BSCHub.DataAccess
 {
     public class ReportRepository : IReportRepository
     {

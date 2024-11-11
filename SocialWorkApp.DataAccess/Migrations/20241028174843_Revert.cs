@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace SocialWorkApp.DataAccess.Migrations
+namespace BSCHub.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class Revert : Migration

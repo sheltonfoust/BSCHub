@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using SocialWorkApp.DataAccess;
+using BSCHub.DataAccess;
 
 #nullable disable
 
-namespace SocialWorkApp.DataAccess.Migrations
+namespace BSCHub.DataAccess.Migrations
 {
     [DbContext(typeof(SocialWorkDbContext))]
     [Migration("20241004210928_Initial")]

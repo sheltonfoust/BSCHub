@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace SocialWorkApp.MVC.Views
+namespace BSCHub.MVC.Views
 {
     public class _ViewStartModel : PageModel
     {

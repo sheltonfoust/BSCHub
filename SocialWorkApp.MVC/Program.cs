@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using SocialWorkApp.Application.Contracts.Persistence;
-using SocialWorkApp.DataAccess;
+using BSCHub.Application.Contracts.Persistence;
+using BSCHub.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("SocialWorkDbConnection") ?? throw new InvalidOperationException("Connection string not found.");

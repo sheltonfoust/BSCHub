@@ -1,6 +1,6 @@
-﻿using SocialWorkApp.Domain.Users;
+﻿using BSCHub.Domain.Users;
 
-namespace SocialWorkApp.MVC.ViewModels
+namespace BSCHub.MVC.ViewModels
 {
     public class UserListViewModel
     {

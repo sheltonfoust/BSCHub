@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SocialWorkApp.Application\SocialWorkApp.Application.csproj" />
+    <ProjectReference Include="..\SocialWorkApp.Application\BSCHub.Application.csproj" />
   </ItemGroup>
 
 </Project>

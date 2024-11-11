@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SocialWorkApp.Application.Contracts.Persistence;
-using SocialWorkApp.Domain.Clients;
+using BSCHub.Application.Contracts.Persistence;
+using BSCHub.Domain.Clients;
 
-namespace SocialWorkApp.DataAccess
+namespace BSCHub.DataAccess
 {
     public class ClientRepository : IClientRepository
     {

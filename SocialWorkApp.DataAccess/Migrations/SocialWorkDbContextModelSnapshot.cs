@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using SocialWorkApp.DataAccess;
+using BSCHub.DataAccess;
 
 #nullable disable
 
-namespace SocialWorkApp.DataAccess.Migrations
+namespace BSCHub.DataAccess.Migrations
 {
     [DbContext(typeof(SocialWorkDbContext))]
     partial class SocialWorkDbContextModelSnapshot : ModelSnapshot

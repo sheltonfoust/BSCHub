@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SocialWorkApp.Domain.Clients
+namespace BSCHub.Domain.Clients
 {
     public class ISP_Year
     {
