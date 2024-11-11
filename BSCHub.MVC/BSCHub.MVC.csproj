@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SocialWorkApp.DataAccess\BSCHub.DataAccess.csproj" />
-    <ProjectReference Include="..\SocialWorkApp.Domain\BSCHub.Domain.csproj" />
+    <ProjectReference Include="..\BSCHub.DataAccess\BSCHub.DataAccess.csproj" />
+    <ProjectReference Include="..\BSCHub.Domain\BSCHub.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
