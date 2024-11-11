@@ -19,19 +19,15 @@ namespace SocialWorkApp.MVC.Controllers
             _userRepository = userRepository;
             _providerRepository = providerRepository;
         }
-
         public ActionResult List()
         {
             var users = _userRepository.ListUsers();
             return View(new UserListViewModel(users));
         }
-
-
         public IActionResult Add()
         {
             return View(new User());
         }
-
         [HttpPost]
         public IActionResult Add(User user)
         {
@@ -47,7 +43,6 @@ namespace SocialWorkApp.MVC.Controllers
             }
             return View("Add", new User());
         }
-
         public IActionResult Edit(int userId)
         {
             var user = _userRepository.GetUser(userId);
@@ -58,7 +53,6 @@ namespace SocialWorkApp.MVC.Controllers
             return View(user);
             
         }
-
         [HttpPost]
         public IActionResult Edit(User user, int userId)
         {
@@ -77,12 +71,9 @@ namespace SocialWorkApp.MVC.Controllers
             }
             return View(userInDb);
         }
-
         [HttpPost]
         public IActionResult DeleteUser(int userId)
         {
-
-
             if (ModelState.IsValid)
             {
                 _userRepository.DeleteUser(userId);

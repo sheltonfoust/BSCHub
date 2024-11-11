@@ -56,7 +56,7 @@
                 <tr>
                     <td>@client.FirstName</td>
                     <td>@client.LastName</td>
-                    @if (!Model.IsAllProviders)
+                    @if (Model.IsAllProviders)
                     {
                         @if (client.User == null)
                         {
