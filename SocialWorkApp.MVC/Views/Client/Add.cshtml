@@ -31,13 +31,6 @@
                     <label asp-for="User" class="form-label">Provider</label>
                     <select asp-for="UserId" asp-items="ViewBag.Providers" class="form-control"></select>
                 </div>
-                <div class="mb-3">
-                    <label asp-for="ISP_YearStartDate" class="form-label">ISP Start Date</label>
-                    <input asp-for="ISP_YearStartDate" class="form-control" />
-                    <span asp-validation-for="ISP_YearStartDate" class="text-danger"></span>
-                </div>
-
-
                 <div>
                     <label asp-for="IsSevere" class="form-label">Is Severe</label>
                     <input asp-for="IsSevere" type="checkbox" />

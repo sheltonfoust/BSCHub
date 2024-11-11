@@ -19,10 +19,6 @@ namespace SocialWorkApp.Domain.Clients
         [Display(Name = "Last Name")]
         [StringLength(50)]
         public string LastName { get; set; } = string.Empty;
-        [Required]
-        [DataType(DataType.Date)]
-        [Display(Name = "ISP Start Date")]
-        public DateOnly ISP_YearStartDate { get; set; }
 
         [Required]
         [Display(Name = "Severity")]

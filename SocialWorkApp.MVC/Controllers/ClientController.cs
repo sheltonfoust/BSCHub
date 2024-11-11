@@ -113,10 +113,7 @@ namespace SocialWorkApp.MVC.Controllers
             }
 
 
-            return new Client()
-            {
-                ISP_YearStartDate = DateHelper.GetToday()
-            };
+            return new Client();
         }
         [HttpPost]
         public IActionResult DeleteClient(int clientId)
