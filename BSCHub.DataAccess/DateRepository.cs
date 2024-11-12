@@ -1,5 +1,8 @@
-﻿using BSCHub.Application.Contracts.Persistence;
-using BSCHub.Domain.Clients;
+﻿using BSCHub.Application;
+using BSCHub.Application.Contracts.Persistence;
+using BSCHub.Domain.Dates;
+using BSCHub.Domain.Reports;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace BSCHub.DataAccess
@@ -12,12 +15,41 @@ namespace BSCHub.DataAccess
             dbContext = socialWorkDbContext;
         }
 
-        public List<ISP_Year>? GetISPYears(int clientId)
+        public List<YearWithReports>? GetISPYearsWithReports(int clientId)
         {
 
             if (!dbContext.Clients.Any(c => c.ClientId == clientId))
                 return null;
-            return dbContext.ISP_Years.Where(y => y.ClientId == clientId).ToList();
+            var years = dbContext.ISP_Years
+                .Where(y => y.Client != null 
+                && y.Client.ClientId == clientId)
+                .Include(y => y.Client)
+                .ThenInclude(c => c.User)
+                .ToList();
+            var result = new List<YearWithReports>();
+            foreach (var year in years)
+            {
+                var reports = ReportHelper.GetYearReports(year);
+                var yearWithReports = new YearWithReports()
+                {
+                    ISP_Year = year,
+                    PBSA = reports[ReportType.PBSA],
+                    PBSP = reports[ReportType.PBSP],
+                    SemiAnn = reports[ReportType.SemiAnn],
+                };
+                if (reports.TryGetValue(ReportType.BCIP, out var BCIP))
+                {
+                    yearWithReports.BCIP = BCIP;
+                }
+                if (reports.TryGetValue(ReportType.PPMP, out var PPMP))
+                {
+                    yearWithReports.PPMP = PPMP;
+                }
+
+                result.Add(yearWithReports);
+            }
+
+            return result;
         }
 
         public void AddYear(int clientId, DateOnly startDate)

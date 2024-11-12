@@ -23,7 +23,7 @@ namespace BSCHub.MVC.Controllers
             {
                 return NotFound();
             }
-            var years = _dateRepository.GetISPYears(clientId);
+            var years = _dateRepository.GetISPYearsWithReports(clientId);
             if (years == null)
             {
                 return NotFound();

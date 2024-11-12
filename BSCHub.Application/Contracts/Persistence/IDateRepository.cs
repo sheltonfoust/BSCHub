@@ -1,4 +1,4 @@
-﻿using BSCHub.Domain.Clients;
+﻿using BSCHub.Domain.Dates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace BSCHub.Application.Contracts.Persistence
 {
     public interface IDateRepository
     {
-        public List<ISP_Year>? GetISPYears(int clientId);
+        public List<YearWithReports>? GetISPYearsWithReports(int clientId);
         public void AddYear(int clientId, DateOnly startDate);
         public void DeleteYear(int yearId);
         void UpdateYear(DateOnly newYearStart, int ISP_YearId);

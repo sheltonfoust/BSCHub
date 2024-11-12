@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using BSCHub.Application;
 using BSCHub.Application.Contracts.Persistence;
-using BSCHub.Domain.Clients;
-using BSCHub.Domain.Report;
+using BSCHub.Domain.Reports;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using BSCHub.Domain.Dates;
 
 namespace BSCHub.DataAccess
 {
@@ -15,7 +15,7 @@ namespace BSCHub.DataAccess
             dbContext = socialWorkDbContext;
         }
 
-        public List<Report> ListReportsByConusltant(int userId)
+        public List<Report> ListReportsByConsultant(int userId)
         {
 
             var years = dbContext.ISP_Years
@@ -23,77 +23,43 @@ namespace BSCHub.DataAccess
                           && y.Client.UserId == userId && y.Client.User != null
                           && y.Client.User.IsConsultant)
                           .Include(y => y.Client)
+                          .ThenInclude(c => c.User)
                           .ToList();
+            return GetReportsFromYears(years);
+        }
 
+        public List<Report> ListReportsByClient(int clientId)
+        {
+            var years = dbContext.ISP_Years
+                .Where(y => y.Client != null
+                && y.Client.ClientId == clientId)
+                .Include(y => y.Client)
+                .ToList();
+            return GetReportsFromYears(years);
+
+        }
+
+
+
+
+
+        // Years need to have non null clients
+        internal static List<Report> GetReportsFromYears(List<ISP_Year>? years)
+        {
             var reports = new List<Report>();
+            if (years == null)
+                return reports;
             foreach (var year in years)
             {
                 if (year == null) continue;
 
-                reports.Add(new Report
-                {
-                    ClientName = year.Client.GetName(),
-                    Type = ReportType.PBSA,
-                    Deadline = ReportHelper.GetDeadline(ReportType.PBSA, year, year.Client.IsSevere),
-                    DueToSupervisorBy = year.Client.User.IsIndependent ? null : ReportHelper.GetDueBySupervisor(ReportType.PBSA, year, year.Client.IsSevere),
-                    ISP_YearId = year.ISP_YearId,
-                    IsCompleted = year.PBSA_CompletedDate != null,
-                    IsReviewed = year.PBSA_ReviewedDate != null,
-                });
+                reports.AddRange(ReportHelper.GetYearReports(year).Values);
 
-                reports.Add(new Report
-                {
-                    ClientName = year.Client.GetName(),
-                    Type = ReportType.PBSP,
-                    Deadline = ReportHelper.GetDeadline(ReportType.PBSP, year, year.Client.IsSevere),
-                    DueToSupervisorBy = year.Client.User.IsIndependent ? null : ReportHelper.GetDueBySupervisor(ReportType.PBSP, year, year.Client.IsSevere),
-                    ISP_YearId = year.ISP_YearId,
-                    IsCompleted = year.PBSP_CompletedDate != null,
-                    IsReviewed = year.PBSP_ReviewedDate != null
-                });
-
-                reports.Add(new Report
-                {
-                    ClientName = year.Client.GetName(),
-                    Type = ReportType.SemiAnn,
-                    Deadline = ReportHelper.GetDeadline(ReportType.SemiAnn, year, year.Client.IsSevere),
-                    DueToSupervisorBy = year.Client.User.IsIndependent ? null : ReportHelper.GetDueBySupervisor(ReportType.SemiAnn, year, year.Client.IsSevere),
-                    ISP_YearId = year.ISP_YearId,
-                    IsCompleted = year.SemiAnnCompletedDate != null,
-                    IsReviewed = year.SemiAnnReviewedDate != null
-                });
-
-                if (year.HasBCIP)
-                {
-                    new Report
-                    {
-                        ClientName = year.Client.GetName(),
-                        Type = ReportType.BCIP,
-                        Deadline = ReportHelper.GetDeadline(ReportType.BCIP, year, year.Client.IsSevere),
-                        DueToSupervisorBy = year.Client.User.IsIndependent ? null : ReportHelper.GetDueBySupervisor(ReportType.BCIP, year, year.Client.IsSevere),
-                        ISP_YearId = year.ISP_YearId,
-                        IsCompleted = year.BCIP_CompletedDate != null,
-                        IsReviewed = year.BCIP_ReviewedDate != null
-                    };
-                }
-                if (year.HasPPMP)
-                {
-                    new Report
-                    {
-                        ClientName = year.Client.GetName(),
-                        Type = ReportType.PPMP,
-                        Deadline = ReportHelper.GetDeadline(ReportType.PPMP, year, year.Client.IsSevere),
-                        DueToSupervisorBy = year.Client.User.IsIndependent ? null : ReportHelper.GetDueBySupervisor(ReportType.PPMP, year, year.Client.IsSevere),
-                        ISP_YearId = year.ISP_YearId,
-                        IsCompleted = year.PPMP_CompletedDate != null,
-                        IsReviewed = year.PPMP_ReviewedDate != null
-                    };
-                }
-                
             }
             return reports;
-
         }
+
+
         public void SetCompleted(int yearId, ReportType type, DateOnly date)
         {
             var year = dbContext.ISP_Years.Find(yearId);

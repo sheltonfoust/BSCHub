@@ -1,5 +1,5 @@
 ﻿using BSCHub.Domain.Users;
-using BSCHub.Domain.Report;
+using BSCHub.Domain.Reports;
 namespace BSCHub.MVC.ViewModels
 {
     public class ReportListViewModel

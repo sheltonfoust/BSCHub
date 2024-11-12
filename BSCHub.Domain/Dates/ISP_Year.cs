@@ -4,8 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BSCHub.Domain.Clients;
 
-namespace BSCHub.Domain.Clients
+namespace BSCHub.Domain.Dates
 {
     public class ISP_Year
     {
@@ -23,7 +24,7 @@ namespace BSCHub.Domain.Clients
         public bool HasPPMP { get; set; }
 
         public DateOnly? PBSA_CompletedDate { get; set; }
-        public DateOnly? PBSA_ReviewedDate  { get; set; }
+        public DateOnly? PBSA_ReviewedDate { get; set; }
 
         public DateOnly? PBSP_CompletedDate { get; set; }
         public DateOnly? PBSP_ReviewedDate { get; set; }
@@ -37,7 +38,7 @@ namespace BSCHub.Domain.Clients
         public DateOnly? PPMP_CompletedDate { get; set; }
         public DateOnly? PPMP_ReviewedDate { get; set; }
 
-        
+
     }
 
 

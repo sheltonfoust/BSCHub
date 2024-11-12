@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using BSCHub.Domain.Clients;
 using BSCHub.Domain.Users;
+using BSCHub.Domain.Dates;
 
 
 namespace BSCHub.DataAccess

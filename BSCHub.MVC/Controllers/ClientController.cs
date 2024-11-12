@@ -4,6 +4,7 @@ using BSCHub.Application;
 using BSCHub.Application.Contracts.Persistence;
 using BSCHub.Domain.Clients;
 using BSCHub.MVC.ViewModels;
+using BSCHub.Domain.Users;
 
 namespace BSCHub.MVC.Controllers
 {
@@ -32,7 +33,7 @@ namespace BSCHub.MVC.Controllers
                 _clientRepository.ListClientsByConsultant(consultantId).ToList(),
                 consultant));
         }
-
+        
 
         public IActionResult Edit(int clientId)
         {
@@ -68,10 +69,9 @@ namespace BSCHub.MVC.Controllers
 
 
 
-        public IActionResult Add(int? providerId = null)
+        public IActionResult Add(int? consultantId = null)
         {
-
-            return View(GetAddData(providerId));
+            return View(GetAddData(consultantId));
         }
 
 
@@ -86,16 +86,16 @@ namespace BSCHub.MVC.Controllers
                 _clientRepository.Add(client);
                 ModelState.Clear();
 
-                return RedirectToAction("List");
-
 
             }
             return View("Add", GetAddData());
         }
 
-        private Client GetAddData(int? providerId = null)
+        private Client GetAddData(int? consultantId = null)
         {
-            if (providerId == null)
+            ViewBag.ConsultantId = consultantId;
+
+            if (consultantId == null)
             {
                 ViewBag.Consultants = _consultantRepository.GetConsultants().Select(p => new SelectListItem
                 {
@@ -109,7 +109,7 @@ namespace BSCHub.MVC.Controllers
                 {
                     Value = p.UserId.ToString(),
                     Text = p.FirstName + " " + p.LastName
-                }).OrderByDescending(p => p.Value == providerId.ToString()).ToList();
+                }).OrderByDescending(p => p.Value == consultantId.ToString()).ToList();
             }
 
 

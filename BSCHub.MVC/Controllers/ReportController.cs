@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BSCHub.Application;
 using BSCHub.Application.Contracts.Persistence;
-using BSCHub.Domain.Clients;
 using BSCHub.MVC.ViewModels;
+using BSCHub.Domain.Dates;
 
 namespace BSCHub.MVC.Controllers
 {
@@ -22,7 +22,7 @@ namespace BSCHub.MVC.Controllers
             if (consultant == null)
                 return NotFound();
             var viewModel = new ReportListViewModel(consultant, _reportRepository
-                .ListReportsByConusltant(consultant.UserId));
+                .ListReportsByConsultant(consultant.UserId));
 
             return View(viewModel);
         }

@@ -18,23 +18,23 @@
             <thead>
                 <tr>
                     <th>ISP Year Start Date</th>
-                    <th>@year.StartDate</th>
+                    <th>@year.ISP_Year.StartDate</th>
                     <td style="min-width:200px;">
-                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit-start-@year.ISP_YearId">Edit</button>
-                        <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete-start-@year.ISP_YearId">Delete</button>
+                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit-start-@year.ISP_Year.ISP_YearId">Edit</button>
+                        <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete-start-@year.ISP_Year.ISP_YearId">Delete</button>
                     </td>
                 </tr>
             </thead>
             <tbody>
 
 
-                @if (year.MeetingDate is null)
+                @if (year.ISP_Year.MeetingDate is null)
                 {
                 <tr class="table-warning">
                         <th>ISP Meeting Date</th>
                         <td>Not Set</td>
                         <td class="table-warning">
-                            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#set-meeting-@year.ISP_YearId">Set</button>
+                            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#set-meeting-@year.ISP_Year.ISP_YearId">Set</button>
                         </td>
                 </tr>
                 }
@@ -42,9 +42,9 @@
                 {
                 <tr>
                         <td>ISP Meeting Date</td>
-                        <td>@year.MeetingDate</td>
+                        <td>@year.ISP_Year.MeetingDate</td>
                         <td>
-                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit-meeting-@year.ISP_YearId">Edit</button>
+                            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit-meeting-@year.ISP_Year.ISP_YearId">Edit</button>
                     </td>
                 </tr>
                 }
@@ -56,7 +56,7 @@
 
 
 
-        <div class="modal fade" id="delete-start-@year.ISP_YearId" tabindex="-1" role="dialog">
+        <div class="modal fade" id="delete-start-@year.ISP_Year.ISP_YearId" tabindex="-1" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
 
@@ -67,9 +67,9 @@
                     </div>
                     <div class="modal-body">
 
-                        <p>Are you sure that you want to remove the ISP Year starting on @year.StartDate from the system? This will also remove the meeting date.</p>
+                        <p>Are you sure that you want to remove the ISP Year starting on @year.ISP_Year.StartDate from the system? This will also remove the meeting date.</p>
 
-                        <form asp-action="DeleteYear" asp-route-ISP_YearId="@year.ISP_YearId" asp-route-clientId="@Model.Client.ClientId" method="post" role="form">
+                        <form asp-action="DeleteYear" asp-route-ISP_YearId="@year.ISP_Year.ISP_YearId" asp-route-clientId="@Model.Client.ClientId" method="post" role="form">
                             <input type="submit" class="btn btn-primary" value="Delete ISP Year" />
                         </form>
                     </div>
@@ -79,7 +79,7 @@
         </div>
 
 
-        <div class="modal fade" id="edit-start-@year.ISP_YearId" tabindex="-1" role="dialog">
+        <div class="modal fade" id="edit-start-@year.ISP_Year.ISP_YearId" tabindex="-1" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
 
@@ -91,7 +91,7 @@
                     <div class="modal-body">
 
 
-                        <form asp-action="UpdateYear" asp-route-newYearStart="@Model.NewYearStart" asp-route-ISP_YearId="@year.ISP_YearId" asp-route-clientId="@Model.Client.ClientId" method="post" role="form">
+                        <form asp-action="UpdateYear" asp-route-newYearStart="@Model.NewYearStart" asp-route-ISP_YearId="@year.ISP_Year.ISP_YearId" asp-route-clientId="@Model.Client.ClientId" method="post" role="form">
 
                             <div class="mb-3">
                                 <label asp-for="@Model.NewYearStart" class="form-label">ISP Year Start Date</label>
@@ -107,7 +107,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="set-meeting-@year.ISP_YearId" tabindex="-1" role="dialog">
+        <div class="modal fade" id="set-meeting-@year.ISP_Year.ISP_YearId" tabindex="-1" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
 
@@ -119,7 +119,7 @@
                     <div class="modal-body">
 
 
-                        <form asp-action="SetMeetingDate" asp-route-meetingDate="@Model.NewSetMeetingDate" asp-route-ISP_YearId="@year.ISP_YearId" asp-route-clientId="@Model.Client.ClientId" method="post" role="form">
+                        <form asp-action="SetMeetingDate" asp-route-meetingDate="@Model.NewSetMeetingDate" asp-route-ISP_YearId="@year.ISP_Year.ISP_YearId" asp-route-clientId="@Model.Client.ClientId" method="post" role="form">
 
                             <div class="mb-3">
                                 <label asp-for="NewSetMeetingDate" class="form-label">ISP Meeting Date</label>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using BSCHub.Domain.Users;
 using System.ComponentModel.DataAnnotations;
+using BSCHub.Domain.Dates;
 
 namespace BSCHub.Domain.Clients
 {

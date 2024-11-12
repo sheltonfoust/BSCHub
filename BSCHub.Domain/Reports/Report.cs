@@ -1,6 +1,6 @@
-﻿using BSCHub.Domain.Clients;
+﻿using BSCHub.Domain.Dates;
 
-namespace BSCHub.Domain.Report
+namespace BSCHub.Domain.Reports
 {
     public class Report
     {
