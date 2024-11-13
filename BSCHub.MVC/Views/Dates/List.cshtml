@@ -48,7 +48,76 @@
                     </td>
                 </tr>
                 }
-                
+
+                @{
+                    <tr>
+                        <td>PBSA Due</td>
+                        @if (year.PBSA.Deadline == null)
+                        {
+                            <td></td>
+                        }
+                        else
+                        {
+                            <td>@year.PBSA.Deadline</td>
+                        }
+
+                    </tr>
+                    <tr>
+                        <td>PBSP Due</td>
+                        @if (year.PBSP.Deadline == null)
+                        {
+                            <td></td>
+                        }
+                        else
+                        {
+                            <td>@year.PBSP.Deadline</td>
+                        }
+
+                    </tr>
+                   <tr>
+                        <td>Semi-Annual Due</td>
+                        @if (year.SemiAnn.Deadline == null)
+                        {
+                            <td></td>
+                        }
+                        else
+                        {
+                            <td>@year.SemiAnn.Deadline</td>
+                        }
+
+                    </tr>
+                    @if (year.ISP_Year.HasBCIP && year.BCIP != null)
+                    {
+                        <tr>
+                            <td>BCIP Due</td>
+                            @if (year.BCIP.Deadline == null)
+                            {
+                                <td></td>
+                            }
+                            else
+                            {
+                                <td>@year.BCIP.Deadline</td>
+                            }
+
+                        </tr>
+                    }
+                    @if (year.ISP_Year.HasPPMP && year.PPMP != null)
+                    {
+                        <tr>
+                            <td>PPMP Due</td>
+                            @if (year.PPMP.Deadline == null)
+                            {
+                                <td></td>
+                            }
+                            else
+                            {
+                                <td>@year.PPMP.Deadline</td>
+                            }
+
+                        </tr>
+                    }
+                }
+
             </tbody>
         </table>
 
@@ -136,23 +205,23 @@
         </div>
 
 
-        @* <div class="modal fade" id="edit-meeting-@year.ISP_YearId" tabindex="-1" role="dialog">
+        <div class="modal fade" id="edit-meeting-@year.ISP_Year.ISP_YearId" tabindex="-1" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
 
                     <div class="modal-header">
                         <h5 class="modal-title">
-                            Update ISP Meeting Date
+                            Change ISP Meeting Date
                         </h5>
                     </div>
                     <div class="modal-body">
 
 
-                        <form asp-action="SetMeetingDate" asp-route-meetingDate="@Model.NewMeetingDate" asp-route-ISP_YearId="@year.ISP_YearId" asp-route-clientId="@Model.Client.ClientId" method="post" role="form">
+                        <form asp-action="SetMeetingDate" asp-route-meetingDate="@Model.NewEditMeetingDate" asp-route-ISP_YearId="@year.ISP_Year.ISP_YearId" asp-route-clientId="@Model.Client.ClientId" method="post" role="form">
 
                             <div class="mb-3">
-                                <label asp-for="@Model.NewMeetingDate" class="form-label">ISP Meeting Date</label>
-                                <input asp-for="@Model.NewMeetingDate" class="form-control" />
+                                <label asp-for="@Model.NewEditMeetingDate" class="form-label">ISP Meeting Date</label>
+                                <input asp-for="@Model.NewEditMeetingDate" class="form-control" />
                             </div>
                             <div class="mb-3 mt-3">
                                 <input type="submit" class="btn btn-primary" value="Update Date" />
@@ -163,7 +232,7 @@
                 </div>
             </div>
         </div>
- *@
+
 
     }
 
