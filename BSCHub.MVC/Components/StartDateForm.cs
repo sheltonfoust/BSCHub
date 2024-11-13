@@ -16,13 +16,15 @@ namespace BSCHub.MVC.Components
         }
         public IViewComponentResult Invoke(int yearId)
         {            
-            ViewBag.YearId = yearId;
-            var startDate = _dateRepository.GetYear(yearId)?.StartDate;
-            if (startDate == null)
+            
+            var year = _dateRepository.GetYear(yearId);
+            if (year == null)
             {
                 return View("DateError");
             }
-            var view = View(new DateViewModel((DateOnly)startDate));
+            ViewBag.YearId = yearId;
+            ViewBag.ClientId = year.ClientId;
+            var view = View(new DateViewModel(year.StartDate));
             return view;
         }
     }

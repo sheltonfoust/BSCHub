@@ -8,7 +8,7 @@
 <div class="modal-body">
 
 
-    <form asp-controller="Dates" asp-action="UpdateYear" asp-route-ISP_YearId="@ViewBag.YearId" method="post" role="form">
+    <form asp-controller="Dates" asp-action="UpdateYear" asp-route-ISP_YearId="@ViewBag.YearId" asp-route-clientId="@ViewBag.ClientId" method="post" role="form">
 
         <div class="mb-3">
             <label asp-for="Date" class="form-label">ISP Year Start Date</label>
