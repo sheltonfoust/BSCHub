@@ -14,5 +14,6 @@ namespace BSCHub.Application.Contracts.Persistence
         public void DeleteYear(int yearId);
         void UpdateYear(DateOnly newYearStart, int ISP_YearId);
         void UpdateMeetingDate(DateOnly meetingDate, int ISP_YearId);
+        public ISP_Year? GetYear(int yearId);
     }
 }

@@ -59,11 +59,11 @@ namespace BSCHub.MVC.Controllers
 
 
         [HttpPost]
-        public IActionResult UpdateYear(DateOnly newYearStart, int ISP_YearId, int clientId)
+        public IActionResult UpdateYear(DateViewModel newYearStart, int ISP_YearId, int clientId)
         {
             if (ModelState.IsValid)
             {
-                _dateRepository.UpdateYear(newYearStart, ISP_YearId);
+                _dateRepository.UpdateYear(newYearStart.Date, ISP_YearId);
                 ModelState.Clear();
                 return RedirectToAction("List", new { clientId = clientId });
 

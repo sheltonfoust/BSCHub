@@ -30,100 +30,100 @@
 
                 @if (year.ISP_Year.MeetingDate is null)
                 {
-                <tr class="table-warning">
+                    <tr class="table-warning">
                         <th>ISP Meeting Date</th>
                         <td>Not Set</td>
                         <td class="table-warning">
                             <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#set-meeting-@year.ISP_Year.ISP_YearId">Set</button>
                         </td>
-                </tr>
+                    </tr>
                 }
                 else
                 {
-                <tr>
+                    <tr>
                         <td>ISP Meeting Date</td>
                         <td>@year.ISP_Year.MeetingDate</td>
                         <td>
                             <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit-meeting-@year.ISP_Year.ISP_YearId">Edit</button>
-                    </td>
+                        </td>
+                    </tr>
+                }
+
+
+                <tr>
+                    <td>PBSA Due</td>
+                    @if (year.PBSA.Deadline == null)
+                    {
+                        <td></td>
+                    }
+                    else
+                    {
+                        <td>@year.PBSA.Deadline</td>
+                    }
+
                 </tr>
-                }
-
-                @{
-                    <tr>
-                        <td>PBSA Due</td>
-                        @if (year.PBSA.Deadline == null)
-                        {
-                            <td></td>
-                        }
-                        else
-                        {
-                            <td>@year.PBSA.Deadline</td>
-                        }
-
-                    </tr>
-                    <tr>
-                        <td>PBSP Due</td>
-                        @if (year.PBSP.Deadline == null)
-                        {
-                            <td></td>
-                        }
-                        else
-                        {
-                            <td>@year.PBSP.Deadline</td>
-                        }
-
-                    </tr>
-                   <tr>
-                        <td>Semi-Annual Due</td>
-                        @if (year.SemiAnn.Deadline == null)
-                        {
-                            <td></td>
-                        }
-                        else
-                        {
-                            <td>@year.SemiAnn.Deadline</td>
-                        }
-
-                    </tr>
-                    @if (year.ISP_Year.HasBCIP && year.BCIP != null)
+                <tr>
+                    <td>PBSP Due</td>
+                    @if (year.PBSP.Deadline == null)
                     {
-                        <tr>
-                            <td>BCIP Due</td>
-                            @if (year.BCIP.Deadline == null)
-                            {
-                                <td></td>
-                            }
-                            else
-                            {
-                                <td>@year.BCIP.Deadline</td>
-                            }
-
-                        </tr>
+                        <td></td>
                     }
-                    @if (year.ISP_Year.HasPPMP && year.PPMP != null)
+                    else
                     {
-                        <tr>
-                            <td>PPMP Due</td>
-                            @if (year.PPMP.Deadline == null)
-                            {
-                                <td></td>
-                            }
-                            else
-                            {
-                                <td>@year.PPMP.Deadline</td>
-                            }
-
-                        </tr>
+                        <td>@year.PBSP.Deadline</td>
                     }
-                }
 
+                </tr>
+                <tr>
+                    <td>Semi-Annual Due</td>
+                    @if (year.SemiAnn.Deadline == null)
+                    {
+                        <td></td>
+                    }
+                    else
+                    {
+                        <td>@year.SemiAnn.Deadline</td>
+                    }
+
+                </tr>
+                @if (year.ISP_Year.HasBCIP && year.BCIP != null)
+                {
+                    <tr>
+                        <td>BCIP Due</td>
+                        @if (year.BCIP.Deadline == null)
+                        {
+                            <td></td>
+                        }
+                        else
+                        {
+                            <td>@year.BCIP.Deadline</td>
+                        }
+
+                    </tr>
+                }
+                @if (year.ISP_Year.HasPPMP && year.PPMP != null)
+                {
+                    <tr>
+                        <td>PPMP Due</td>
+                        @if (year.PPMP.Deadline == null)
+                        {
+                            <td></td>
+                        }
+                        else
+                        {
+                            <td>@year.PPMP.Deadline</td>
+                        }
+
+                    </tr>
+                }
+            
             </tbody>
         </table>
 
+    }
 
-
-
+    @foreach(var year in Model.ISP_Years)
+    {
 
         <div class="modal fade" id="delete-start-@year.ISP_Year.ISP_YearId" tabindex="-1" role="dialog">
             <div class="modal-dialog">
@@ -152,25 +152,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
 
-                    <div class="modal-header">
-                        <h5 class="modal-title">
-                            Update ISP Year Start Date
-                        </h5>
-                    </div>
-                    <div class="modal-body">
-
-
-                        <form asp-action="UpdateYear" asp-route-newYearStart="@year.NewStartDate" asp-route-ISP_YearId="@year.ISP_Year.ISP_YearId" asp-route-clientId="@Model.Client.ClientId" method="post" role="form">
-
-                            <div class="mb-3">
-                                <label asp-for="@year.NewStartDate" class="form-label">ISP Year Start Date</label>
-                                <input asp-for="@year.NewStartDate" class="form-control" />
-                            </div>
-                            <div class="mb-3 mt-3">
-                                <input type="submit" class="btn btn-primary" value="Update Start Date" />
-                            </div>
-                        </form>
-                    </div>
+                    <vc:start-date-form year-id="@year.ISP_Year.ISP_YearId"></vc:start-date-form>
 
                 </div>
             </div>
@@ -224,7 +206,7 @@
                                 <input asp-for="@year.NewMeetingDate" class="form-control" />
                             </div>
                             <div class="mb-3 mt-3">
-                                <input type="submit" class="btn btn-primary" value="Update Date" />
+                                <input type="submit" class="btn btn-primary" value="Update Meeting Date" />
                             </div>
                         </form>
                     </div>

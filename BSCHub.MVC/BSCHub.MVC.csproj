@@ -18,8 +18,4 @@
     <ProjectReference Include="..\BSCHub.Domain\BSCHub.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Shared\Components\" />
-  </ItemGroup>
-
 </Project>

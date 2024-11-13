@@ -114,5 +114,11 @@ namespace BSCHub.DataAccess
                 dbContext.SaveChanges();
             }
         }
+
+
+        public ISP_Year? GetYear(int yearId)
+        {
+            return dbContext.ISP_Years.Find(yearId);
+        }
     }
 }
