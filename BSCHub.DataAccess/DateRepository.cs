@@ -25,10 +25,12 @@ namespace BSCHub.DataAccess
                 && y.Client.ClientId == clientId)
                 .Include(y => y.Client)
                 .ThenInclude(c => c.User)
+                .OrderByDescending(y => y.StartDate)
                 .ToList();
             var result = new List<YearWithReports>();
             foreach (var year in years)
             {
+
                 var reports = ReportHelper.GetYearReports(year);
                 var yearWithReports = new YearWithReports()
                 {
@@ -46,8 +48,12 @@ namespace BSCHub.DataAccess
                     yearWithReports.PPMP = PPMP;
                 }
 
+                yearWithReports.NewStartDate = year.StartDate;
+                yearWithReports.NewMeetingDate = year.MeetingDate ?? year.StartDate.AddDays(-90);
+
                 result.Add(yearWithReports);
             }
+
 
             return result;
         }

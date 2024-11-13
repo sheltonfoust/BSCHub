@@ -10,11 +10,7 @@ namespace BSCHub.MVC.ViewModels
         public List<YearWithReports> ISP_Years { get; set; }
         public Client Client { get; set; }
         [DataType(DataType.Date)]
-        public DateOnly NewYearStart { get; set; } = DateHelper.GetToday();
-        [DataType(DataType.Date)]
-        public DateOnly NewEditMeetingDate { get; set; } = DateHelper.GetToday();
-        [DataType(DataType.Date)]
-        public DateOnly NewSetMeetingDate { get; set; } = DateHelper.GetToday();
+        public DateOnly NewYearStart { get; set; }
         public DatesListViewModel(Client client, List<YearWithReports> ISP_Years)
         {
             Client = client;
