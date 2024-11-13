@@ -44,7 +44,7 @@
                         <td>ISP Meeting Date</td>
                         <td>@year.ISP_Year.MeetingDate</td>
                         <td>
-                            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit-meeting-@year.ISP_Year.ISP_YearId">Edit</button>
+                            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#set-meeting-@year.ISP_Year.ISP_YearId">Edit</button>
                         </td>
                     </tr>
                 }
@@ -161,61 +161,10 @@
         <div class="modal fade" id="set-meeting-@year.ISP_Year.ISP_YearId" tabindex="-1" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h5 class="modal-title">
-                            Set ISP Meeting Date
-                        </h5>
-                    </div>
-                    <div class="modal-body">
-
-
-                        <form asp-action="SetMeetingDate" asp-route-meetingDate="@year.NewMeetingDate" asp-route-ISP_YearId="@year.ISP_Year.ISP_YearId" asp-route-clientId="@Model.Client.ClientId" method="post" role="form">
-
-                            <div class="mb-3">
-                                <label asp-for="@year.NewMeetingDate" class="form-label">ISP Meeting Date</label>
-                                <input asp-for="@year.NewMeetingDate" class="form-control" />
-                            </div>
-                            <div class="mb-3 mt-3">
-                                <input type="submit" class="btn btn-primary" value="Set Date" />
-                            </div>
-                        </form>
-                    </div>
-
+                    <vc:meeting-date-form year-id="@year.ISP_Year.ISP_YearId"></vc:meeting-date-form>
                 </div>
             </div>
         </div>
-
-
-        <div class="modal fade" id="edit-meeting-@year.ISP_Year.ISP_YearId" tabindex="-1" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h5 class="modal-title">
-                            Update ISP Meeting Date
-                        </h5>
-                    </div>
-                    <div class="modal-body">
-
-
-                        <form asp-action="SetMeetingDate" asp-route-meetingDate="@year.NewMeetingDate" asp-route-ISP_YearId="@year.ISP_Year.ISP_YearId" asp-route-clientId="@Model.Client.ClientId" method="post" role="form">
-
-                            <div class="mb-3">
-                                <label asp-for="@year.NewMeetingDate" class="form-label">ISP Meeting Date</label>
-                                <input asp-for="@year.NewMeetingDate" class="form-control" />
-                            </div>
-                            <div class="mb-3 mt-3">
-                                <input type="submit" class="btn btn-primary" value="Update Meeting Date" />
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-
     }
 
 

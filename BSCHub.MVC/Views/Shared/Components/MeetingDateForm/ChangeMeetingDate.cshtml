@@ -1,0 +1,24 @@
+﻿@model DateViewModel
+
+<div class="modal-header">
+    <h5 class="modal-title">
+        Update Meeting Date
+    </h5>
+</div>
+<div class="modal-body">
+
+
+    <form asp-controller="Dates" asp-action="AddMeetingDate" asp-route-ISP_YearId="@ViewBag.YearId" asp-route-clientId="@ViewBag.ClientId" method="post" role="form">
+
+        <div class="mb-3">
+            <label asp-for="Date" class="form-label">ISP Year Start Date</label>
+            <input asp-for="Date" class="form-control" />
+        </div>
+        <div class="mb-3 mt-3">
+            <input type="submit" class="btn btn-primary" value="Update Date" />
+        </div>
+    </form>
+</div>
+
+
+

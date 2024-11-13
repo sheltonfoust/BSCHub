@@ -1,22 +1,21 @@
-﻿using BSCHub.Application.Contracts.Persistence;
-using BSCHub.Domain.Clients;
+﻿using BSCHub.Application;
+using BSCHub.Application.Contracts.Persistence;
 using BSCHub.MVC.ViewModels;
-using Microsoft.AspNetCore.Connections.Features;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BSCHub.MVC.Components
 {
-    public class StartDateForm : ViewComponent
+    public class MeetingDateForm : ViewComponent
     {
         private readonly IDateRepository _dateRepository;
 
-        public StartDateForm(IDateRepository dateRepository)
+        public MeetingDateForm(IDateRepository dateRepository)
         {
             _dateRepository = dateRepository;
         }
+
         public IViewComponentResult Invoke(int yearId)
-        {            
-            
+        {
             var year = _dateRepository.GetYear(yearId);
             if (year == null)
             {
@@ -24,8 +23,14 @@ namespace BSCHub.MVC.Components
             }
             ViewBag.YearId = yearId;
             ViewBag.ClientId = year.ClientId;
-            return View(new DateViewModel(year.StartDate));
-
+            if (year.MeetingDate is null)
+            {
+                return View("AddMeetingDate", new DateViewModel(DateHelper.GetToday()));
+            }
+            else
+            {
+                return View("ChangeMeetingDate", new DateViewModel((DateOnly)year.MeetingDate));
+            }
         }
     }
 }

@@ -73,11 +73,11 @@ namespace BSCHub.MVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult SetMeetingDate(DateOnly meetingDate, int ISP_YearId, int clientId)
+        public IActionResult AddMeetingDate(DateViewModel meetingDate, int ISP_YearId, int clientId)
         {
             if (ModelState.IsValid)
             {
-                _dateRepository.UpdateMeetingDate(meetingDate, ISP_YearId);
+                _dateRepository.UpdateMeetingDate(meetingDate.Date, ISP_YearId);
                 ModelState.Clear();
                 return RedirectToAction("List", new { clientId = clientId });
 
