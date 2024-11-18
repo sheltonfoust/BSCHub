@@ -33,7 +33,7 @@
             </thead>
             <tbody>
                 @foreach (var report in Model.NotCompletedReports)
-                {
+                {                 
                     @if (report.Deadline != null && DateHelper.GetToday() > report.Deadline)
                     {
                         <tr class="table-danger">
@@ -57,7 +57,7 @@
                             <td>
                                 <form asp-action="MarkAsComplete" asp-route-yearId="@report.ISP_YearId" asp-route-type="@report.Type" 
                                 asp-route-providerId="@Model.Consultant.UserId" method="post" role="form">
-                                    <input type="submit" class="btn btn-primary" value="Ready to Review" />
+                                    <input type="submit" class="btn btn-primary" value="Review" />
                                 </form>
                             </td>
                         </tr>
@@ -83,7 +83,7 @@
                             <td>
                                 <form asp-action="MarkAsComplete" asp-route-yearId="@report.ISP_YearId" asp-route-type="@report.Type"
                                       asp-route-providerId="@Model.Consultant.UserId" method="post" role="form">
-                                    <input type="submit" class="btn btn-primary" value="Ready To Review" />
+                                    <input type="submit" class="btn btn-primary" value="Review" />
                                 </form>
                             </td>
                         </tr>
@@ -109,7 +109,7 @@
                             <td>
                                 <form asp-action="MarkAsComplete" asp-route-yearId="@report.ISP_YearId" asp-route-type="@report.Type"
                                       asp-route-providerId="@Model.Consultant.UserId" method="post" role="form">
-                                    <input type="submit" class="btn btn-primary" value="Ready to Review" />
+                                    <input type="submit" class="btn btn-primary" value="Review" />
                                 </form>
                             </td>
                         </tr>
@@ -188,5 +188,9 @@
                 </tbody>
             </table>
         
+
+            
+
+
     }
 </div>

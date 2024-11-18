@@ -86,6 +86,7 @@ namespace BSCHub.MVC.Controllers
                 _clientRepository.Add(client);
                 ModelState.Clear();
 
+                return RedirectToAction("List");
 
             }
             return View("Add", GetAddData());

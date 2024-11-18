@@ -191,7 +191,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <p>Are you sure that you want to remove the ISP Year starting on @year.ISP_Year.StartDate from the system? This will also remove the meeting date.</p>
+                        <p>Are you sure you want to remove the ISP Year starting on @year.ISP_Year.StartDate from the system? This will also remove the meeting date.</p>
 
                         <form asp-action="DeleteYear" asp-route-ISP_YearId="@year.ISP_Year.ISP_YearId" asp-route-clientId="@Model.Client.ClientId" method="post" role="form">
                             <input type="submit" class="btn btn-primary" value="Delete ISP Year" />

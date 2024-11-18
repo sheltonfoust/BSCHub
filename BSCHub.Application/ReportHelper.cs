@@ -64,7 +64,7 @@ namespace BSCHub.Application
                 case ReportType.PBSP:
                     return year.PBSP_CompletedDate;
                 case ReportType.SemiAnn:
-                    return year.PBSP_CompletedDate;
+                    return year.SemiAnnCompletedDate;
                 case ReportType.BCIP:
                     return year.BCIP_CompletedDate;
                 case ReportType.PPMP:
