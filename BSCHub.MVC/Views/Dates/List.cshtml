@@ -20,14 +20,29 @@
                     <th>ISP Year Start Date</th>
                     <th>@year.ISP_Year.StartDate</th>
                     <td style="min-width:200px;">
-                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit-start-@year.ISP_Year.ISP_YearId">Edit</button>
-                        <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete-start-@year.ISP_Year.ISP_YearId">Delete</button>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit-start-@year.ISP_Year.ISP_YearId">Edit</button>
+                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete-start-@year.ISP_Year.ISP_YearId">Delete</button>
+                            @if (!year.ISP_Year.HasBCIP)
+                            {
+                                <form asp-action="SetBCIP" asp-route-yearId="@year.ISP_Year.ISP_YearId" asp-route-value="@true" asp-route-clientId="@Model.Client.ClientId"
+                                      method="post" role="form">
+                                    <input type="submit" class="btn btn-primary btn-sm" value="Add BCIP" />
+                                </form>
+                            }
+                            @if (!year.ISP_Year.HasPPMP)
+                            {
+                                <form asp-action="SetPPMP" asp-route-yearId="@year.ISP_Year.ISP_YearId" asp-route-value="@true" asp-route-clientId="@Model.Client.ClientId"
+                                      method="post" role="form">
+                                    <input type="submit" class="btn btn-primary btn-sm" value="Add PPMP" />
+                                </form>
+                            }
+                            
+                        </div>
                     </td>
                 </tr>
             </thead>
             <tbody>
-
-
                 @if (year.ISP_Year.MeetingDate is null)
                 {
                     <tr class="table-warning">
@@ -98,6 +113,12 @@
                         {
                             <td>@year.BCIP.Deadline</td>
                         }
+                        <td>
+                            <form asp-action="SetBCIP" asp-route-yearId="@year.ISP_Year.ISP_YearId" asp-route-value="@false" asp-route-clientId="@Model.Client.ClientId"
+                                  method="post" role="form">
+                                <input type="submit" class="btn btn-primary btn-sm" value="Remove BCIP" />
+                            </form>
+                        </td>
 
                     </tr>
                 }
@@ -114,8 +135,42 @@
                             <td>@year.PPMP.Deadline</td>
                         }
 
+                        <td>
+                            <form asp-action="SetPPMP" asp-route-yearId="@year.ISP_Year.ISP_YearId" asp-route-value="@false" asp-route-clientId="@Model.Client.ClientId"
+                                  method="post" role="form">
+                                <input type="submit" class="btn btn-primary btn-sm" value="Remove PPMP" />
+                            </form>
+                        </td>
+
                     </tr>
                 }
+                <tr>
+                    <td>Is Severe</td>
+                    @if (year.ISP_Year.IsSevere)
+                    {
+                        <td>Yes</td>
+                    }
+                    else
+                    {
+                        <td>No</td>
+                    }
+                    <td>
+                        @if (year.ISP_Year.IsSevere)
+                        {
+                            <form asp-action="SetIsSevere" asp-route-yearId="@year.ISP_Year.ISP_YearId" asp-route-value="@false" asp-route-clientId="@Model.Client.ClientId"
+                                  method="post" role="form">
+                                <input type="submit" class="btn btn-primary btn-sm" value="Toggle" />
+                            </form>
+                        }
+                        else
+                        {
+                            <form asp-action="SetIsSevere" asp-route-yearId="@year.ISP_Year.ISP_YearId" asp-route-value="@true" asp-route-clientId="@Model.Client.ClientId"
+                                  method="post" role="form">
+                                <input type="submit" class="btn btn-primary btn-sm" value="Toggle" />
+                            </form>
+                        }
+                    </td>
+                </tr>
             
             </tbody>
         </table>

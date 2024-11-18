@@ -34,8 +34,8 @@ namespace BSCHub.Application
             {
                 ClientName = year.Client.GetName(),
                 Type = type,
-                Deadline = GetDeadline(year, type, year.Client.IsSevere),
-                DueToSupervisorBy = year.Client.User == null ? null : year.Client.User.IsIndependent ? null : GetDueBySupervisor(type, year, year.Client.IsSevere),
+                Deadline = GetDeadline(year, type, year.IsSevere),
+                DueToSupervisorBy = year.Client.User == null ? null : year.Client.User.IsIndependent ? null : GetDueBySupervisor(type, year, year.IsSevere),
                 ISP_YearId = year.ISP_YearId,
                 IsCompleted = GetCompletedDate(year, type) != null,
                 IsReviewed = GetReviewedDate(year, type) != null,

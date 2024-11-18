@@ -15,5 +15,8 @@ namespace BSCHub.Application.Contracts.Persistence
         void UpdateYear(DateOnly newYearStart, int ISP_YearId);
         void UpdateMeetingDate(DateOnly meetingDate, int ISP_YearId);
         public ISP_Year? GetYear(int yearId);
+        public void SetHasBCIP(int yearId, bool value);
+        public void SetHasPPMP(int yearId, bool value);
+        public void SetIsSevere(int yearId, bool value);
     }
 }

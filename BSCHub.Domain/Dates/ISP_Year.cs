@@ -22,6 +22,7 @@ namespace BSCHub.Domain.Dates
 
         public bool HasBCIP { get; set; }
         public bool HasPPMP { get; set; }
+        public bool IsSevere { get; set; }
 
         public DateOnly? PBSA_CompletedDate { get; set; }
         public DateOnly? PBSA_ReviewedDate { get; set; }

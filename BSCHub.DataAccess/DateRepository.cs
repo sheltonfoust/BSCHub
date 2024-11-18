@@ -69,6 +69,7 @@ namespace BSCHub.DataAccess
             ISP_Year.StartDate = startDate;
             ISP_Year.HasBCIP = client.NeedsBCIP;
             ISP_Year.HasPPMP = client.NeedsPPMP;
+            ISP_Year.IsSevere = client.IsSevere;
 
             dbContext.ISP_Years.Add(ISP_Year);
 
@@ -120,5 +121,37 @@ namespace BSCHub.DataAccess
         {
             return dbContext.ISP_Years.Find(yearId);
         }
+
+        public void SetHasBCIP(int yearId, bool value)
+        {
+            var year = dbContext.ISP_Years.Find(yearId);
+            if (year != null)
+            {
+                year.HasBCIP = value;
+                dbContext.SaveChanges();
+            }
+        }
+        public void SetHasPPMP(int yearId, bool value)
+        {
+            var year = dbContext.ISP_Years.Find(yearId);
+            if (year != null)
+            {
+                year.HasPPMP = value;
+                dbContext.SaveChanges();
+            }
+        }
+
+        public void SetIsSevere(int yearId, bool value)
+        {
+            var year = dbContext.ISP_Years.Find(yearId);
+            if (year != null)
+            {
+                year.IsSevere = value;
+                dbContext.SaveChanges();
+            }
+        }
+
+
+
     }
 }

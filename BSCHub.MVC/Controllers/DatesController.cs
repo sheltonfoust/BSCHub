@@ -40,7 +40,7 @@ namespace BSCHub.MVC.Controllers
             if (client == null)
                 return StatusCode(500);
             _dateRepository.AddYear(clientId, newYearStart);
-            return RedirectToAction("List", new {clientId = clientId});
+            return RedirectToAction("List", new { clientId = clientId });
         }
 
         [HttpPost]
@@ -85,5 +85,28 @@ namespace BSCHub.MVC.Controllers
 
             return NoContent();
         }
+
+        [HttpPost]
+        public IActionResult SetBCIP(int yearId, bool value, int clientId)
+        {
+            _dateRepository.SetHasBCIP(yearId, value);
+            return RedirectToAction("List", new {clientId = clientId});
+        }
+
+        [HttpPost]
+        public IActionResult SetPPMP(int yearId, bool value, int clientId)
+        {
+            _dateRepository.SetHasPPMP(yearId, value);
+            return RedirectToAction("List", new { clientId = clientId });
+        }
+
+        [HttpPost]
+        public IActionResult SetIsSevere(int yearId, bool value, int clientId)
+        {
+            _dateRepository.SetIsSevere(yearId, value);
+            return RedirectToAction("List", new { clientId = clientId });
+        }
+
+
     }
 }
