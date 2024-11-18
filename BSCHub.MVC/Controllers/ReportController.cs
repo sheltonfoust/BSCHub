@@ -31,7 +31,7 @@ namespace BSCHub.MVC.Controllers
         public IActionResult MarkAsComplete(int yearId, ReportType type, int providerId)
         {
             _reportRepository.SetCompleted(yearId, type, DateHelper.GetToday());
-            return RedirectToAction("List", new {providerId = providerId});
+            return RedirectToAction("List", new {consultantId = providerId});
         }
 
         [HttpPost]
@@ -39,7 +39,7 @@ namespace BSCHub.MVC.Controllers
         {
             _reportRepository.SetNotCompleted(yearId, type);
             _reportRepository.SetNotReviewed(yearId, type);
-            return RedirectToAction("List", new { providerId = providerId });
+            return RedirectToAction("List", new { consultantId = providerId });
 
         }
     }
