@@ -49,7 +49,7 @@ namespace BSCHub.DataAccess
                 }
 
                 yearWithReports.NewStartDate = year.StartDate;
-                yearWithReports.NewMeetingDate = year.MeetingDate ?? year.StartDate.AddDays(-90);
+                yearWithReports.NewMeetingDate = year.MeetingDate ?? year.StartDate.AddDaysSafe(-90);
 
                 result.Add(yearWithReports);
             }

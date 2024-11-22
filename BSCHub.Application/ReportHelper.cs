@@ -46,11 +46,11 @@ namespace BSCHub.Application
             switch (type)
             {
                 case ReportType.PBSA:
-                    return year.MeetingDate?.AddDays(-14);
+                    return year.MeetingDate?.AddDaysSafe(-14);
                 case ReportType.PBSP:
-                    return isSevere ? year.MeetingDate?.AddDays(14) : year.StartDate;
+                    return isSevere ? year.MeetingDate?.AddDaysSafe(14) : year.StartDate;
                 case ReportType.SemiAnn:
-                    return year.StartDate.AddDays(190);
+                    return year.StartDate.AddDaysSafe(190);
                 default:
                     return year.StartDate;
             }
@@ -98,7 +98,7 @@ namespace BSCHub.Application
 
         public static DateOnly? GetDueBySupervisor(ReportType type, ISP_Year year, bool isSevere)
         {
-            return GetDeadline(year, type, isSevere)?.AddDays(-7);
+            return GetDeadline(year, type, isSevere)?.AddDaysSafe(-7);
         }
 
         private static readonly Dictionary<ReportType, string> names = new Dictionary<ReportType, string>

@@ -9,5 +9,13 @@
             return DateOnly.FromDateTime(localTime);
         }
 
+
+        public static DateOnly AddDaysSafe(this DateOnly dateOnly, int days)
+        {
+            var maxValue = DateOnly.MaxValue.DayNumber - dateOnly.DayNumber;
+            var minValue = DateOnly.MinValue.DayNumber - dateOnly.DayNumber;
+            return dateOnly.AddDays(days > maxValue ? maxValue : days < minValue ? minValue : days);
+        }
+
     }
 }
