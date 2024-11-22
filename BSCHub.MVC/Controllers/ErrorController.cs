@@ -9,6 +9,11 @@ namespace BSCHub.MVC.Controllers
             
         }
 
+        [Route("/Error")]
+        public IActionResult Error()
+        {
+            return View("Error");
+        }
         [Route("/Error/{statusCode}")]
         public IActionResult StatusCodeHandler(int statusCode)
         {

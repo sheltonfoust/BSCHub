@@ -19,8 +19,9 @@ namespace BSCHub.MVC.Controllers
             _userRepository = userRepository;
             _providerRepository = providerRepository;
         }
-        public ActionResult List()
+        public IActionResult List()
         {
+
             var users = _userRepository.ListUsers();
             return View(new UserListViewModel(users));
         }
@@ -33,8 +34,6 @@ namespace BSCHub.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-
-  
                 _userRepository.AddUser(user);
 
                 ModelState.Clear();
@@ -77,9 +76,7 @@ namespace BSCHub.MVC.Controllers
             if (ModelState.IsValid)
             {
                 _userRepository.DeleteUser(userId);
-
                 return RedirectToAction("List");
-
             }
             return NoContent();
         }
